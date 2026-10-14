@@ -1,0 +1,1292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Catering Packages & Andhra Menus | Annapurna Caterers</title>
+  <meta name="description" content="Explore Annapurna Caterers transparent per-plate pricing packages: Traditional Veg, Basic, Grand Banana Leaf Arati Aaku, and Royal Non-Veg Biryani buffets from ₹225/plate." />
+
+  <!-- Fonts & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Noto+Serif+Telugu:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link rel="stylesheet" href="style.css" />
+
+  <style>
+    /* ==========================================================================
+       PAGE SPECIFIC: PREMIUM PACKAGES & MENUS STYLING
+       ========================================================================== */
+
+    /* Hero Key Stats Strip */
+    .hero-pricing-strip {
+      display: flex;
+      justify-content: center;
+      gap: 2.2rem;
+      margin-top: 2.5rem;
+      flex-wrap: wrap;
+    }
+
+    .hero-stat-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.55rem 1.35rem;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(197, 155, 39, 0.35);
+      border-radius: var(--radius-full);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      transition: transform 0.3s var(--ease-spring), border-color 0.3s ease;
+    }
+
+    .hero-stat-pill:hover {
+      transform: translateY(-3px);
+      border-color: var(--gold-primary);
+      background: rgba(197, 155, 39, 0.16);
+    }
+
+    .hero-stat-pill i {
+      color: #ffcf56;
+      font-size: 1.1rem;
+    }
+
+    .hero-stat-pill span {
+      font-size: 0.88rem;
+      color: #ede7de;
+      font-weight: 500;
+    }
+
+    .hero-stat-pill strong {
+      color: #ffffff;
+      font-weight: 700;
+    }
+
+    /* Package Toggle Section */
+    .packages-toggle-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 3.5rem;
+      position: relative;
+    }
+
+    .package-toggle-container {
+      background: #ede8dc;
+      padding: 6px;
+      border-radius: var(--radius-full);
+      display: inline-flex;
+      position: relative;
+      box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.08), 0 8px 24px rgba(0, 0, 0, 0.04);
+      border: 1px solid rgba(197, 155, 39, 0.3);
+      max-width: 100%;
+    }
+
+    .pkg-tab-btn {
+      position: relative;
+      padding: 0.9rem 2.2rem;
+      border-radius: var(--radius-full);
+      font-family: var(--font-body);
+      font-weight: 700;
+      font-size: 0.98rem;
+      border: none;
+      background: transparent;
+      color: #5d564d;
+      cursor: pointer;
+      transition: all 0.35s var(--ease-smooth);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.65rem;
+      z-index: 2;
+      user-select: none;
+      white-space: nowrap;
+    }
+
+    .pkg-tab-btn i {
+      font-size: 1.1rem;
+      transition: transform 0.35s var(--ease-spring);
+    }
+
+    .pkg-tab-btn:hover {
+      color: var(--text-main);
+    }
+
+    .pkg-tab-btn:hover i {
+      transform: scale(1.18) rotate(5deg);
+    }
+
+    .pkg-tab-btn.active.veg {
+      background: linear-gradient(135deg, var(--green-veg), #174f32);
+      color: #ffffff;
+      box-shadow: 0 6px 20px rgba(34, 103, 68, 0.38), inset 0 1px 0 rgba(255, 255, 255, 0.25);
+    }
+
+    .pkg-tab-btn.active.nonveg {
+      background: linear-gradient(135deg, var(--red-royal), #6e1518);
+      color: #ffffff;
+      box-shadow: 0 6px 20px rgba(155, 34, 38, 0.38), inset 0 1px 0 rgba(255, 255, 255, 0.25);
+    }
+
+    .toggle-notice {
+      margin-top: 1rem;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .toggle-notice i {
+      color: var(--gold-primary);
+    }
+
+    /* Packages Grid */
+    .packages-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.75rem;
+      margin-bottom: 5.5rem;
+      transition: opacity 0.4s var(--ease-smooth), transform 0.4s var(--ease-smooth);
+    }
+
+    .packages-grid.fade-entering {
+      animation: tabFadeIn 0.45s var(--ease-smooth) forwards;
+    }
+
+    @keyframes tabFadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(18px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Package Cards */
+    .pkg-card {
+      background: var(--bg-white);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 2.2rem 1.6rem 2rem;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      transition: transform 0.4s var(--ease-smooth),
+                  box-shadow 0.4s var(--ease-smooth),
+                  border-color 0.4s ease;
+      box-shadow: 0 4px 18px rgba(0, 0, 0, 0.04);
+      overflow: visible;
+    }
+
+    .pkg-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+      background: transparent;
+      transition: background 0.35s ease;
+    }
+
+    .veg-card::before {
+      background: linear-gradient(90deg, #226744, #48bb78);
+    }
+
+    .nonveg-card::before {
+      background: linear-gradient(90deg, #9b2226, #e53e3e);
+    }
+
+    .pkg-card:hover {
+      transform: translateY(-9px);
+      box-shadow: 0 22px 48px rgba(26, 20, 10, 0.12);
+      border-color: rgba(197, 155, 39, 0.55);
+    }
+
+    /* Featured / Popular Card Accent */
+    .pkg-card.featured {
+      border: 2px solid var(--gold-primary);
+      box-shadow: 0 16px 45px rgba(197, 155, 39, 0.22);
+      transform: scale(1.02);
+      background: linear-gradient(180deg, #ffffff 0%, #fffdfa 100%);
+    }
+
+    .pkg-card.featured:hover {
+      transform: scale(1.02) translateY(-9px);
+      box-shadow: 0 26px 55px rgba(197, 155, 39, 0.32);
+    }
+
+    .pkg-card.featured::before {
+      height: 6px;
+      background: linear-gradient(90deg, var(--gold-primary), #ffd256, var(--gold-primary));
+    }
+
+    /* Featured Ribbon Badge */
+    .pkg-ribbon {
+      position: absolute;
+      top: -14px;
+      right: 20px;
+      background: linear-gradient(135deg, var(--gold-primary), #a67c13);
+      color: #1a1403;
+      font-size: 0.72rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      padding: 0.35rem 1rem;
+      border-radius: var(--radius-full);
+      box-shadow: 0 4px 14px rgba(197, 155, 39, 0.5);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      z-index: 5;
+    }
+
+    .pkg-ribbon i {
+      font-size: 0.75rem;
+      color: #ffffff;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Card Header */
+    .pkg-header {
+      border-bottom: 1px dashed #e2dbce;
+      padding-bottom: 1.4rem;
+      margin-bottom: 1.4rem;
+      position: relative;
+    }
+
+    .pkg-badge {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 0.5rem;
+      padding: 0.2rem 0.65rem;
+      border-radius: 4px;
+    }
+
+    .veg-card .pkg-badge {
+      background: var(--green-soft);
+      color: var(--green-veg);
+    }
+
+    .nonveg-card .pkg-badge {
+      background: var(--red-soft);
+      color: var(--red-royal);
+    }
+
+    .pkg-card.featured .pkg-badge {
+      background: #fdf3d8;
+      color: #8b6200;
+    }
+
+    .pkg-name {
+      font-size: 1.48rem;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 0.25rem;
+      line-height: 1.2;
+    }
+
+    .pkg-occasion {
+      font-size: 0.84rem;
+      color: var(--text-muted);
+      margin-bottom: 1rem;
+      display: block;
+      font-weight: 500;
+    }
+
+    .pkg-price-box {
+      display: flex;
+      align-items: baseline;
+      gap: 0.3rem;
+      margin-top: 0.2rem;
+    }
+
+    .pkg-currency {
+      font-size: 1.6rem;
+      font-weight: 700;
+      font-family: var(--font-heading);
+      color: var(--red-royal);
+    }
+
+    .pkg-price {
+      font-size: 2.75rem;
+      font-weight: 700;
+      line-height: 1;
+      color: var(--red-royal);
+      font-family: var(--font-heading);
+      letter-spacing: -0.02em;
+    }
+
+    .veg-card .pkg-currency,
+    .veg-card .pkg-price {
+      color: var(--green-veg);
+    }
+
+    .pkg-card.featured .pkg-currency,
+    .pkg-card.featured .pkg-price {
+      color: #926600;
+    }
+
+    .pkg-unit {
+      color: var(--text-muted);
+      font-size: 0.88rem;
+      font-weight: 500;
+      margin-left: 0.15rem;
+    }
+
+    /* Items List */
+    .pkg-items-list {
+      list-style: none;
+      flex-grow: 1;
+      margin-bottom: 2.2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+
+    .pkg-items-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.65rem;
+      font-size: 0.88rem;
+      color: #3b3732;
+      line-height: 1.45;
+      transition: transform 0.2s ease, color 0.2s ease;
+    }
+
+    .pkg-items-list li:hover {
+      transform: translateX(4px);
+      color: var(--text-main);
+    }
+
+    .pkg-items-list li i {
+      font-size: 0.92rem;
+      margin-top: 2px;
+      flex-shrink: 0;
+      transition: transform 0.25s var(--ease-spring);
+    }
+
+    .pkg-items-list li:hover i {
+      transform: scale(1.25);
+    }
+
+    .veg-card .pkg-items-list li i {
+      color: var(--green-veg);
+    }
+
+    .nonveg-card .pkg-items-list li i {
+      color: var(--red-royal);
+    }
+
+    .pkg-card.featured .pkg-items-list li i {
+      color: var(--gold-primary);
+    }
+
+    /* Select CTA Button */
+    .pkg-select-btn {
+      width: 100%;
+      text-align: center;
+      padding: 0.85rem 1.2rem;
+      border-radius: var(--radius-full);
+      font-weight: 700;
+      font-size: 0.92rem;
+      cursor: pointer;
+      transition: all 0.3s var(--ease-smooth);
+      border: 1px solid var(--border-subtle);
+      background: var(--bg-body);
+      color: var(--text-main);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      text-decoration: none;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .pkg-select-btn i {
+      font-size: 0.85rem;
+      transition: transform 0.3s var(--ease-smooth);
+    }
+
+    .pkg-select-btn:hover {
+      background: var(--text-main);
+      color: #ffffff;
+      border-color: var(--text-main);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+    }
+
+    .pkg-select-btn:hover i {
+      transform: translateX(4px);
+    }
+
+    .veg-card .pkg-select-btn:hover {
+      background: linear-gradient(135deg, var(--green-veg), #164f32);
+      border-color: var(--green-veg);
+      box-shadow: 0 6px 18px rgba(34, 103, 68, 0.3);
+    }
+
+    .nonveg-card .pkg-select-btn:hover {
+      background: linear-gradient(135deg, var(--red-royal), #6e1518);
+      border-color: var(--red-royal);
+      box-shadow: 0 6px 18px rgba(155, 34, 38, 0.3);
+    }
+
+    .pkg-card.featured .pkg-select-btn {
+      background: linear-gradient(135deg, var(--gold-primary), var(--gold-hover));
+      color: #1a1403;
+      border-color: var(--gold-primary);
+      box-shadow: 0 4px 16px rgba(197, 155, 39, 0.35);
+    }
+
+    .pkg-card.featured .pkg-select-btn:hover {
+      background: linear-gradient(135deg, #dfb743, var(--gold-primary));
+      transform: translateY(-3px) scale(1.02);
+      box-shadow: 0 8px 25px rgba(197, 155, 39, 0.5);
+      color: #000000;
+    }
+
+    /* ==========================================================================
+       LIVE STATIONS SECTION (DARK THEME)
+       ========================================================================== */
+    .stations-section {
+      position: relative;
+      padding: 6rem 0;
+      background: #14110e;
+      color: #ffffff;
+      overflow: hidden;
+    }
+
+    .stations-section::before {
+      content: '';
+      position: absolute;
+      top: -100px;
+      left: 10%;
+      width: 450px;
+      height: 450px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(197, 155, 39, 0.12), transparent 70%);
+      filter: blur(60px);
+      pointer-events: none;
+    }
+
+    .stations-section::after {
+      content: '';
+      position: absolute;
+      bottom: -100px;
+      right: 10%;
+      width: 450px;
+      height: 450px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(155, 34, 38, 0.15), transparent 70%);
+      filter: blur(60px);
+      pointer-events: none;
+    }
+
+    .station-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.85rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .station-box {
+      background: rgba(255, 255, 255, 0.035);
+      border: 1px solid rgba(197, 155, 39, 0.22);
+      border-radius: var(--radius-lg);
+      padding: 2.4rem 1.6rem;
+      text-align: center;
+      transition: all 0.4s var(--ease-smooth);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+
+    .station-box:hover {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: var(--gold-primary);
+      transform: translateY(-8px);
+      box-shadow: 0 18px 45px rgba(0, 0, 0, 0.45), 0 0 25px rgba(197, 155, 39, 0.2);
+    }
+
+    .station-icon-wrapper {
+      width: 74px;
+      height: 74px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, rgba(197, 155, 39, 0.2), rgba(155, 34, 38, 0.2));
+      border: 1px solid rgba(197, 155, 39, 0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.4rem;
+      transition: transform 0.4s var(--ease-spring), border-color 0.3s ease;
+    }
+
+    .station-box:hover .station-icon-wrapper {
+      transform: scale(1.12) rotate(6deg);
+      border-color: var(--gold-primary);
+      box-shadow: 0 0 20px rgba(197, 155, 39, 0.4);
+    }
+
+    .station-icon-wrapper i {
+      font-size: 2rem;
+      color: #ffdc82;
+      transition: color 0.3s ease;
+    }
+
+    .station-box:hover .station-icon-wrapper i {
+      color: #ffffff;
+    }
+
+    .station-tag {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--gold-primary);
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .station-box h4 {
+      font-size: 1.35rem;
+      color: #ffffff;
+      margin-bottom: 0.75rem;
+      font-weight: 700;
+    }
+
+    .station-box p {
+      color: #c9c1b5;
+      font-size: 0.9rem;
+      line-height: 1.6;
+      flex-grow: 1;
+    }
+
+    /* Custom Menu Consultation Strip */
+    .custom-menu-strip {
+      background: linear-gradient(135deg, #1b1713 0%, #241d18 100%);
+      border: 1px solid rgba(197, 155, 39, 0.35);
+      border-radius: var(--radius-xl);
+      padding: 3rem 3.5rem;
+      margin-top: 5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2.5rem;
+      position: relative;
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+    }
+
+    .custom-menu-strip::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: 40%;
+      background: radial-gradient(circle at top right, rgba(197, 155, 39, 0.15), transparent 70%);
+      pointer-events: none;
+    }
+
+    .custom-menu-content h3 {
+      font-size: 2.1rem;
+      color: #ffffff;
+      margin-bottom: 0.5rem;
+    }
+
+    .custom-menu-content p {
+      color: #d1c8bc;
+      font-size: 1rem;
+      max-width: 620px;
+      line-height: 1.6;
+    }
+
+    .custom-menu-actions {
+      display: flex;
+      gap: 1rem;
+      flex-shrink: 0;
+      flex-wrap: wrap;
+      z-index: 2;
+    }
+
+    /* ==========================================================================
+       RESPONSIVE BREAKPOINTS
+       ========================================================================== */
+    @media (max-width: 1200px) {
+      .packages-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.75rem;
+      }
+      .pkg-card.featured {
+        transform: none;
+      }
+      .pkg-card.featured:hover {
+        transform: translateY(-9px);
+      }
+      .station-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 900px) {
+      .custom-menu-strip {
+        flex-direction: column;
+        text-align: center;
+        padding: 2.5rem 2rem;
+      }
+      .custom-menu-content p {
+        margin: 0 auto;
+      }
+      .custom-menu-actions {
+        justify-content: center;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .packages-grid {
+        grid-template-columns: 1fr;
+      }
+      .station-grid {
+        grid-template-columns: 1fr;
+      }
+      .package-toggle-container {
+        width: 100%;
+        display: flex;
+      }
+      .pkg-tab-btn {
+        flex: 1;
+        padding: 0.75rem 1rem;
+        font-size: 0.86rem;
+        justify-content: center;
+      }
+      .hero-pricing-strip {
+        gap: 0.8rem;
+      }
+      .hero-stat-pill {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Announcement Bar -->
+  <div class="top-announcement">
+    <div class="container top-announcement-inner">
+      <div class="top-badges">
+        <span class="top-badge-item"><i class="fa-solid fa-certificate"></i> FSSAI Certified Kitchen</span>
+        <span class="top-badge-item"><i class="fa-solid fa-award"></i> ISO 9001:2015 Standards</span>
+        <span class="top-badge-item"><i class="fa-solid fa-utensils"></i> 100% Separate Veg & Non-Veg Units</span>
+      </div>
+      <div class="top-contacts">
+        <button type="button" class="audio-toggle-btn" aria-label="Sound Effects: Muted">
+          <span class="soundwave-bars"><span class="bar"></span><span class="bar"></span><span class="bar"></span></span>
+          <span class="audio-label">Audio OFF</span>
+        </button>
+        <span><i class="fa-solid fa-phone" style="color:var(--gold-primary);"></i> <a href="tel:+917386046000">+91 73860 46000</a></span>
+        <span><i class="fa-brands fa-whatsapp" style="color:#25d366; margin-left:12px;"></i> <a href="https://wa.me/917386046000" target="_blank" rel="noopener">Chat on WhatsApp</a></span>
+        <span><i class="fa-brands fa-instagram" style="color:#e1306c; margin-left:12px;"></i> <a href="https://www.instagram.com/annapoorna_premiumcatering?psln=YnhjZG5iMGU1bGJt" target="_blank" rel="noopener">@annapoorna_premiumcatering</a></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sticky Navbar -->
+  <header>
+    <div class="container navbar">
+      <a href="index.html" class="brand-logo" aria-label="Annapurna Caterers Home">
+        <div class="brand-emblem">
+          <i class="fa-solid fa-fire-burner"></i>
+        </div>
+        <div class="brand-title">
+          <h1>అన్నపూర్ణ</h1>
+          <span>Annapurna Caterers</span>
+        </div>
+      </a>
+
+      <nav aria-label="Main Navigation">
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="packages.html" class="active-page">Packages & Menus</a></li>
+          <li><a href="services.html">Services & Formats</a></li>
+          <li><a href="calculator.html">Cost Calculator</a></li>
+          <li><a href="about.html">About & Hygiene</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="calculator.html" class="btn-calc magnetic-btn">
+          <i class="fa-solid fa-calculator"></i> Price Estimator
+        </a>
+        <a href="contact.html" class="btn-quote magnetic-btn">
+          <i class="fa-solid fa-calendar-check"></i> Book Event
+        </a>
+        <button class="mobile-nav-toggle" onclick="toggleNav()" aria-label="Toggle Menu">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Page Hero Banner -->
+  <section class="page-hero parallax-bg">
+    <div class="container">
+      <div class="page-hero-tag reveal-down">
+        <i class="fa-solid fa-receipt"></i> Transparent Per-Plate Pricing
+      </div>
+      <h2 class="reveal-up delay-1">Curated Catering Packages</h2>
+      <p class="reveal-up delay-2">
+        Explore our authentic Andhra & Telugu menus starting at ₹225/plate for Satvik vegetarian poojas and ₹345/plate for royal non-vegetarian biryani feasts. No hidden overheads, 100% uncompromising culinary authenticity.
+      </p>
+
+      <!-- Animated Pricing Badges Strip -->
+      <div class="hero-pricing-strip reveal-scale delay-3">
+        <div class="hero-stat-pill">
+          <i class="fa-solid fa-leaf" style="color:#52c480;"></i>
+          <span>Pure Veg From: <strong>₹225</strong>/plate</span>
+        </div>
+        <div class="hero-stat-pill">
+          <i class="fa-solid fa-drumstick-bite" style="color:#ff7a70;"></i>
+          <span>Non-Veg From: <strong>₹345</strong>/plate</span>
+        </div>
+        <div class="hero-stat-pill">
+          <i class="fa-solid fa-kitchen-set" style="color:#ffd256;"></i>
+          <span>Kitchens: <strong>100% Separate</strong></span>
+        </div>
+        <div class="hero-stat-pill">
+          <i class="fa-solid fa-users" style="color:#ffd256;"></i>
+          <span>Events: <strong>50 to 5,000+ Guests</strong></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Packages Section -->
+  <section style="padding: 5.5rem 0; background: var(--bg-body);">
+    <div class="container">
+      
+      <!-- Section Header -->
+      <div class="section-header reveal-up">
+        <span class="section-eyebrow">Handcrafted Telugu Menus</span>
+        <h3>Choose Your Perfect Menu</h3>
+        <p>Switch seamlessly between our Pure Veg & Non-Veg culinary tiers. Every package can be ordered as Hot Thermal Drop-Off or Complete Banana-Leaf Vindu Service.</p>
+      </div>
+
+      <!-- Animated Package Toggle Switch -->
+      <div class="packages-toggle-wrapper reveal-scale delay-1">
+        <div class="package-toggle-container glass" role="tablist" aria-label="Catering Package Type">
+          <button id="tab-veg-btn" class="pkg-tab-btn active veg magnetic-btn" onclick="switchPackageTab('veg')" role="tab" aria-selected="true" aria-controls="veg-packages-container">
+            <i class="fa-solid fa-leaf"></i> Pure Veg Packages (From ₹225)
+          </button>
+          <button id="tab-nonveg-btn" class="pkg-tab-btn nonveg magnetic-btn" onclick="switchPackageTab('nonveg')" role="tab" aria-selected="false" aria-controls="nonveg-packages-container">
+            <i class="fa-solid fa-drumstick-bite"></i> Non-Veg Packages (From ₹345)
+          </button>
+        </div>
+        <div class="toggle-notice">
+          <i class="fa-solid fa-circle-info"></i> Cooked in dedicated, 100% segregated kitchens with pure cold-pressed oils & cow ghee.
+        </div>
+      </div>
+
+      <!-- ==================================================================
+           PURE VEGETARIAN PACKAGES (4 Cards)
+           ================================================================== -->
+      <div id="veg-packages-container" class="packages-grid stagger-reveal" role="tabpanel" aria-labelledby="tab-veg-btn">
+        
+        <!-- 1. Traditional Veg (₹225) -->
+        <article class="pkg-card veg-card reveal-scale delay-1">
+          <div class="pkg-header">
+            <span class="pkg-badge">Satvik & Poojas</span>
+            <h4 class="pkg-name">Traditional Veg</h4>
+            <span class="pkg-occasion">Poojas & Vratams</span>
+            <div class="pkg-price-box">
+              <span class="pkg-currency">₹</span>
+              <span class="pkg-price counter-value" data-target="225">225</span>
+              <span class="pkg-unit">/ plate</span>
+            </div>
+          </div>
+          <ul class="pkg-items-list">
+            <li><i class="fa-solid fa-circle-check"></i> <span>Sona Masoori Rice & Neyyi</span></li>
+            <li><i class="fa-solid fa-circle-check"></i> <span>Mudda Pappu & Gongura Pachadi</span></li>
+            <li><i class="fa-solid fa-circle-check"></i> <span>Tomato Pappu</span></li>
+            <li><i class="fa-solid fa-circle-check"></i> <span>Bendakaya Fry</span></li>
+            <li><i class="fa-solid fa-circle-check"></i> <span>Sambar & Pepper Charu</span></li>
+            <li><i class="fa-solid fa-circle-check"></i> <span>Semiya Payasam</span></li>
+            <li><i class="fa-solid fa-circle-check"></i> <span>Appadam/Curd/Pickle/Water</span></li>
+          </ul>
+          <a href="contact.html?pkg=Traditional+Veg+225" class="pkg-select-btn magnetic-btn">
+            Select This Package <i class="fa-solid fa-arrow-right"></i>
+          </a>
+        </article>
+
+        <!-- 2. Basic Veg (₹245) -->
+        <article class="pkg-card veg-card reveal-scale delay-2">
+          <div class="pkg-header">
+            <span class="pkg-badge">Gruhapravesam</span>
+            <h4 class="pkg-name">Basic Veg</h4>
+            <span class="pkg-occasion">Gruhapravesam</span>
+            <div class="pkg-price-box">
+              <span class="pkg-currency">₹</span>
+              <span class="pkg-price counter-value" data-target="245">245</span>
+              <span class="pkg-unit">/ plate</span>
+            </div>
+          </div>
+          <ul class="pkg-items-list">
+            <li><i class="fa-solid fa-circle-check"></i> <span>Mirchi Bajji starter</span></li>
+            <li><i class="fa-solid fa-circle-check"></i> <span>Phulka/Poori</span></li>
+            <li><i class="fa-solid fa-circle-check"></i> <span>Mixed Veg Kurma</span></li>
+            <li><i class="fa-solid fa-circle-check"></i> <span>Temple Pulihora</span></li>
+            <li><i class="fa-solid fa-circle-check"></i> <span>Rice/Sambar/Rasam/Curd</span></li>
+            <li><i class="fa-solid fa-circle-check"></i> <span>Gulab Jamun</span></li>
+            <li><i class="fa-solid fa-circle-check"></i> <span>Chutneys</span></li>
+          </ul>
+          <a href="contact.html?pkg=Basic+Veg+245" class="pkg-select-btn magnetic-btn">
+            Select This Package <i class="fa-solid fa-arrow-right"></i>
+          </a>
+        </article>
+
+        <!-- 3. Standard Veg Arati Aaku (₹295) - FEATURED -->
+        <article class="pkg-card veg-card featured reveal-scale delay-3">
+          <span class="pkg-ribbon shimmer"><i class="fa-solid fa-crown"></i> Most Popular</span>
+          <div class="pkg-header">
+            <span class="pkg-badge">Grand Vindu</span>
+            <h4 class="pkg-name">Standard Veg Arati Aaku</h4>
+            <span class="pkg-occasion">Grand Banana Leaf</span>
+            <div class="pkg-price-box">
+              <span class="pkg-currency">₹</span>
+              <span class="pkg-price counter-value" data-target="295">295</span>
+              <span class="pkg-unit">/ plate</span>
+            </div>
+          </div>
+          <ul class="pkg-items-list">
+            <li><i class="fa-solid fa-circle-check"></i> <span>Dahi Vada & Cut Mirchi</span></li>
+            <li><i class="fa-solid fa-circle-check"></i> <span>Gutti Vankaya</span></li>
+            <li><i class="fa-solid fa-circle-check"></i> <span>Paneer Butter Masala & Rumali Roti</span></li>
+            <li><i class="fa-solid fa-circle-check"></i> <span>Veg Dum Biryani + Raita</span></li>
+            <li><i class="fa-solid fa-circle-check"></i> <span>Gongura Pachadi/Kandi Podi/Ghee</span></li>
+            <li><i class="fa-solid fa-circle-check"></i> <span>Ghee Bobbatlu + Ice Cream</span></li>
+            <li><i class="fa-solid fa-circle-check"></i> <span>Full Banana Leaf Service</span></li>
+          </ul>
+          <a href="contact.html?pkg=Standard+Veg+Arati+Aaku+295" class="pkg-select-btn magnetic-btn">
+            Select This Package <i class="fa-solid fa-arrow-right"></i>
+          </a>
+        </article>
+
+        <!-- 4. Royal Special Veg (₹345) -->
+        <article class="pkg-card veg-card reveal-scale delay-4">
+          <div class="pkg-header">
+            <span class="pkg-badge">Grand Wedding</span>
+            <h4 class="pkg-name">Royal Special Veg</h4>
+            <span class="pkg-occasion">Grand Wedding</span>
+            <div class="pkg-price-box">
+              <span class="pkg-currency">₹</span>
+              <span class="pkg-price counter-value" data-target="345">345</span>
+              <span class="pkg-unit">/ plate</span>
+            </div>
+          </div>
+          <ul class="pkg-items-list">
+            <li><i class="fa-solid fa-circle-check"></i> <span>Welcome Drinks + Live Counters</span></li>
+            <li><i class="fa-solid fa-circle-check"></i> <span>Kaju Paneer & Malai Kofta</span></li>
+            <li><i class="fa-solid fa-circle-check"></i> <span>Live Pesarattu Counter</span></li>
+            <li><i class="fa-solid fa-circle-check"></i> <span>Dum Biryani & Pulihora</span></li>
+            <li><i class="fa-solid fa-circle-check"></i> <span>2 Special Pachallu & Podis</span></li>
+            <li><i class="fa-solid fa-circle-check"></i> <span>Pootharekulu & Badam Halwa</span></li>
+            <li><i class="fa-solid fa-circle-check"></i> <span>Degree Filter Coffee</span></li>
+          </ul>
+          <a href="contact.html?pkg=Royal+Special+Veg+345" class="pkg-select-btn magnetic-btn">
+            Select This Package <i class="fa-solid fa-arrow-right"></i>
+          </a>
+        </article>
+
+      </div>
+
+      <!-- ==================================================================
+           NON-VEGETARIAN PACKAGES (4 Cards - Hidden by default)
+           ================================================================== -->
+      <div id="nonveg-packages-container" class="packages-grid stagger-reveal" style="display:none;" role="tabpanel" aria-labelledby="tab-nonveg-btn">
+        
+        <!-- 1. Traditional Non-Veg (₹345) -->
+        <article class="pkg-card nonveg-card reveal-scale delay-1">
+          <div class="pkg-header">
+            <span class="pkg-badge">Home Parties</span>
+            <h4 class="pkg-name">Traditional Non-Veg</h4>
+            <span class="pkg-occasion">Home Parties</span>
+            <div class="pkg-price-box">
+              <span class="pkg-currency">₹</span>
+              <span class="pkg-price counter-value" data-target="345">345</span>
+              <span class="pkg-unit">/ plate</span>
+            </div>
+          </div>
+          <ul class="pkg-items-list">
+            <li><i class="fa-solid fa-circle-check"></i> <span>Chicken Dum Biryani</span></li>
+            <li><i class="fa-solid fa-circle-check"></i> <span>Mirchi Ka Salan & Raitha</span></li>
+            <li><i class="fa-solid fa-circle-check"></i> <span>Kodi Kura</span></li>
+            <li><i class="fa-solid fa-circle-check"></i> <span>Bagara Rice</span></li>
+            <li><i class="fa-solid fa-circle-check"></i> <span>Tomato Pappu & Charu</span></li>
+            <li><i class="fa-solid fa-circle-check"></i> <span>Double Ka Meeta</span></li>
+            <li><i class="fa-solid fa-circle-check"></i> <span>Salad/Curd/Water</span></li>
+          </ul>
+          <a href="contact.html?pkg=Traditional+Non-Veg+345" class="pkg-select-btn magnetic-btn">
+            Select This Package <i class="fa-solid fa-arrow-right"></i>
+          </a>
+        </article>
+
+        <!-- 2. Basic Non-Veg (₹395) -->
+        <article class="pkg-card nonveg-card reveal-scale delay-2">
+          <div class="pkg-header">
+            <span class="pkg-badge">Engagements</span>
+            <h4 class="pkg-name">Basic Non-Veg</h4>
+            <span class="pkg-occasion">Engagements</span>
+            <div class="pkg-price-box">
+              <span class="pkg-currency">₹</span>
+              <span class="pkg-price counter-value" data-target="395">395</span>
+              <span class="pkg-unit">/ plate</span>
+            </div>
+          </div>
+          <ul class="pkg-items-list">
+            <li><i class="fa-solid fa-circle-check"></i> <span>Chicken 65 starter</span></li>
+            <li><i class="fa-solid fa-circle-check"></i> <span>Chicken Dum Biryani</span></li>
+            <li><i class="fa-solid fa-circle-check"></i> <span>Butter Chicken/Kadai Chicken</span></li>
+            <li><i class="fa-solid fa-circle-check"></i> <span>Rumali Roti</span></li>
+            <li><i class="fa-solid fa-circle-check"></i> <span>Kadai Paneer</span></li>
+            <li><i class="fa-solid fa-circle-check"></i> <span>Sambar/Curd/Rice</span></li>
+            <li><i class="fa-solid fa-circle-check"></i> <span>Kaddu Ka Kheer + Ice Cream</span></li>
+          </ul>
+          <a href="contact.html?pkg=Basic+Non-Veg+395" class="pkg-select-btn magnetic-btn">
+            Select This Package <i class="fa-solid fa-arrow-right"></i>
+          </a>
+        </article>
+
+        <!-- 3. Standard Non-Veg (₹495) - FEATURED -->
+        <article class="pkg-card nonveg-card featured reveal-scale delay-3">
+          <span class="pkg-ribbon shimmer"><i class="fa-solid fa-fire"></i> Top Seller</span>
+          <div class="pkg-header">
+            <span class="pkg-badge">Receptions</span>
+            <h4 class="pkg-name">Standard Non-Veg</h4>
+            <span class="pkg-occasion">Receptions</span>
+            <div class="pkg-price-box">
+              <span class="pkg-currency">₹</span>
+              <span class="pkg-price counter-value" data-target="495">495</span>
+              <span class="pkg-unit">/ plate</span>
+            </div>
+          </div>
+          <ul class="pkg-items-list">
+            <li><i class="fa-solid fa-circle-check"></i> <span>Pepper Chicken + Cut Mirchi starters</span></li>
+            <li><i class="fa-solid fa-circle-check"></i> <span>Guntur Gongura Mutton</span></li>
+            <li><i class="fa-solid fa-circle-check"></i> <span>Chicken Dum Biryani</span></li>
+            <li><i class="fa-solid fa-circle-check"></i> <span>Gutti Vankaya/Paneer</span></li>
+            <li><i class="fa-solid fa-circle-check"></i> <span>Rumali Roti/Naan</span></li>
+            <li><i class="fa-solid fa-circle-check"></i> <span>Mirchi Salan/Raitha/Sambar/Curd</span></li>
+            <li><i class="fa-solid fa-circle-check"></i> <span>Double Ka Meeta + Ice Cream</span></li>
+          </ul>
+          <a href="contact.html?pkg=Standard+Non-Veg+495" class="pkg-select-btn magnetic-btn">
+            Select This Package <i class="fa-solid fa-arrow-right"></i>
+          </a>
+        </article>
+
+        <!-- 4. Royal Seafood & Mutton (₹595) -->
+        <article class="pkg-card nonveg-card reveal-scale delay-4">
+          <div class="pkg-header">
+            <span class="pkg-badge">Luxury Feast</span>
+            <h4 class="pkg-name">Royal Seafood & Mutton</h4>
+            <span class="pkg-occasion">Luxury Feast</span>
+            <div class="pkg-price-box">
+              <span class="pkg-currency">₹</span>
+              <span class="pkg-price counter-value" data-target="595">595</span>
+              <span class="pkg-unit">/ plate</span>
+            </div>
+          </div>
+          <ul class="pkg-items-list">
+            <li><i class="fa-solid fa-circle-check"></i> <span>Apollo Fish + Chicken Majestic</span></li>
+            <li><i class="fa-solid fa-circle-check"></i> <span>Nellore Chepala Pulusu/Royyala Iguru</span></li>
+            <li><i class="fa-solid fa-circle-check"></i> <span>Mutton Dum Biryani + Salan</span></li>
+            <li><i class="fa-solid fa-circle-check"></i> <span>Natu Kodi with Ragi Mudda</span></li>
+            <li><i class="fa-solid fa-circle-check"></i> <span>Full Veg Spread</span></li>
+            <li><i class="fa-solid fa-circle-check"></i> <span>Pootharekulu & Dry Fruit Halwa</span></li>
+            <li><i class="fa-solid fa-circle-check"></i> <span>Mocktails & Coffee</span></li>
+          </ul>
+          <a href="contact.html?pkg=Royal+Seafood+Mutton+595" class="pkg-select-btn magnetic-btn">
+            Select This Package <i class="fa-solid fa-arrow-right"></i>
+          </a>
+        </article>
+
+      </div>
+
+      <!-- Custom Consultation Strip -->
+      <div class="custom-menu-strip reveal-up">
+        <div class="custom-menu-content">
+          <span class="section-eyebrow" style="color:var(--gold-primary);">Tailor-Made Andhra Feasts</span>
+          <h3>Looking for a Customized Menu or Live Counters?</h3>
+          <p>
+            Whether you want specific regional recipes like Godavari Chepala Vepudu, Satvik No-Onion-No-Garlic cooking for vratams, or a mix of North & South Indian dishes, our banquet chefs will customize the exact menu for your budget.
+          </p>
+        </div>
+        <div class="custom-menu-actions">
+          <a href="calculator.html" class="btn-primary-gold magnetic-btn">
+            <i class="fa-solid fa-calculator"></i> Calculate Exact Price
+          </a>
+          <a href="https://wa.me/917386046000?text=Namaskaram%20Annapurna%20Caterers!%20I%20would%20like%20to%20customize%20a%20catering%20menu%20for%20my%20event." target="_blank" rel="noopener" class="btn-primary-red magnetic-btn" style="color:#ffffff;">
+            <i class="fa-brands fa-whatsapp"></i> Chat with Menu Chef
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       LIVE STATIONS SECTION (id="stations" - Dark Background)
+       ========================================================================== -->
+  <section id="stations" class="stations-section">
+    <div class="container">
+      
+      <div class="section-header reveal-up">
+        <span class="section-eyebrow" style="color:#ffcf56;">Interactive Event Dining</span>
+        <h3 style="color:#ffffff;">Live Telugu Food Counters & Stalls</h3>
+        <p style="color:#d5ccc0;">
+          Add an unforgettable theatrical element to your celebrations. Hot tawas, sputtering spices, and freshly poured degree filter coffee served right before your guests.
+        </p>
+      </div>
+
+      <div class="station-grid stagger-reveal">
+        
+        <!-- Station 1: Live Pesarattu & Dosa -->
+        <div class="station-box reveal-scale delay-1">
+          <div class="station-icon-wrapper">
+            <i class="fa-solid fa-plate-wheat"></i>
+          </div>
+          <span class="station-tag">Tawa Specialty</span>
+          <h4>Live Pesarattu & Dosa</h4>
+          <p>Upma Pesarattu, Guntur Karam Dosa & Onion Podi Dosa made sizzling hot with authentic Allam Pachadi & fresh coconut chutney.</p>
+        </div>
+
+        <!-- Station 2: Vijayawada Punugulu & Bajji -->
+        <div class="station-box reveal-scale delay-2">
+          <div class="station-icon-wrapper">
+            <i class="fa-solid fa-pepper-hot"></i>
+          </div>
+          <span class="station-tag">Street Sizzlers</span>
+          <h4>Vijayawada Punugulu & Bajji</h4>
+          <p>Crunchy golden Punugulu with spicy peanut chutney, Guntur stuffed cut-mirchi bajjis, and hot piping onion pakodas.</p>
+        </div>
+
+        <!-- Station 3: Live Ghee Bobbatlu -->
+        <div class="station-box reveal-scale delay-3">
+          <div class="station-icon-wrapper">
+            <i class="fa-solid fa-fire-burner"></i>
+          </div>
+          <span class="station-tag">Royal Sweet Counter</span>
+          <h4>Live Ghee Bobbatlu</h4>
+          <p>Melt-in-mouth jaggery Bobbatlu (Puran Poli) drenched in fragrant melted desi cow ghee right before your delighted guests.</p>
+        </div>
+
+        <!-- Station 4: Filter Coffee & Paan Stall -->
+        <div class="station-box reveal-scale delay-4">
+          <div class="station-icon-wrapper">
+            <i class="fa-solid fa-mug-hot"></i>
+          </div>
+          <span class="station-tag">Grand Finale</span>
+          <h4>Filter Coffee & Paan Stall</h4>
+          <p>Brass davarah-tumbler degree filter coffee with aromatic chicory froth & authentic festive Banarasi meetha paan counter.</p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Floating Action Buttons -->
+  <div class="floating-tools">
+    <a href="https://wa.me/917386046000?text=Namaskaram%20Annapurna%20Caterers!%20I%20would%20like%20to%20enquire%20about%20catering%20packages." target="_blank" rel="noopener" class="floating-btn floating-wa magnetic-btn" aria-label="WhatsApp Chat">
+      <i class="fa-brands fa-whatsapp"></i>
+    </a>
+    <a href="tel:+917386046000" class="floating-btn floating-call magnetic-btn" aria-label="Direct Phone Call">
+      <i class="fa-solid fa-phone"></i>
+    </a>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-columns">
+        
+        <!-- Brand Column -->
+        <div class="footer-col">
+          <div class="brand-logo" style="margin-bottom:1.1rem;">
+            <div class="brand-emblem" style="width:40px; height:40px; font-size:1.1rem;">
+              <i class="fa-solid fa-fire-burner"></i>
+            </div>
+            <div class="brand-title">
+              <h1 style="color:#ffffff; font-size:1.35rem;">అన్నపూర్ణ</h1>
+              <span>Annapurna Caterers</span>
+            </div>
+          </div>
+          <p style="font-size:0.88rem; line-height:1.7; color:#a39b90;">
+            Authentic Andhra & Telugu culinary masters specializing in traditional banana-leaf feasts, royal Hyderabadi biryanis, and live food stalls. Operating with 100% separate veg & non-veg commercial kitchens.
+          </p>
+          <div class="social-row">
+            <a href="https://www.instagram.com/annapoorna_premiumcatering?psln=YnhjZG5iMGU1bGJt" target="_blank" rel="noopener" class="social-btn magnetic-btn" aria-label="Instagram">
+              <i class="fa-brands fa-instagram"></i>
+            </a>
+            <a href="https://wa.me/917386046000" target="_blank" rel="noopener" class="social-btn magnetic-btn" aria-label="WhatsApp">
+              <i class="fa-brands fa-whatsapp"></i>
+            </a>
+            <a href="#" class="social-btn magnetic-btn" aria-label="Facebook">
+              <i class="fa-brands fa-facebook-f"></i>
+            </a>
+            <a href="#" class="social-btn magnetic-btn" aria-label="YouTube">
+              <i class="fa-brands fa-youtube"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Quick Links -->
+        <div class="footer-col">
+          <h5>Quick Pages</h5>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="packages.html">Catering Packages</a></li>
+            <li><a href="services.html">Delivery vs Serving</a></li>
+            <li><a href="calculator.html">Cost Estimator</a></li>
+            <li><a href="about.html">About & Hygiene</a></li>
+            <li><a href="contact.html">Contact & Bookings</a></li>
+          </ul>
+        </div>
+
+        <!-- Specialty Menus -->
+        <div class="footer-col">
+          <h5>Specialty Menus</h5>
+          <ul class="footer-links">
+            <li><a href="packages.html">Arati Aaku Veg Vindu (₹295)</a></li>
+            <li><a href="packages.html">Dum Biryani & Mutton (₹495)</a></li>
+            <li><a href="packages.html">Natu Kodi & Ragi Mudda (₹595)</a></li>
+            <li><a href="packages.html#stations">Live Pesarattu & Bobbatlu</a></li>
+            <li><a href="contact.html">Satvik Vratam Poojas</a></li>
+          </ul>
+        </div>
+
+        <!-- Contact & Kitchens -->
+        <div class="footer-col">
+          <h5>Contact & Kitchens</h5>
+          <p style="margin-bottom:0.75rem; font-size:0.88rem;">
+            <i class="fa-solid fa-phone" style="color:var(--gold-primary); margin-right:8px;"></i>
+            <a href="tel:+917386046000" style="color:#ded7ce;">+91 73860 46000</a>
+          </p>
+          <p style="margin-bottom:0.75rem; font-size:0.88rem;">
+            <i class="fa-brands fa-whatsapp" style="color:#25d366; margin-right:8px;"></i>
+            <a href="https://wa.me/917386046000" target="_blank" rel="noopener" style="color:#ded7ce;">+91 73860 46000</a>
+          </p>
+          <p style="margin-bottom:0.75rem; font-size:0.88rem;">
+            <i class="fa-brands fa-instagram" style="color:var(--gold-primary); margin-right:8px;"></i>
+            <a href="https://www.instagram.com/annapoorna_premiumcatering?psln=YnhjZG5iMGU1bGJt" target="_blank" rel="noopener" style="color:#c5bba8;">@annapoorna_premiumcatering</a>
+          </p>
+          <p style="margin-bottom:0.75rem; font-size:0.88rem;">
+            <i class="fa-solid fa-envelope" style="color:var(--gold-primary); margin-right:8px;"></i>
+            <a href="mailto:Annapoornacatering8@gmail.com" style="color:#c5bba8;">Annapoornacatering8@gmail.com</a>
+          </p>
+          <p style="font-size:0.88rem; line-height:1.6;">
+            <i class="fa-solid fa-location-dot" style="color:var(--gold-primary); margin-right:8px;"></i>
+            Serving Andhra Pradesh & Hyderabad
+          </p>
+        </div>
+
+      </div>
+
+      <div class="footer-bottom-bar">
+        <p>&copy; 2026 Annapurna Caterers. All Rights Reserved.</p>
+        <p>FSSAI Lic. No: 13622036000123 &bull; ISO 9001:2015 Quality Certified</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="animations.js" defer></script>
+  <script>
+    /**
+     * Switch Between Pure Veg and Non-Veg Packages
+     * Smooth cross-fade transition and re-triggering animations
+     */
+    function switchPackageTab(type) {
+      const vegBox = document.getElementById('veg-packages-container');
+      const nonvegBox = document.getElementById('nonveg-packages-container');
+      const vegBtn = document.getElementById('tab-veg-btn');
+      const nonvegBtn = document.getElementById('tab-nonveg-btn');
+
+      if (!vegBox || !nonvegBox || !vegBtn || !nonvegBtn) return;
+
+      if (type === 'veg') {
+        // Toggle Buttons
+        vegBtn.classList.add('active');
+        vegBtn.setAttribute('aria-selected', 'true');
+        nonvegBtn.classList.remove('active');
+        nonvegBtn.setAttribute('aria-selected', 'false');
+
+        // Toggle Grid Display with animation
+        nonvegBox.style.display = 'none';
+        vegBox.style.display = 'grid';
+        vegBox.classList.remove('fade-entering');
+        void vegBox.offsetWidth; // Trigger reflow
+        vegBox.classList.add('fade-entering');
+
+        // Activate cards
+        const cards = vegBox.querySelectorAll('.pkg-card');
+        cards.forEach((card) => {
+          card.classList.add('active');
+        });
+
+        // Trigger counters in veg tab
+        if (typeof window.animateCounters === 'function') {
+          window.animateCounters(vegBox);
+        }
+      } else {
+        // Toggle Buttons
+        vegBtn.classList.remove('active');
+        vegBtn.setAttribute('aria-selected', 'false');
+        nonvegBtn.classList.add('active');
+        nonvegBtn.setAttribute('aria-selected', 'true');
+
+        // Toggle Grid Display with animation
+        vegBox.style.display = 'none';
+        nonvegBox.style.display = 'grid';
+        nonvegBox.classList.remove('fade-entering');
+        void nonvegBox.offsetWidth; // Trigger reflow
+        nonvegBox.classList.add('fade-entering');
+
+        // Activate cards
+        const cards = nonvegBox.querySelectorAll('.pkg-card');
+        cards.forEach((card) => {
+          card.classList.add('active');
+        });
+
+        // Trigger counters in non-veg tab
+        if (typeof window.animateCounters === 'function') {
+          window.animateCounters(nonvegBox);
+        }
+      }
+    }
+
+    // Auto-check URL parameters or hash on initial page load
+    document.addEventListener('DOMContentLoaded', () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const tabParam = urlParams.get('tab');
+      const hash = window.location.hash.toLowerCase();
+
+      if (tabParam === 'nonveg' || hash === '#nonveg') {
+        switchPackageTab('nonveg');
+      }
+    });
+  </script>
+</body>
+</html>

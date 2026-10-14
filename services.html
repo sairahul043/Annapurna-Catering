@@ -1,0 +1,941 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Catering Services & Formats | Annapurna Caterers</title>
+  <meta name="description" content="Choose between Insulated Doorstep Delivery and Full-Service Telugu Vindu Banquets. Traditional seated Arati Aaku dining, luxury chafing buffets, and live food counters across Hyderabad & AP." />
+
+  <!-- Fonts & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Noto+Serif+Telugu:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link rel="stylesheet" href="style.css" />
+
+  <style>
+    /* Page Specific Styling for Services & Formats */
+    .services-intro-bar {
+      margin-top: -2.5rem;
+      margin-bottom: 4rem;
+      position: relative;
+      z-index: 10;
+    }
+    .services-intro-card {
+      background: #ffffff;
+      border-radius: var(--radius-lg);
+      padding: 1.8rem 2.5rem;
+      box-shadow: var(--shadow-lg);
+      border: 1px solid var(--border-subtle);
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+    }
+    .intro-pill-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .intro-pill-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: var(--gold-soft);
+      color: var(--gold-hover);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+      transition: transform 0.35s var(--ease-spring);
+    }
+    .intro-pill-item:hover .intro-pill-icon {
+      transform: scale(1.15) rotate(8deg);
+      background: var(--gold-primary);
+      color: #ffffff;
+    }
+    .intro-pill-text h4 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 0.15rem;
+    }
+    .intro-pill-text p {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+
+    /* Dual Service Cards Grid */
+    .service-dual-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2.5rem;
+      margin-bottom: 5.5rem;
+    }
+    .service-box {
+      background: #ffffff;
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      border: 1px solid var(--border-subtle);
+      box-shadow: var(--shadow-md);
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.4s var(--ease-smooth),
+                  box-shadow 0.4s var(--ease-smooth),
+                  border-color 0.4s var(--ease-smooth);
+      position: relative;
+    }
+    .service-box:hover {
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.12);
+      transform: translateY(-8px);
+    }
+    .service-box.box-delivery:hover {
+      border-color: var(--gold-primary);
+    }
+    .service-box.box-fullservice:hover {
+      border-color: var(--red-royal);
+    }
+
+    /* Media Wrapper with Zoom Effect */
+    .service-box-media {
+      position: relative;
+      height: 290px;
+      overflow: hidden;
+    }
+    .service-box-img {
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+      transition: transform 0.7s var(--ease-smooth);
+    }
+    .service-box:hover .service-box-img {
+      transform: scale(1.07);
+    }
+    .service-box-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.65) 100%);
+      display: flex;
+      align-items: flex-end;
+      padding: 1.5rem 2rem;
+    }
+    .service-badge-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.78rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      padding: 0.4rem 1.1rem;
+      border-radius: var(--radius-full);
+      backdrop-filter: blur(8px);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+    }
+    .service-badge-pill.delivery {
+      background: rgba(197, 155, 39, 0.92);
+      color: #1a1403;
+    }
+    .service-badge-pill.fullservice {
+      background: rgba(155, 34, 38, 0.92);
+      color: #ffffff;
+    }
+
+    .service-box-body {
+      padding: 2.5rem 2.3rem 2.3rem;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+    .service-box-body h3 {
+      font-size: 2.1rem;
+      margin-bottom: 0.85rem;
+      color: var(--text-main);
+      line-height: 1.2;
+    }
+    .service-box-body p.service-desc {
+      color: var(--text-muted);
+      font-size: 0.96rem;
+      line-height: 1.65;
+      margin-bottom: 1.8rem;
+    }
+    .service-features-list {
+      list-style: none;
+      margin-bottom: 2.2rem;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .service-features-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.85rem;
+      font-size: 0.94rem;
+      color: #3b3732;
+      line-height: 1.5;
+    }
+    .service-features-list li .check-icon {
+      font-size: 1.05rem;
+      margin-top: 2px;
+      flex-shrink: 0;
+    }
+    .box-delivery .check-icon {
+      color: var(--gold-primary);
+    }
+    .box-fullservice .check-icon {
+      color: var(--red-royal);
+    }
+
+    .service-box-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding-top: 1.5rem;
+      border-top: 1px dashed var(--border-subtle);
+      margin-top: auto;
+    }
+    .service-meta-text {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+    .service-meta-text strong {
+      display: block;
+      color: var(--text-main);
+      font-size: 0.92rem;
+    }
+
+    /* Comparison Section & Table */
+    .compare-section {
+      padding: 5.5rem 0 6rem;
+      background: #faf7f2;
+      position: relative;
+    }
+    .table-container {
+      margin-top: 3rem;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.06);
+      border: 1px solid rgba(197, 155, 39, 0.25);
+      background: #ffffff;
+    }
+    .table-responsive {
+      width: 100%;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+    .compare-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+    }
+    .compare-table th {
+      padding: 1.5rem 2rem;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--text-main);
+      background: #f7f3ec;
+      border-bottom: 2px solid #e7ddcf;
+      vertical-align: middle;
+    }
+    .compare-table th.col-feature {
+      width: 24%;
+      font-family: var(--font-heading);
+      font-size: 1.25rem;
+    }
+    .compare-table th.col-delivery {
+      width: 38%;
+      color: #7b5907;
+      background: #fbf7ee;
+    }
+    .compare-table th.col-fullservice {
+      width: 38%;
+      color: var(--red-royal);
+      background: #fdf2f2;
+    }
+    .compare-table td {
+      padding: 1.35rem 2rem;
+      border-bottom: 1px solid var(--border-subtle);
+      font-size: 0.93rem;
+      line-height: 1.55;
+      color: #4a453e;
+      transition: background-color 0.2s ease, transform 0.2s ease;
+      vertical-align: middle;
+    }
+    .compare-table tbody tr {
+      transition: background-color 0.25s ease, box-shadow 0.25s ease;
+    }
+    .compare-table tbody tr:nth-child(even) td {
+      background-color: #fdfbf7;
+    }
+    .compare-table tbody tr:hover td {
+      background-color: #fff9e8;
+    }
+    .compare-table tbody tr:hover td.feature-title {
+      color: var(--red-royal);
+      padding-left: 2.2rem;
+    }
+    .compare-table td.feature-title {
+      font-weight: 700;
+      color: var(--text-main);
+      font-size: 0.95rem;
+      transition: padding-left 0.25s var(--ease-smooth), color 0.25s ease;
+    }
+    .compare-table td.td-fullservice {
+      background-color: rgba(155, 34, 38, 0.02);
+    }
+    .compare-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .table-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-size: 0.76rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      padding: 0.2rem 0.65rem;
+      border-radius: var(--radius-full);
+      margin-bottom: 0.35rem;
+    }
+    .table-tag.gold {
+      background: var(--gold-soft);
+      color: #8c670a;
+    }
+    .table-tag.red {
+      background: var(--red-soft);
+      color: var(--red-royal);
+    }
+
+    /* Workflow 4 Steps Section */
+    .steps-section {
+      padding: 5rem 0 5.5rem;
+      background: #ffffff;
+      border-top: 1px solid var(--border-subtle);
+    }
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2rem;
+      margin-top: 3.5rem;
+    }
+    .step-card {
+      background: var(--bg-body);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 2.2rem 1.6rem;
+      text-align: center;
+      position: relative;
+      transition: var(--transition);
+    }
+    .step-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--gold-primary);
+    }
+    .step-number {
+      position: absolute;
+      top: -16px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: var(--red-royal);
+      color: #ffffff;
+      font-weight: 800;
+      font-size: 0.85rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 10px rgba(155, 34, 38, 0.35);
+    }
+    .step-icon {
+      font-size: 2.2rem;
+      color: var(--gold-primary);
+      margin: 0.8rem 0 1.2rem;
+      display: inline-block;
+    }
+    .step-card h4 {
+      font-size: 1.25rem;
+      margin-bottom: 0.6rem;
+      color: var(--text-main);
+    }
+    .step-card p {
+      font-size: 0.86rem;
+      color: var(--text-muted);
+      line-height: 1.55;
+    }
+
+    /* CTA Banner */
+    .services-cta-banner {
+      background: linear-gradient(135deg, #171412, #292019);
+      border-radius: var(--radius-xl);
+      padding: 3.5rem;
+      margin: 4rem auto 0;
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(197, 155, 39, 0.3);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+    }
+    .services-cta-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2.5rem;
+      position: relative;
+      z-index: 2;
+    }
+    .services-cta-content h3 {
+      font-size: 2.4rem;
+      color: #ffffff;
+      margin-bottom: 0.8rem;
+    }
+    .services-cta-content p {
+      color: #ded7ce;
+      font-size: 1.05rem;
+      max-width: 650px;
+      line-height: 1.6;
+    }
+    .services-cta-actions {
+      display: flex;
+      gap: 1.2rem;
+      flex-shrink: 0;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 992px) {
+      .service-dual-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+      .steps-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .services-cta-inner {
+        flex-direction: column;
+        text-align: center;
+      }
+      .services-cta-actions {
+        justify-content: center;
+      }
+      .compare-table th, .compare-table td {
+        padding: 1.1rem 1.2rem;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .steps-grid {
+        grid-template-columns: 1fr;
+      }
+      .service-box-media {
+        height: 220px;
+      }
+      .service-box-body {
+        padding: 1.8rem 1.4rem;
+      }
+      .service-box-body h3 {
+        font-size: 1.7rem;
+      }
+      .services-cta-banner {
+        padding: 2.2rem 1.5rem;
+      }
+      .services-intro-card {
+        padding: 1.5rem 1.2rem;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Announcement Bar -->
+  <div class="top-announcement">
+    <div class="container top-announcement-inner">
+      <div class="top-badges">
+        <span class="top-badge-item"><i class="fa-solid fa-certificate"></i> FSSAI Certified Kitchen</span>
+        <span class="top-badge-item"><i class="fa-solid fa-award"></i> ISO 9001:2015 Standards</span>
+        <span class="top-badge-item"><i class="fa-solid fa-utensils"></i> 100% Separate Veg & Non-Veg Kitchens</span>
+      </div>
+      <div class="top-contacts">
+        <button type="button" class="audio-toggle-btn" aria-label="Sound Effects: Muted">
+          <span class="soundwave-bars"><span class="bar"></span><span class="bar"></span><span class="bar"></span></span>
+          <span class="audio-label">Audio OFF</span>
+        </button>
+        <span><i class="fa-solid fa-phone" style="color:var(--gold-primary);"></i> <a href="tel:+917386046000">+91 73860 46000</a></span>
+        <span><i class="fa-brands fa-whatsapp" style="color:#25d366; margin-left:12px;"></i> <a href="https://wa.me/917386046000" target="_blank" rel="noopener">Chat on WhatsApp</a></span>
+        <span><i class="fa-brands fa-instagram" style="color:#e1306c; margin-left:12px;"></i> <a href="https://www.instagram.com/annapoorna_premiumcatering?psln=YnhjZG5iMGU1bGJt" target="_blank" rel="noopener">@annapoorna_premiumcatering</a></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Header & Navigation -->
+  <header>
+    <div class="container navbar">
+      <a href="index.html" class="brand-logo" aria-label="Annapurna Caterers Home">
+        <div class="brand-emblem">
+          <i class="fa-solid fa-fire-burner"></i>
+        </div>
+        <div class="brand-title">
+          <h1>అన్నపూర్ణ</h1>
+          <span>Annapurna Caterers</span>
+        </div>
+      </a>
+
+      <nav>
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="packages.html">Packages & Menus</a></li>
+          <li><a href="services.html" class="active-page" aria-current="page">Services & Formats</a></li>
+          <li><a href="calculator.html">Cost Calculator</a></li>
+          <li><a href="about.html">About & Hygiene</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="calculator.html" class="btn-calc magnetic-btn">
+          <i class="fa-solid fa-calculator"></i> Price Estimator
+        </a>
+        <a href="contact.html" class="btn-quote magnetic-btn">
+          <i class="fa-solid fa-calendar-check"></i> Book Event
+        </a>
+        <button class="mobile-nav-toggle" onclick="toggleNav()" aria-label="Toggle Menu">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Page Hero Banner with Parallax -->
+  <section class="page-hero parallax-bg" data-parallax-speed="0.18">
+    <div class="container">
+      <div class="page-hero-tag shimmer">
+        <i class="fa-solid fa-bell-concierge"></i> Flexible Service Formats
+      </div>
+      <h2 class="split-text">Delivery Only vs. Full Vindu Service</h2>
+      <p>
+        Whether you require precision thermal drop-off delivery for auspicious home poojas or grand seated Arati Aaku wedding banquets with 5-star Telugu hospitality across Hyderabad, Vijayawada, Guntur, Vizag, and Andhra Pradesh.
+      </p>
+    </div>
+  </section>
+
+  <!-- Quick Highlights Bar -->
+  <div class="container services-intro-bar">
+    <div class="services-intro-card reveal-up">
+      <div class="intro-pill-item">
+        <div class="intro-pill-icon"><i class="fa-solid fa-box-tissue"></i></div>
+        <div class="intro-pill-text">
+          <h4>Insulated Thermal Transport</h4>
+          <p>Food stays steaming hot for 3+ hours</p>
+        </div>
+      </div>
+      <div class="intro-pill-item">
+        <div class="intro-pill-icon"><i class="fa-solid fa-people-carry-box"></i></div>
+        <div class="intro-pill-text">
+          <h4>Uniformed Banquet Crew</h4>
+          <p>Trained in traditional Telugu hospitality</p>
+        </div>
+      </div>
+      <div class="intro-pill-item">
+        <div class="intro-pill-icon"><i class="fa-solid fa-leaf"></i></div>
+        <div class="intro-pill-text">
+          <h4>Fresh Cut Banana Leaves</h4>
+          <p>Traditional Arati Aakulu included</p>
+        </div>
+      </div>
+      <div class="intro-pill-item">
+        <div class="intro-pill-icon"><i class="fa-solid fa-kitchen-set"></i></div>
+        <div class="intro-pill-text">
+          <h4>100% Segregated Kitchens</h4>
+          <p>FSSAI verified pure veg & non-veg units</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Dual Service Cards Grid Section -->
+  <section style="padding: 2rem 0 5.5rem; background: var(--bg-body);">
+    <div class="container">
+      
+      <div class="section-header reveal-up" style="margin-bottom: 3.5rem;">
+        <span class="section-eyebrow">Two Distinct Experiences</span>
+        <h3>Tailored Hospitality For Every Scale</h3>
+        <p>Select the model that fits your venue, guest count, and dining vision. Seamlessly customize any package in either format.</p>
+      </div>
+
+      <div class="service-dual-grid">
+        
+        <!-- CARD 1: Delivery Only -->
+        <div class="service-box box-delivery reveal-left">
+          <div class="service-box-media">
+            <img src="https://images.unsplash.com/photo-1546833999-b9f581a1996d?auto=format&fit=crop&w=1000&q=80" alt="Hot Food Delivery by Annapurna Caterers" class="service-box-img" loading="lazy" />
+            <div class="service-box-overlay">
+              <span class="service-badge-pill delivery">
+                <i class="fa-solid fa-truck-fast"></i> Drop-Off Only
+              </span>
+            </div>
+          </div>
+
+          <div class="service-box-body">
+            <h3>Doorstep Delivery Only</h3>
+            <p class="service-desc">
+              Tailored for home poojas, Satyanarayana Swamy Vratams, birthday parties, small housewarmings (Gruhapravesam), and intimate family gatherings where you desire exquisite restaurant-grade Telugu vindu without catering personnel in your private home.
+            </p>
+
+            <ul class="service-features-list">
+              <li>
+                <i class="fa-solid fa-circle-check check-icon"></i>
+                <span><strong>Thermal insulated hot containers:</strong> High-grade food containers preserve piping-hot temperature and aroma for 3+ hours without reheating.</span>
+              </li>
+              <li>
+                <i class="fa-solid fa-circle-check check-icon"></i>
+                <span><strong>Specialized spill-proof jars:</strong> Dedicated leak-proof packaging for Pure Cow Ghee, freshly pounded spicy Podis, and handcrafted Andhra Pachallu.</span>
+              </li>
+              <li>
+                <i class="fa-solid fa-circle-check check-icon"></i>
+                <span><strong>Complimentary eco dining kit:</strong> Freshly cut banana leaf sheets, biodegradable areca palm plates, bowls, drinking cups, and spoons.</span>
+              </li>
+              <li>
+                <i class="fa-solid fa-circle-check check-icon"></i>
+                <span><strong>Punctual temperature-managed logistics:</strong> Dedicated fleet guarantees drop-off at your exact scheduled muhurtham or lunchtime.</span>
+              </li>
+              <li>
+                <i class="fa-solid fa-circle-check check-icon"></i>
+                <span><strong>Low minimum guest threshold:</strong> Available for intimate celebrations starting from just 25 guests with zero hassle.</span>
+              </li>
+            </ul>
+
+            <div class="service-box-footer">
+              <div class="service-meta-text">
+                <span>Best suited for:</span>
+                <strong>25 to 80 Guests</strong>
+              </div>
+              <a href="contact.html?service=Delivery+Only" class="btn-primary-gold magnetic-btn">
+                <i class="fa-solid fa-truck-ramp-box"></i> Book Delivery Only
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- CARD 2: Full Vindu Service -->
+        <div class="service-box box-fullservice reveal-right">
+          <div class="service-box-media">
+            <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=1000&q=80" alt="Full Service Banquet Hospitality by Annapurna Caterers" class="service-box-img" loading="lazy" />
+            <div class="service-box-overlay">
+              <span class="service-badge-pill fullservice">
+                <i class="fa-solid fa-crown"></i> Full Hospitality
+              </span>
+            </div>
+          </div>
+
+          <div class="service-box-body">
+            <h3>Serving & Delivery (Full Vindu)</h3>
+            <p class="service-desc">
+              End-to-end luxury banquet hospitality for Telugu Pellillu (Weddings), grand Receptions, Engagements, Upanayanam, Half-Saree ceremonies, and prestige corporate conventions where impeccable service is non-negotiable.
+            </p>
+
+            <ul class="service-features-list">
+              <li>
+                <i class="fa-solid fa-circle-check check-icon"></i>
+                <span><strong>Luxury chafing buffet setup:</strong> Heavy-gauge stainless steel chafing dishes, brass food risers, decorative lighting, and bilingual Telugu/English food labels.</span>
+              </li>
+              <li>
+                <i class="fa-solid fa-circle-check check-icon"></i>
+                <span><strong>Authentic seated Arati Aaku Saapadu:</strong> Dedicated service team trained in traditional Telugu course-by-course leaf serving protocols and ceremonial hospitality.</span>
+              </li>
+              <li>
+                <i class="fa-solid fa-circle-check check-icon"></i>
+                <span><strong>Polite uniformed serving staff:</strong> Coordinated banquet captains, bilingual floor supervisors, and attentive waitstaff ensuring every guest feels honored.</span>
+              </li>
+              <li>
+                <i class="fa-solid fa-circle-check check-icon"></i>
+                <span><strong>On-site Live Cooking Stations:</strong> Freshly made Upma Pesarattu, Guntur Karam Dosa, Hot Mirchi Bajji, Ghee Bobbatlu, and Brass Davarah Degree Filter Coffee.</span>
+              </li>
+              <li>
+                <i class="fa-solid fa-circle-check check-icon"></i>
+                <span><strong>Complete 360° venue management:</strong> Pre-event banquet layout, uninterrupted chafing replenishment, and comprehensive post-event dining area sanitation.</span>
+              </li>
+            </ul>
+
+            <div class="service-box-footer">
+              <div class="service-meta-text">
+                <span>Best suited for:</span>
+                <strong>80 to 2,000+ Guests</strong>
+              </div>
+              <a href="contact.html?service=Delivery+and+Serving" class="btn-primary-red magnetic-btn" style="color:#ffffff;">
+                <i class="fa-solid fa-bell-concierge"></i> Book Full Vindu Service
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Comparison Table Section -->
+  <section class="compare-section">
+    <div class="container">
+      
+      <div class="section-header reveal-up">
+        <span class="section-eyebrow">Direct Comparison</span>
+        <h3>Side-by-Side Format Breakdown</h3>
+        <p>Examine the detailed operational distinctions between our two service models to find the ideal match for your venue and requirements.</p>
+      </div>
+
+      <div class="table-container glass reveal-up delay-1">
+        <div class="table-responsive">
+          <table class="compare-table">
+            <thead>
+              <tr>
+                <th class="col-feature"><i class="fa-solid fa-list-check" style="color:var(--gold-primary); margin-right:8px;"></i> Event Feature</th>
+                <th class="col-delivery">
+                  <span class="table-tag gold"><i class="fa-solid fa-truck-fast"></i> Drop-Off</span>
+                  <div>Doorstep Delivery Only</div>
+                </th>
+                <th class="col-fullservice">
+                  <span class="table-tag red"><i class="fa-solid fa-crown"></i> 5-Star Staffed</span>
+                  <div>Serving & Delivery (Full Vindu)</div>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="feature-title">Best For</td>
+                <td>
+                  <strong>Home poojas, vratams, intimate birthdays, office lunches</strong><br>
+                  <span style="font-size:0.84rem; color:var(--text-muted);">Ideal for 25 to 80 pax in private residences or clubhouse halls.</span>
+                </td>
+                <td class="td-fullservice">
+                  <strong>Weddings, Pellillu, Receptions, Gruhapravesam, Large Galas</strong><br>
+                  <span style="font-size:0.84rem; color:var(--text-muted);">Ideal for 80 to 2,000+ pax in kalyana mandapams and luxury venues.</span>
+                </td>
+              </tr>
+              <tr>
+                <td class="feature-title">Food Warmth</td>
+                <td>
+                  <strong>Insulated Thermal Hot-Boxes</strong><br>
+                  Food is delivered in temperature-locked food-grade containers that preserve steaming heat for 3+ hours without electricity or chafing flames.
+                </td>
+                <td class="td-fullservice">
+                  <strong>Live Chafing Dishes & Steam Counters</strong><br>
+                  Banquet chafing pans with continuous sternos, induction warmers, and live soup kettles keep every item piping hot throughout the entire event duration.
+                </td>
+              </tr>
+              <tr>
+                <td class="feature-title">Service Personnel</td>
+                <td>
+                  <strong>Delivery Executive Only</strong><br>
+                  Courteous logistics personnel drop off and unpack sealed food boxes at your doorstep or pantry counter. No servers remain on-site.
+                </td>
+                <td class="td-fullservice">
+                  <strong>Complete Hospitality Team</strong><br>
+                  Uniformed South Indian service crew, bilingual banquet captain, live station chefs, and dining hall replenishment supervisors remain on duty.
+                </td>
+              </tr>
+              <tr>
+                <td class="feature-title">Dining Style</td>
+                <td>
+                  <strong>Self-Serve Buffet / Informal Dining</strong><br>
+                  Guests self-serve from containers. Includes complimentary banana leaf paper rolls, eco plates, napkins, and disposable cutleries.
+                </td>
+                <td class="td-fullservice">
+                  <strong>Traditional Seated Leaf (Arati Aaku) or Luxury Buffet</strong><br>
+                  Table-by-table seated banana leaf protocol (Pappu, Neyyi, Podi, Koora, Sambar, Payasam) or full 5-star stainless chafing line.
+                </td>
+              </tr>
+              <tr>
+                <td class="feature-title">Live Counters</td>
+                <td>
+                  <strong>Pre-Cooked Hot Delivery</strong><br>
+                  All menu items arrive freshly cooked in our central kitchen. Live on-site tawa/fryer cooking is not included in drop-off service.
+                </td>
+                <td class="td-fullservice">
+                  <strong>Full Interactive Live Stations</strong><br>
+                  Live Guntur Karam Dosa & Upma Pesarattu counters, sizzling Punugulu & Mirchi Bajji, fresh Ghee Bobbatlu, and brass Davarah Filter Coffee stalls.
+                </td>
+              </tr>
+              <tr>
+                <td class="feature-title">Post-Event Cleanup</td>
+                <td>
+                  <strong>Handled by Host</strong><br>
+                  Utensils are disposable and eco-friendly; client disposes after meal. No return of heavy vessels required.
+                </td>
+                <td class="td-fullservice">
+                  <strong>Complete Venue Sanitation Handled by Us</strong><br>
+                  Our crew clears banana leaves, collects wet/dry waste, packs leftover food neatly for the host, and restores dining hall cleanliness.
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- How It Works / 4 Simple Steps Section -->
+  <section class="steps-section">
+    <div class="container">
+      <div class="section-header reveal-up">
+        <span class="section-eyebrow">Our Streamlined Process</span>
+        <h3>How Our Catering Works</h3>
+        <p>From menu consultation to the final bite of pootharekulu, we make event dining stress-free.</p>
+      </div>
+
+      <div class="steps-grid stagger-reveal">
+        <div class="step-card reveal-up">
+          <div class="step-number">1</div>
+          <div class="step-icon"><i class="fa-solid fa-comments"></i></div>
+          <h4>Consult & Select</h4>
+          <p>Choose your Telugu menu package (Pure Veg or Non-Veg) and pick Delivery Only or Full Vindu hospitality.</p>
+        </div>
+
+        <div class="step-card reveal-up delay-1">
+          <div class="step-number">2</div>
+          <div class="step-icon"><i class="fa-solid fa-kitchen-set"></i></div>
+          <h4>Central Kitchen Prep</h4>
+          <p>Dishes are prepared in separate veg and non-veg hygienic kitchens using cold-pressed oils and farm-fresh ingredients.</p>
+        </div>
+
+        <div class="step-card reveal-up delay-2">
+          <div class="step-number">3</div>
+          <div class="step-icon"><i class="fa-solid fa-truck-fast"></i></div>
+          <h4>Transit & Setup</h4>
+          <p>Thermal containers arrive 45 minutes before serving time, or our banquet crew sets up chafers 2 hours in advance.</p>
+        </div>
+
+        <div class="step-card reveal-up delay-3">
+          <div class="step-number">4</div>
+          <div class="step-icon"><i class="fa-solid fa-star"></i></div>
+          <h4>Flawless Dining</h4>
+          <p>Your guests savor authentic Andhra flavors with piping hot warmth and genuine Telugu warmth and hospitality.</p>
+        </div>
+      </div>
+
+      <!-- Quick Interactive Calculator CTA -->
+      <div class="services-cta-banner reveal-scale">
+        <div class="services-cta-inner">
+          <div class="services-cta-content">
+            <span style="color:var(--gold-primary); text-transform:uppercase; font-size:0.8rem; font-weight:800; letter-spacing:2px; display:inline-block; margin-bottom:0.5rem;">
+              <i class="fa-solid fa-calculator"></i> Real-Time Price Estimator
+            </span>
+            <h3>Compare Exact Pricing for Both Formats</h3>
+            <p>
+              Use our live interactive budget calculator to see how Delivery Only (+₹0) compares to Full Service Buffet (+₹50) or Royal Banana Leaf (+₹80) for your exact guest count.
+            </p>
+          </div>
+          <div class="services-cta-actions">
+            <a href="calculator.html" class="btn-primary-gold magnetic-btn">
+              <i class="fa-solid fa-sliders"></i> Open Cost Calculator
+            </a>
+            <a href="packages.html" class="btn-primary-red magnetic-btn" style="color:#ffffff;">
+              <i class="fa-solid fa-book-open"></i> Browse Menus (From ₹225)
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Floating Contact Buttons -->
+  <div class="floating-tools">
+    <a href="tel:+917386046000" class="floating-btn floating-call" title="Call Us Direct" aria-label="Call Annapurna Caterers">
+      <i class="fa-solid fa-phone"></i>
+    </a>
+    <a href="https://wa.me/917386046000?text=Namaskaram%20Annapurna%20Caterers,%20I%20am%20interested%20in%20learning%20more%20about%20your%20Delivery%20Only%20and%20Full%20Vindu%20services" target="_blank" rel="noopener" class="floating-btn floating-wa" title="WhatsApp Enquiry" aria-label="WhatsApp Enquiry">
+      <i class="fa-brands fa-whatsapp"></i>
+    </a>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-columns">
+        <div class="footer-col">
+          <div class="brand-logo" style="margin-bottom:1rem;">
+            <div class="brand-emblem" style="width:40px; height:40px; font-size:1.1rem;">
+              <i class="fa-solid fa-fire-burner"></i>
+            </div>
+            <div class="brand-title">
+              <h1 style="color:#ffffff; font-size:1.3rem;">అన్నపూర్ణ</h1>
+              <span>Annapurna Caterers</span>
+            </div>
+          </div>
+          <p style="font-size:0.88rem; line-height:1.7;">
+            Authentic Andhra & Telugu catering excellence with completely separated kitchens for pure vegetarian feasts and non-vegetarian biryani banquets. Serving Pellillu, Gruhapravesam, Vratams, and corporate events across AP & Telangana.
+          </p>
+          <div class="social-row">
+            <a href="https://www.instagram.com/annapoorna_premiumcatering?psln=YnhjZG5iMGU1bGJt" target="_blank" rel="noopener" class="social-btn" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="https://wa.me/917386046000" target="_blank" rel="noopener" class="social-btn" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+            <a href="#" class="social-btn" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="#" class="social-btn" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h5>Quick Pages</h5>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="packages.html">Catering Packages</a></li>
+            <li><a href="services.html">Services & Formats</a></li>
+            <li><a href="calculator.html">Cost Calculator</a></li>
+            <li><a href="about.html">About & Hygiene</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h5>Service Formats</h5>
+          <ul class="footer-links">
+            <li><a href="services.html">Thermal Insulated Drop-Off</a></li>
+            <li><a href="services.html">Full-Service Buffet Catering</a></li>
+            <li><a href="services.html">Traditional Banana Leaf Saapadu</a></li>
+            <li><a href="packages.html#stations">Live Andhra Dosa & Bajji Counters</a></li>
+            <li><a href="contact.html?service=Satvik">Satvik & Pooja Catering (No Onion/Garlic)</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h5>Contact & Kitchens</h5>
+          <p style="margin-bottom:0.7rem; font-size:0.88rem;">
+            <i class="fa-solid fa-phone" style="color:var(--gold-primary); margin-right:8px;"></i>
+            <a href="tel:+917386046000" style="color:#ded7ce;">+91 73860 46000</a>
+          </p>
+          <p style="margin-bottom:0.7rem; font-size:0.88rem;">
+            <i class="fa-brands fa-whatsapp" style="color:#25d366; margin-right:8px;"></i>
+            <a href="https://wa.me/917386046000" target="_blank" rel="noopener" style="color:#ded7ce;">+91 73860 46000 (WhatsApp)</a>
+          </p>
+          <p style="margin-bottom:0.7rem; font-size:0.88rem;">
+            <i class="fa-brands fa-instagram" style="color:var(--gold-primary); margin-right:8px;"></i>
+            <a href="https://www.instagram.com/annapoorna_premiumcatering?psln=YnhjZG5iMGU1bGJt" target="_blank" rel="noopener" style="color:#ded7ce;">@annapoorna_premiumcatering</a>
+          </p>
+          <p style="margin-bottom:0.7rem; font-size:0.88rem;">
+            <i class="fa-solid fa-envelope" style="color:var(--gold-primary); margin-right:8px;"></i>
+            <a href="mailto:Annapoornacatering8@gmail.com" style="color:#ded7ce;">Annapoornacatering8@gmail.com</a>
+          </p>
+          <p style="font-size:0.88rem; line-height:1.6; color:#ded7ce;">
+            <i class="fa-solid fa-location-dot" style="color:var(--gold-primary); margin-right:8px;"></i>
+            Serving Hyderabad, Vijayawada, Guntur, Vizag, Tirupati & Entire AP
+          </p>
+        </div>
+      </div>
+
+      <div class="footer-bottom-bar">
+        <p>&copy; 2026 Annapurna Caterers (అన్నపూర్ణ). All Rights Reserved.</p>
+        <p>FSSAI Lic. No: 13622036000123 • ISO 9001:2015 Quality Certified</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Script for Animations & Nav -->
+  <script src="animations.js" defer></script>
+</body>
+</html>

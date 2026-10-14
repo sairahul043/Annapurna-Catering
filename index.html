@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Annapurna Caterers | Premium Andhra & Telugu Catering in Hyderabad & AP</title>
+  <meta name="description" content="Annapurna Caterers (అన్నపూర్ణ కేటరింగ్) — Authentic Andhra & Telugu catering excellence in Hyderabad & Andhra Pradesh. Pure Veg Vindu Bhojanam on banana leaves, royal biryanis, live counters, drop-off delivery & full-service catering." />
+
+  <!-- Fonts & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Noto+Serif+Telugu:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  
+  <!-- Global Design System & Animations -->
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- Homepage-Specific Animated Styles -->
+  <style>
+    /* ==========================================================================
+       HOMEPAGE HERO & SECTION ANIMATED STYLES
+       ========================================================================== */
+
+    /* Hero Section: Full Viewport with Parallax & Mesh Glow */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(180deg, rgba(18, 16, 14, 0.82) 0%, rgba(18, 16, 14, 0.88) 55%, rgba(18, 16, 14, 0.96) 100%),
+                  url('https://images.unsplash.com/photo-1610057099431-d73a1c9d2f2f?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+      color: #ffffff;
+      padding: 7.5rem 0 5.5rem;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    /* Animated Mesh Gradient Overlay */
+    .hero-gradient-overlay {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background: radial-gradient(circle at 18% 28%, rgba(197, 155, 39, 0.16), transparent 45%),
+                  radial-gradient(circle at 82% 72%, rgba(155, 34, 38, 0.22), transparent 48%);
+      mix-blend-mode: screen;
+      z-index: 1;
+    }
+
+    /* Floating Decorative Glow Spheres */
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 10%;
+      right: 5%;
+      width: 320px;
+      height: 320px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(197, 155, 39, 0.2), transparent 70%);
+      filter: blur(50px);
+      pointer-events: none;
+      animation: float 7s ease-in-out infinite;
+      z-index: 1;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: 8%;
+      left: 5%;
+      width: 360px;
+      height: 360px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(155, 34, 38, 0.24), transparent 70%);
+      filter: blur(55px);
+      pointer-events: none;
+      animation: float 8s ease-in-out infinite reverse;
+      z-index: 1;
+    }
+
+    .hero .container {
+      position: relative;
+      z-index: 2;
+    }
+
+    /* Pre-title Badge with Shimmer */
+    .hero-pretitle {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      background: rgba(197, 155, 39, 0.14);
+      border: 1px solid var(--gold-primary);
+      color: #ffdc82;
+      font-size: 0.84rem;
+      text-transform: uppercase;
+      letter-spacing: 2.2px;
+      padding: 0.45rem 1.4rem;
+      border-radius: var(--radius-full);
+      margin-bottom: 1.5rem;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      box-shadow: 0 4px 18px rgba(197, 155, 39, 0.2);
+      transition: transform 0.35s var(--ease-spring), box-shadow 0.35s ease;
+    }
+
+    .hero-pretitle:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(197, 155, 39, 0.35);
+    }
+
+    .hero-pretitle i {
+      color: var(--gold-primary);
+    }
+
+    /* Hero Headline & Split Characters */
+    .hero h2 {
+      font-size: 3.8rem;
+      font-weight: 700;
+      line-height: 1.15;
+      margin-bottom: 1.35rem;
+      letter-spacing: -0.02em;
+      color: #ffffff;
+      text-shadow: 0 2px 20px rgba(0, 0, 0, 0.45);
+    }
+
+    .hero-title .gradient-text {
+      background: linear-gradient(135deg, #fff3c4 0%, var(--gold-primary) 50%, #e6ca65 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      display: inline-block;
+    }
+
+    .hero-title .split-text-char {
+      display: inline-block;
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity 0.5s var(--ease-smooth), transform 0.5s var(--ease-smooth);
+      will-change: opacity, transform;
+    }
+
+    .hero-title.active .split-text-char,
+    .hero-title.reveal-up.active .split-text-char,
+    .reveal.active .split-text-char,
+    body.loaded .hero-title .split-text-char {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Hero Subtitle */
+    .hero-subtitle {
+      max-width: 780px;
+      margin: 0 auto 2.5rem;
+      font-size: 1.15rem;
+      color: #ded7ce;
+      font-weight: 300;
+      line-height: 1.7;
+      text-shadow: 0 1px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Hero CTA Group */
+    .hero-cta-group {
+      display: flex;
+      justify-content: center;
+      gap: 1.25rem;
+      flex-wrap: wrap;
+      margin-bottom: 3.8rem;
+    }
+
+    /* Hero Stats Grid (Glassmorphism Container) */
+    .hero-stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+      background: rgba(18, 16, 14, 0.72);
+      border: 1px solid rgba(197, 155, 39, 0.32);
+      border-radius: var(--radius-lg);
+      padding: 1.8rem 2.2rem;
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+      text-align: left;
+      transition: border-color 0.35s ease, box-shadow 0.35s ease;
+    }
+
+    .hero-stats-grid:hover {
+      border-color: rgba(197, 155, 39, 0.55);
+      box-shadow: 0 16px 45px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    }
+
+    .stat-item {
+      display: flex;
+      align-items: center;
+      gap: 1.1rem;
+      padding: 0.3rem 0;
+    }
+
+    .stat-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: rgba(197, 155, 39, 0.18);
+      border: 1px solid rgba(197, 155, 39, 0.4);
+      color: #ffd875;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.35rem;
+      flex-shrink: 0;
+      transition: transform 0.35s var(--ease-spring), background 0.35s ease;
+    }
+
+    .stat-item:hover .stat-icon {
+      transform: scale(1.12) rotate(6deg);
+      background: rgba(197, 155, 39, 0.32);
+    }
+
+    .stat-text h4 {
+      font-size: 1.6rem;
+      font-weight: 700;
+      line-height: 1.1;
+      color: #ffffff;
+      letter-spacing: -0.01em;
+    }
+
+    .stat-text p {
+      font-size: 0.8rem;
+      color: #c9c1b5;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      margin-top: 0.25rem;
+      font-weight: 600;
+    }
+
+    /* Teaser Section */
+    .home-teasers-section {
+      padding: 6.5rem 0;
+      background: var(--bg-body);
+      position: relative;
+    }
+
+    .pages-teaser-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2.2rem;
+      margin-top: 1.5rem;
+    }
+
+    .teaser-card {
+      background: #ffffff;
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      transition: transform 0.38s var(--ease-smooth),
+                  box-shadow 0.38s var(--ease-smooth),
+                  border-color 0.38s ease;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    .teaser-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 45px rgba(18, 16, 14, 0.12);
+      border-color: rgba(197, 155, 39, 0.55);
+    }
+
+    .teaser-img-wrap {
+      height: 220px;
+      width: 100%;
+      overflow: hidden;
+      position: relative;
+      background: #1a1714;
+    }
+
+    .teaser-img {
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+      transition: transform 0.7s var(--ease-smooth);
+      will-change: transform;
+    }
+
+    .teaser-card:hover .teaser-img {
+      transform: scale(1.08);
+    }
+
+    .teaser-badge {
+      position: absolute;
+      bottom: 12px;
+      right: 12px;
+      background: rgba(18, 16, 14, 0.85);
+      color: #ffd875;
+      font-size: 0.74rem;
+      font-weight: 700;
+      padding: 0.35rem 0.85rem;
+      border-radius: var(--radius-full);
+      border: 1px solid rgba(197, 155, 39, 0.4);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .teaser-body {
+      padding: 2.2rem;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+
+    .teaser-tag {
+      font-size: 0.75rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1.8px;
+      color: var(--gold-hover);
+      margin-bottom: 0.55rem;
+    }
+
+    .teaser-body h4 {
+      font-size: 1.55rem;
+      margin-bottom: 0.75rem;
+      color: var(--text-main);
+      line-height: 1.25;
+      transition: color 0.25s ease;
+    }
+
+    .teaser-card:hover .teaser-body h4 {
+      color: var(--red-royal);
+    }
+
+    .teaser-body p {
+      color: var(--text-muted);
+      font-size: 0.94rem;
+      line-height: 1.65;
+      margin-bottom: 1.6rem;
+      flex-grow: 1;
+    }
+
+    .teaser-link {
+      color: var(--red-royal);
+      font-weight: 700;
+      font-size: 0.95rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: color 0.25s ease, gap 0.25s var(--ease-smooth);
+    }
+
+    .teaser-card:hover .teaser-link {
+      color: var(--gold-hover);
+      gap: 0.8rem;
+    }
+
+    /* Live Counters Dark Strip Section */
+    .dark-live-strip {
+      padding: 5.5rem 0;
+      background: var(--bg-dark);
+      color: #ffffff;
+      border-top: 1px solid rgba(197, 155, 39, 0.25);
+      border-bottom: 1px solid rgba(197, 155, 39, 0.25);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .dark-live-strip::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -10%;
+      width: 400px;
+      height: 400px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(197, 155, 39, 0.12), transparent 70%);
+      pointer-events: none;
+    }
+
+    .dark-strip-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 2.5rem;
+    }
+
+    .dark-strip-content {
+      max-width: 680px;
+    }
+
+    .dark-strip-eyebrow {
+      color: var(--gold-primary);
+      text-transform: uppercase;
+      font-size: 0.82rem;
+      font-weight: 800;
+      letter-spacing: 2.2px;
+      display: inline-block;
+      margin-bottom: 0.5rem;
+    }
+
+    .dark-strip-title {
+      font-size: 2.5rem;
+      color: #ffffff;
+      margin-bottom: 0.9rem;
+      line-height: 1.2;
+      letter-spacing: -0.01em;
+    }
+
+    .dark-strip-desc {
+      color: #d6cebf;
+      font-size: 1.05rem;
+      line-height: 1.7;
+      margin: 0;
+    }
+
+    .dark-strip-action {
+      flex-shrink: 0;
+    }
+
+    /* Responsive Adjustments */
+    @media (max-width: 992px) {
+      .pages-teaser-grid {
+        grid-template-columns: 1fr;
+        gap: 1.8rem;
+      }
+      .hero-stats-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 1.2rem;
+        padding: 1.5rem;
+      }
+      .dark-strip-container {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .hero h2 {
+        font-size: 3rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .hero {
+        min-height: auto;
+        padding: 5.5rem 0 4.5rem;
+      }
+      .hero h2 {
+        font-size: 2.35rem;
+      }
+      .hero-pretitle {
+        font-size: 0.74rem;
+        letter-spacing: 1.5px;
+        padding: 0.35rem 1rem;
+      }
+      .hero-subtitle {
+        font-size: 1rem;
+        margin-bottom: 2rem;
+      }
+      .dark-strip-title {
+        font-size: 2rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero h2 {
+        font-size: 1.95rem;
+      }
+      .hero-stats-grid {
+        grid-template-columns: 1fr;
+        padding: 1.2rem;
+      }
+      .hero-cta-group {
+        flex-direction: column;
+        width: 100%;
+      }
+      .hero-cta-group .btn-primary-gold,
+      .hero-cta-group .btn-primary-red {
+        width: 100%;
+      }
+      .teaser-body {
+        padding: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Cinematic Studio Preloader (Awwwards SOTY Standard) -->
+  <div class="soty-preloader" id="site-preloader" aria-hidden="true">
+    <div class="preloader-content">
+      <div class="preloader-brand-emblem">అన్నపూర్ణ</div>
+      <div class="preloader-brand-title">Annapurna Caterers</div>
+      <div class="preloader-track">
+        <div class="preloader-bar"></div>
+      </div>
+      <div class="preloader-number">00%</div>
+      <div class="preloader-tagline">Traditional Telugu Vindu • Authentic Heritage</div>
+    </div>
+  </div>
+
+  <!-- 1. Top Announcement Bar -->
+  <div class="top-announcement">
+    <div class="container top-announcement-inner">
+      <div class="top-badges">
+        <span class="top-badge-item"><i class="fa-solid fa-certificate"></i> FSSAI Certified Kitchen</span>
+        <span class="top-badge-item"><i class="fa-solid fa-award"></i> ISO 9001:2015 Standards</span>
+        <span class="top-badge-item"><i class="fa-solid fa-utensils"></i> 100% Separate Veg &amp; Non-Veg Kitchens</span>
+      </div>
+      <div class="top-contacts">
+        <button type="button" class="audio-toggle-btn" aria-label="Sound Effects: Muted">
+          <span class="soundwave-bars"><span class="bar"></span><span class="bar"></span><span class="bar"></span></span>
+          <span class="audio-label">Audio OFF</span>
+        </button>
+        <span><i class="fa-solid fa-phone" style="color:var(--gold-primary);"></i> <a href="tel:+917386046000">+91 73860 46000</a></span>
+        <span><i class="fa-brands fa-whatsapp" style="color:#25d366; margin-left:12px;"></i> <a href="https://wa.me/917386046000" target="_blank" rel="noopener">Chat on WhatsApp</a></span>
+        <span><i class="fa-brands fa-instagram" style="color:#e1306c; margin-left:12px;"></i> <a href="https://www.instagram.com/annapoorna_premiumcatering?psln=YnhjZG5iMGU1bGJt" target="_blank" rel="noopener">@annapoorna_premiumcatering</a></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. Sticky Navbar -->
+  <header>
+    <div class="container navbar">
+      <a href="index.html" class="brand-logo" aria-label="Annapurna Caterers Homepage">
+        <div class="brand-emblem">
+          <i class="fa-solid fa-fire-burner"></i>
+        </div>
+        <div class="brand-title">
+          <h1 class="telugu-font">అన్నపూర్ణ</h1>
+          <span>Annapurna Caterers</span>
+        </div>
+      </a>
+
+      <nav aria-label="Main Navigation">
+        <ul class="nav-links">
+          <li><a href="index.html" class="active-page" aria-current="page">Home</a></li>
+          <li><a href="packages.html">Packages &amp; Menus</a></li>
+          <li><a href="services.html">Services &amp; Formats</a></li>
+          <li><a href="calculator.html">Cost Calculator</a></li>
+          <li><a href="about.html">About &amp; Hygiene</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="calculator.html" class="btn-calc magnetic-btn">
+          <i class="fa-solid fa-calculator"></i> Price Estimator
+        </a>
+        <a href="contact.html" class="btn-quote magnetic-btn">
+          <i class="fa-solid fa-calendar-check"></i> Book Event
+        </a>
+        <button class="mobile-nav-toggle" onclick="toggleNav()" aria-label="Toggle Navigation Menu">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- 3. HERO Section -->
+  <section class="hero parallax-bg" data-parallax-speed="0.15">
+    <div class="hero-gradient-overlay"></div>
+    <div class="container">
+      <div class="hero-pretitle shimmer">
+        <i class="fa-solid fa-crown"></i> Authentic Telugu &amp; Andhra Culinary Excellence
+      </div>
+
+      <h2 class="hero-title reveal reveal-up delay-1">
+        <span class="split-text">Traditional Telugu</span> <span class="gradient-text split-text">Vindu Bhojanam</span> <span class="split-text">&amp; Royal Biryanis</span>
+      </h2>
+
+      <p class="hero-subtitle reveal reveal-up delay-2">
+        Specializing in pure vegetarian banana-leaf wedding feasts and fiery Coastal Andhra, Rayalaseema &amp; Hyderabadi non-veg buffets. Serving Vijayawada, Guntur, Vizag, Tirupati &amp; Hyderabad with doorstep delivery or complete 5-star event hospitality.
+      </p>
+
+      <div class="hero-cta-group reveal reveal-up delay-3">
+        <a href="packages.html" class="btn-primary-gold magnetic-btn btn-ripple">
+          <i class="fa-solid fa-book-open"></i> Explore Packages (From ₹225/Plate)
+        </a>
+        <a href="calculator.html" class="btn-primary-red magnetic-btn btn-ripple" style="color:#ffffff;">
+          <i class="fa-solid fa-sliders"></i> Calculate Event Cost
+        </a>
+      </div>
+
+      <!-- Trust Badges & Stats Bar (Glassmorphic) -->
+      <div class="hero-stats-grid glass reveal reveal-up delay-4">
+        <div class="stat-item">
+          <div class="stat-icon"><i class="fa-solid fa-calendar-days"></i></div>
+          <div class="stat-text">
+            <h4><span class="counter-value" data-target="18+">18+</span></h4>
+            <p>Years Heritage</p>
+          </div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-icon"><i class="fa-solid fa-champagne-glasses"></i></div>
+          <div class="stat-text">
+            <h4><span class="counter-value" data-target="1200+">1200+</span></h4>
+            <p>Events Catered</p>
+          </div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-icon"><i class="fa-solid fa-truck-ramp-box"></i></div>
+          <div class="stat-text">
+            <h4><span class="counter-value" data-target="2">2</span> Formats</h4>
+            <p>Drop-Off &amp; Full Service</p>
+          </div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-icon"><i class="fa-solid fa-shield-halved"></i></div>
+          <div class="stat-text">
+            <h4><span class="counter-value" data-target="100%">100%</span></h4>
+            <p>Hygiene Standards</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Editorial Luxury Golden Marquee Ticker (Awwwards Style) -->
+  <div class="editorial-marquee" aria-hidden="true">
+    <div class="marquee-track">
+      <div class="marquee-item"><span>Traditional Telugu Vindu</span><span class="separator">✦</span></div>
+      <div class="marquee-item"><span>Royal Nizami Dum Biryani</span><span class="separator">✦</span></div>
+      <div class="marquee-item"><span>100% Strictly Separate Kitchens</span><span class="separator">✦</span></div>
+      <div class="marquee-item"><span>Authentic Godavari &amp; Nellore Seafood</span><span class="separator">✦</span></div>
+      <div class="marquee-item"><span>Pure Cow Ghee Sweets &amp; Savories</span><span class="separator">✦</span></div>
+      <div class="marquee-item"><span>Live Pesarattu &amp; Bobbatlu Counters</span><span class="separator">✦</span></div>
+      <!-- Duplicate track for seamless infinite loop -->
+      <div class="marquee-item"><span>Traditional Telugu Vindu</span><span class="separator">✦</span></div>
+      <div class="marquee-item"><span>Royal Nizami Dum Biryani</span><span class="separator">✦</span></div>
+      <div class="marquee-item"><span>100% Strictly Separate Kitchens</span><span class="separator">✦</span></div>
+      <div class="marquee-item"><span>Authentic Godavari &amp; Nellore Seafood</span><span class="separator">✦</span></div>
+      <div class="marquee-item"><span>Pure Cow Ghee Sweets &amp; Savories</span><span class="separator">✦</span></div>
+      <div class="marquee-item"><span>Live Pesarattu &amp; Bobbatlu Counters</span><span class="separator">✦</span></div>
+    </div>
+  </div>
+
+  <!-- 4. Feature Teaser Grid Section -->
+  <section class="home-teasers-section">
+    <div class="container">
+      <div class="section-header reveal reveal-up">
+        <span class="section-eyebrow">Explore Our Offerings</span>
+        <h3>Everything You Need For Your Event</h3>
+        <p>Browse our dedicated sections for menu packages, service models, instant cost estimation, and event planning.</p>
+      </div>
+
+      <div class="pages-teaser-grid stagger-reveal">
+        
+        <!-- Teaser 1: Packages & Menus -->
+        <article class="teaser-card reveal reveal-up delay-1" data-cursor-text="PACKAGES" data-tilt>
+          <div class="teaser-img-wrap">
+            <img src="https://images.unsplash.com/photo-1626777552726-4a6b54c97e46?auto=format&fit=crop&w=700&q=80" alt="Authentic Andhra Wedding Catering Packages and Menus" class="teaser-img" loading="lazy" />
+            <span class="teaser-badge"><i class="fa-solid fa-tag"></i> From ₹225/Plate</span>
+          </div>
+          <div class="teaser-body">
+            <span class="teaser-tag">Menus &amp; Tiers</span>
+            <h4>Curated Packages &amp; Menus</h4>
+            <p>Explore fixed per-plate packages starting at ₹225 for Pure Veg (Traditional, Basic, Standard Arati Aaku, Special) and ₹345 for Non-Veg (Dum Biryanis, Gongura Mutton, Seafood).</p>
+            <a href="packages.html" class="teaser-link">View All Packages &amp; Menus <i class="fa-solid fa-arrow-right"></i></a>
+          </div>
+        </article>
+
+        <!-- Teaser 2: Services & Formats -->
+        <article class="teaser-card reveal reveal-up delay-2" data-cursor-text="SERVICES" data-tilt>
+          <div class="teaser-img-wrap">
+            <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=700&q=80" alt="Full Service Vindu Buffet Setup and Delivery Only Drop-Off" class="teaser-img" loading="lazy" />
+            <span class="teaser-badge"><i class="fa-solid fa-truck-fast"></i> 2 Formats</span>
+          </div>
+          <div class="teaser-body">
+            <span class="teaser-tag">Delivery vs Serving</span>
+            <h4>Delivery Only &amp; Full Service</h4>
+            <p>Compare our insulated drop-off thermal delivery for home poojas with our luxury full-service buffet and traditional seated banana leaf dining setups.</p>
+            <a href="services.html" class="teaser-link">Discover Service Formats <i class="fa-solid fa-arrow-right"></i></a>
+          </div>
+        </article>
+
+        <!-- Teaser 3: Cost Calculator -->
+        <article class="teaser-card reveal reveal-up delay-3" data-cursor-text="BUDGET" data-tilt>
+          <div class="teaser-img-wrap">
+            <img src="https://images.unsplash.com/photo-1546833999-b9f581a1996d?auto=format&fit=crop&w=700&q=80" alt="Interactive Menu Cost Estimator and Instant WhatsApp Quotation" class="teaser-img" loading="lazy" />
+            <span class="teaser-badge"><i class="fa-solid fa-calculator"></i> Instant Quote</span>
+          </div>
+          <div class="teaser-body">
+            <span class="teaser-tag">Interactive Estimator</span>
+            <h4>Menu Cost Estimator</h4>
+            <p>Use our interactive calculator to plug in your guest count and package choice, then send a pre-formatted booking enquiry directly to our WhatsApp.</p>
+            <a href="calculator.html" class="teaser-link">Calculate Your Event Budget <i class="fa-solid fa-arrow-right"></i></a>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. Live Counters Dark Strip -->
+  <section class="dark-live-strip">
+    <div class="container dark-strip-container">
+      <div class="dark-strip-content reveal reveal-left">
+        <span class="dark-strip-eyebrow">Sensory Live Experiences</span>
+        <h3 class="dark-strip-title">Live Andhra Food Stations &amp; Delicacies</h3>
+        <p class="dark-strip-desc">
+          Crispy Upma Pesarattu &amp; Guntur Karam Dosa on sizzling tawas, live Vijayawada Punugulu &amp; Mirchi Bajji, piping hot Ghee Bobbatlu, and authentic Brass Davarah Degree Filter Coffee stations served live at your event.
+        </p>
+      </div>
+      <div class="dark-strip-action reveal reveal-right">
+        <a href="packages.html#stations" class="btn-primary-gold magnetic-btn btn-ripple">
+          <i class="fa-solid fa-utensils"></i> Explore Live Stations
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. Floating Action Buttons -->
+  <div class="floating-tools">
+    <a href="tel:+917386046000" class="floating-btn floating-call" title="Call Us Direct" aria-label="Call +91 73860 46000">
+      <i class="fa-solid fa-phone"></i>
+    </a>
+    <a href="https://wa.me/917386046000?text=Namaskaram%20Annapurna%20Caterers,%20I%20want%20to%20enquire%20about%20catering%20services" target="_blank" rel="noopener" class="floating-btn floating-wa" title="WhatsApp Enquiry" aria-label="WhatsApp Enquiry">
+      <i class="fa-brands fa-whatsapp"></i>
+    </a>
+  </div>
+
+  <!-- 7. Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-columns">
+        <div class="footer-col reveal reveal-up delay-1">
+          <div class="brand-logo" style="margin-bottom:1rem;">
+            <div class="brand-emblem" style="width:42px; height:42px; font-size:1.15rem;">
+              <i class="fa-solid fa-fire-burner"></i>
+            </div>
+            <div class="brand-title">
+              <h1 class="telugu-font" style="color:#ffffff; font-size:1.35rem;">అన్నపూర్ణ</h1>
+              <span>Annapurna Caterers</span>
+            </div>
+          </div>
+          <p style="font-size:0.9rem; line-height:1.7; color:#a39b90;">
+            Authentic Andhra &amp; Telugu catering excellence with certified separate kitchens for pure veg and non-veg. Serving Pellillu, Gruhapravesam, Vratams, and corporate gatherings across AP &amp; Telangana.
+          </p>
+          <div class="social-row">
+            <a href="https://www.instagram.com/annapoorna_premiumcatering?psln=YnhjZG5iMGU1bGJt" target="_blank" rel="noopener" class="social-btn" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="https://wa.me/917386046000" target="_blank" rel="noopener" class="social-btn" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+            <a href="#" class="social-btn" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="#" class="social-btn" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+          </div>
+        </div>
+
+        <div class="footer-col reveal reveal-up delay-2">
+          <h5>Quick Pages</h5>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="packages.html">Catering Packages</a></li>
+            <li><a href="services.html">Delivery vs Serving</a></li>
+            <li><a href="calculator.html">Cost Estimator</a></li>
+            <li><a href="about.html">About &amp; Hygiene</a></li>
+            <li><a href="contact.html">Contact &amp; Bookings</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col reveal reveal-up delay-3">
+          <h5>Specialty Menus</h5>
+          <ul class="footer-links">
+            <li><a href="packages.html">Arati Aaku Veg Vindu (₹295)</a></li>
+            <li><a href="packages.html">Dum Biryani &amp; Mutton (₹495)</a></li>
+            <li><a href="packages.html">Natu Kodi &amp; Ragi Sankati</a></li>
+            <li><a href="packages.html">Live Pesarattu &amp; Bobbatlu</a></li>
+            <li><a href="contact.html">Satvik Vratam Poojas</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col reveal reveal-up delay-4">
+          <h5>Contact &amp; Kitchens</h5>
+          <p style="margin-bottom:0.75rem; font-size:0.9rem;">
+            <i class="fa-solid fa-phone" style="color:var(--gold-primary); margin-right:8px;"></i>
+            <a href="tel:+917386046000" style="color:#d1c8bb;">+91 73860 46000</a>
+          </p>
+          <p style="margin-bottom:0.75rem; font-size:0.9rem;">
+            <i class="fa-brands fa-instagram" style="color:var(--gold-primary); margin-right:8px;"></i>
+            <a href="https://www.instagram.com/annapoorna_premiumcatering?psln=YnhjZG5iMGU1bGJt" target="_blank" rel="noopener" style="color:#d1c8bb;">@annapoorna_premiumcatering</a>
+          </p>
+          <p style="margin-bottom:0.75rem; font-size:0.9rem;">
+            <i class="fa-solid fa-envelope" style="color:var(--gold-primary); margin-right:8px;"></i>
+            <a href="mailto:Annapoornacatering8@gmail.com" style="color:#d1c8bb;">Annapoornacatering8@gmail.com</a>
+          </p>
+          <p style="font-size:0.9rem; line-height:1.6; color:#a39b90;">
+            <i class="fa-solid fa-location-dot" style="color:var(--gold-primary); margin-right:8px;"></i> Serving Andhra Pradesh &amp; Hyderabad
+          </p>
+        </div>
+      </div>
+
+      <div class="footer-bottom-bar">
+        <p>&copy; 2026 Annapurna Caterers (అన్నపూర్ణ కేటరింగ్). All Rights Reserved.</p>
+        <p>FSSAI Lic. No: 13622036000123 &bull; ISO 9001:2015 Certified</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Vanilla Animation & Interaction Engine -->
+  <script src="animations.js" defer></script>
+</body>
+</html>

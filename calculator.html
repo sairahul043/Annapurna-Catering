@@ -1,0 +1,957 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Catering Cost & Menu Price Calculator | Annapurna Caterers</title>
+  <meta name="description" content="Calculate your Andhra catering budget in real time. Select your guest count, Telugu catering package, and service format to get an instant quote and book directly on WhatsApp." />
+
+  <!-- Fonts & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Noto+Serif+Telugu:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link rel="stylesheet" href="style.css" />
+
+  <style>
+    /* Calculator Page Specific Styles */
+    .calc-wrapper-section {
+      padding: 3rem 0 6rem;
+      background: var(--bg-body);
+      position: relative;
+    }
+
+    .calc-card-container {
+      background: #ffffff;
+      border: 1px solid rgba(197, 155, 39, 0.28);
+      border-radius: var(--radius-xl);
+      padding: 3.5rem;
+      box-shadow: var(--shadow-xl);
+      margin-bottom: 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .calc-header-intro {
+      text-align: center;
+      max-width: 720px;
+      margin: 0 auto 3rem;
+    }
+    .calc-header-intro h3 {
+      font-size: 2.2rem;
+      margin-bottom: 0.6rem;
+      color: var(--text-main);
+    }
+    .calc-header-intro p {
+      color: var(--text-muted);
+      font-size: 0.96rem;
+    }
+
+    /* 3-Step Input Grid */
+    .calc-steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      margin-bottom: 3rem;
+    }
+
+    .calc-step-box {
+      background: #faf7f2;
+      border-radius: var(--radius-lg);
+      padding: 2rem 1.6rem;
+      border: 1px solid var(--border-subtle);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.3s var(--ease-smooth),
+                  box-shadow 0.3s var(--ease-smooth),
+                  border-color 0.3s ease;
+      position: relative;
+    }
+    .calc-step-box:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--gold-primary);
+    }
+
+    .calc-step-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      font-size: 0.74rem;
+      text-transform: uppercase;
+      font-weight: 800;
+      color: var(--gold-hover);
+      letter-spacing: 1.2px;
+      margin-bottom: 0.8rem;
+    }
+
+    .calc-step-box label {
+      display: block;
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 1rem;
+      line-height: 1.3;
+    }
+
+    .calc-input-wrap {
+      position: relative;
+      width: 100%;
+    }
+
+    .calc-step-box select,
+    .calc-step-box input[type="number"] {
+      width: 100%;
+      padding: 0.95rem 1.1rem;
+      border: 1.5px solid #dcd4c7;
+      border-radius: var(--radius-sm);
+      font-family: inherit;
+      font-size: 0.98rem;
+      font-weight: 600;
+      background: #ffffff;
+      color: var(--text-main);
+      transition: border-color 0.25s ease, box-shadow 0.25s ease;
+      appearance: auto;
+    }
+    .calc-step-box select:focus,
+    .calc-step-box input[type="number"]:focus {
+      outline: none;
+      border-color: var(--gold-primary);
+      box-shadow: 0 0 0 3px rgba(197, 155, 39, 0.2);
+    }
+
+    /* Guest Controls: Range + Quick Pills */
+    .guest-stepper-wrap {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 0.8rem;
+    }
+    .btn-step-adjust {
+      width: 42px;
+      height: 42px;
+      border-radius: var(--radius-sm);
+      border: 1px solid #dcd4c7;
+      background: #ffffff;
+      color: var(--text-main);
+      font-size: 1.1rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition);
+      flex-shrink: 0;
+    }
+    .btn-step-adjust:hover {
+      background: var(--gold-primary);
+      color: #ffffff;
+      border-color: var(--gold-primary);
+    }
+
+    .guest-slider {
+      width: 100%;
+      margin: 0.8rem 0 0.5rem;
+      accent-color: var(--gold-primary);
+      cursor: pointer;
+    }
+
+    .guest-presets {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-top: 0.8rem;
+    }
+    .preset-chip {
+      background: #ffffff;
+      border: 1px solid #dfd7cc;
+      border-radius: var(--radius-full);
+      padding: 0.22rem 0.65rem;
+      font-size: 0.74rem;
+      font-weight: 700;
+      color: #635c52;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    .preset-chip:hover,
+    .preset-chip.active {
+      background: var(--red-royal);
+      color: #ffffff;
+      border-color: var(--red-royal);
+    }
+
+    .step-helper-text {
+      display: block;
+      margin-top: 0.6rem;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+
+    /* Live Summary Banner */
+    .calc-summary-banner {
+      background: linear-gradient(135deg, #181512 0%, #29221b 50%, #1f1b17 100%);
+      color: #ffffff;
+      border-radius: var(--radius-xl);
+      padding: 2.8rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 2rem;
+      border: 1px solid rgba(197, 155, 39, 0.35);
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.35);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .calc-stat-group {
+      display: flex;
+      gap: 3.5rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .calc-stat-item {
+      display: flex;
+      flex-direction: column;
+    }
+    .calc-stat-item span.stat-label {
+      font-size: 0.78rem;
+      color: #ded7ce;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-bottom: 0.35rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .calc-stat-item strong {
+      font-size: 2.6rem;
+      font-family: var(--font-heading);
+      font-weight: 700;
+      color: #ffd875;
+      line-height: 1.1;
+      letter-spacing: -0.01em;
+    }
+    .calc-stat-item strong.highlight-green {
+      color: #6ee7b7;
+      text-shadow: 0 0 20px rgba(110, 231, 183, 0.35);
+    }
+
+    .calc-cta-action {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 0.6rem;
+    }
+    .calc-cta-action .btn-whatsapp-quote {
+      background: linear-gradient(135deg, #25d366, #128c7e);
+      color: #ffffff;
+      font-size: 1.05rem;
+      font-weight: 700;
+      padding: 1rem 2.2rem;
+      border-radius: var(--radius-full);
+      border: none;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      box-shadow: 0 8px 25px rgba(37, 211, 102, 0.38);
+      transition: transform 0.3s var(--ease-spring),
+                  box-shadow 0.3s ease,
+                  background 0.3s ease;
+    }
+    .calc-cta-action .btn-whatsapp-quote:hover {
+      transform: translateY(-3px) scale(1.02);
+      box-shadow: 0 12px 30px rgba(37, 211, 102, 0.55);
+      background: linear-gradient(135deg, #2ae671, #179b8c);
+    }
+    .calc-guarantee-note {
+      font-size: 0.75rem;
+      color: #b8af9f;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    /* Breakdown Pill Deck */
+    .breakdown-deck {
+      margin-top: 2.5rem;
+      background: #faf7f2;
+      border-radius: var(--radius-md);
+      padding: 1.5rem 2rem;
+      border: 1px dashed #dcd3c5;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+    }
+    .breakdown-item {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .breakdown-icon {
+      color: var(--gold-primary);
+      font-size: 1.25rem;
+    }
+    .breakdown-text span {
+      display: block;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+    }
+    .breakdown-text strong {
+      font-size: 0.95rem;
+      color: var(--text-main);
+    }
+
+    /* Benefits Section Grid */
+    .calc-benefits-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.8rem;
+      margin-bottom: 2rem;
+    }
+    .calc-benefit-card {
+      background: #ffffff;
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 2rem 1.6rem;
+      transition: var(--transition);
+      text-align: center;
+    }
+    .calc-benefit-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--gold-primary);
+    }
+    .benefit-icon-circle {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: var(--gold-soft);
+      color: var(--gold-hover);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.35rem;
+      margin: 0 auto 1.2rem;
+      transition: transform 0.3s var(--ease-spring);
+    }
+    .calc-benefit-card:hover .benefit-icon-circle {
+      transform: scale(1.15) rotate(10deg);
+      background: var(--red-royal);
+      color: #ffffff;
+    }
+    .calc-benefit-card h4 {
+      font-size: 1.15rem;
+      margin-bottom: 0.5rem;
+      color: var(--text-main);
+    }
+    .calc-benefit-card p {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    @media (max-width: 992px) {
+      .calc-steps {
+        grid-template-columns: 1fr;
+      }
+      .calc-card-container {
+        padding: 2.2rem 1.5rem;
+      }
+      .calc-summary-banner {
+        padding: 2rem 1.6rem;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .calc-stat-group {
+        gap: 2rem;
+        width: 100%;
+        justify-content: space-between;
+      }
+      .calc-cta-action {
+        width: 100%;
+        align-items: flex-start;
+      }
+      .calc-benefits-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 640px) {
+      .calc-stat-group {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1.2rem;
+      }
+      .calc-benefits-grid {
+        grid-template-columns: 1fr;
+      }
+      .breakdown-deck {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Announcement Bar -->
+  <div class="top-announcement">
+    <div class="container top-announcement-inner">
+      <div class="top-badges">
+        <span class="top-badge-item"><i class="fa-solid fa-calculator"></i> Real-Time Budget Estimator</span>
+        <span class="top-badge-item"><i class="fa-solid fa-shield-halved"></i> 100% Transparent Pricing — Zero Hidden Costs</span>
+        <span class="top-badge-item"><i class="fa-solid fa-award"></i> FSSAI & ISO Certified Quality</span>
+      </div>
+      <div class="top-contacts">
+        <button type="button" class="audio-toggle-btn" aria-label="Sound Effects: Muted">
+          <span class="soundwave-bars"><span class="bar"></span><span class="bar"></span><span class="bar"></span></span>
+          <span class="audio-label">Audio OFF</span>
+        </button>
+        <span><i class="fa-solid fa-phone" style="color:var(--gold-primary);"></i> <a href="tel:+917386046000">+91 73860 46000</a></span>
+        <span><i class="fa-brands fa-whatsapp" style="color:#25d366; margin-left:12px;"></i> <a href="https://wa.me/917386046000" target="_blank" rel="noopener">Chat on WhatsApp</a></span>
+        <span><i class="fa-brands fa-instagram" style="color:#e1306c; margin-left:12px;"></i> <a href="https://www.instagram.com/annapoorna_premiumcatering?psln=YnhjZG5iMGU1bGJt" target="_blank" rel="noopener">@annapoorna_premiumcatering</a></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Header & Navigation -->
+  <header>
+    <div class="container navbar">
+      <a href="index.html" class="brand-logo" aria-label="Annapurna Caterers Home">
+        <div class="brand-emblem">
+          <i class="fa-solid fa-fire-burner"></i>
+        </div>
+        <div class="brand-title">
+          <h1>అన్నపూర్ణ</h1>
+          <span>Annapurna Caterers</span>
+        </div>
+      </a>
+
+      <nav>
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="packages.html">Packages & Menus</a></li>
+          <li><a href="services.html">Services & Formats</a></li>
+          <li><a href="calculator.html" class="active-page" aria-current="page">Cost Calculator</a></li>
+          <li><a href="about.html">About & Hygiene</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="calculator.html" class="btn-calc magnetic-btn">
+          <i class="fa-solid fa-calculator"></i> Price Estimator
+        </a>
+        <a href="contact.html" class="btn-quote magnetic-btn">
+          <i class="fa-solid fa-calendar-check"></i> Book Event
+        </a>
+        <button class="mobile-nav-toggle" onclick="toggleNav()" aria-label="Toggle Menu">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Page Hero Banner with Parallax -->
+  <section class="page-hero parallax-bg" data-parallax-speed="0.18">
+    <div class="container">
+      <div class="page-hero-tag shimmer">
+        <i class="fa-solid fa-sliders"></i> Real-Time Quotation
+      </div>
+      <h2 class="split-text">Interactive Cost Calculator</h2>
+      <p>
+        Estimate your catering budget in seconds with transparent Andhra pricing. Select your guest count, Andhra menu package, and service model to receive an instant live quote.
+      </p>
+    </div>
+  </section>
+
+  <!-- Calculator Tool Section -->
+  <section class="calc-wrapper-section">
+    <div class="container">
+      
+      <!-- Main Calculator Card with Glassmorphic styling -->
+      <div class="calc-card-container glass reveal-up">
+        
+        <div class="calc-header-intro">
+          <span class="section-eyebrow">Instant Per-Plate & Event Estimation</span>
+          <h3>Configure Your Event Menu</h3>
+          <p>Tweak the options below to see how per-plate rates and grand total budgets adapt instantaneously.</p>
+        </div>
+
+        <!-- 3-Step Input Grid -->
+        <div class="calc-steps stagger-reveal">
+          
+          <!-- STEP 1: Guest Count -->
+          <div class="calc-step-box reveal-up">
+            <div>
+              <span class="calc-step-badge"><i class="fa-solid fa-users"></i> Step 1 of 3</span>
+              <label for="calc-guests">Guest Count (Pax)</label>
+              
+              <div class="guest-stepper-wrap">
+                <button type="button" class="btn-step-adjust" onclick="adjustGuests(-25)" aria-label="Decrease 25 guests">−</button>
+                <input 
+                  type="number" 
+                  id="calc-guests" 
+                  value="100" 
+                  min="25" 
+                  max="5000" 
+                  step="5" 
+                  oninput="handleGuestInputChange()" 
+                  aria-label="Number of guests"
+                />
+                <button type="button" class="btn-step-adjust" onclick="adjustGuests(25)" aria-label="Increase 25 guests">+</button>
+              </div>
+
+              <input 
+                type="range" 
+                id="calc-guests-range" 
+                class="guest-slider" 
+                min="25" 
+                max="1000" 
+                value="100" 
+                step="5" 
+                oninput="handleGuestSliderChange()" 
+                aria-label="Guest count slider"
+              />
+
+              <div class="guest-presets">
+                <button type="button" class="preset-chip" onclick="setPresetGuests(25)">25 Pax</button>
+                <button type="button" class="preset-chip" onclick="setPresetGuests(50)">50 Pax</button>
+                <button type="button" class="preset-chip active" onclick="setPresetGuests(100)">100 Pax</button>
+                <button type="button" class="preset-chip" onclick="setPresetGuests(250)">250 Pax</button>
+                <button type="button" class="preset-chip" onclick="setPresetGuests(500)">500 Pax</button>
+                <button type="button" class="preset-chip" onclick="setPresetGuests(1000)">1,000+ Pax</button>
+              </div>
+            </div>
+
+            <small class="step-helper-text">
+              <i class="fa-solid fa-circle-info" style="color:var(--gold-primary); margin-right:4px;"></i> Minimum order starts from 25 guests for drop-off delivery.
+            </small>
+          </div>
+
+          <!-- STEP 2: Catering Package -->
+          <div class="calc-step-box reveal-up delay-1">
+            <div>
+              <span class="calc-step-badge"><i class="fa-solid fa-utensils"></i> Step 2 of 3</span>
+              <label for="calc-package">Catering Package</label>
+              
+              <div class="calc-input-wrap">
+                <select id="calc-package" onchange="calculateEstimate()" aria-label="Select Catering Package">
+                  <optgroup label="🌱 Pure Vegetarian Packages">
+                    <option value="225" data-name="Veg Traditional" data-type="veg" selected>Veg Traditional (₹225 / plate)</option>
+                    <option value="245" data-name="Veg Basic" data-type="veg">Veg Basic (₹245 / plate)</option>
+                    <option value="295" data-name="Veg Standard Arati Aaku" data-type="veg">Veg Standard Arati Aaku (₹295 / plate)</option>
+                    <option value="345" data-name="Veg Royal Special" data-type="veg">Veg Royal Special (₹345 / plate)</option>
+                  </optgroup>
+                  <optgroup label="🍗 Non-Vegetarian Feasts">
+                    <option value="345" data-name="Non-Veg Traditional" data-type="nonveg">Non-Veg Traditional (₹345 / plate)</option>
+                    <option value="395" data-name="Non-Veg Basic" data-type="nonveg">Non-Veg Basic (₹395 / plate)</option>
+                    <option value="495" data-name="Non-Veg Standard Biryani & Mutton" data-type="nonveg">Non-Veg Standard Biryani & Mutton (₹495 / plate)</option>
+                    <option value="595" data-name="Non-Veg Royal Seafood & Mutton" data-type="nonveg">Non-Veg Royal Seafood & Mutton (₹595 / plate)</option>
+                  </optgroup>
+                </select>
+              </div>
+            </div>
+
+            <small class="step-helper-text" id="package-detail-hint">
+              <i class="fa-solid fa-leaf" style="color:var(--green-veg); margin-right:4px;"></i> Prepared in 100% separate dedicated vegetarian or non-vegetarian kitchens.
+            </small>
+          </div>
+
+          <!-- STEP 3: Service Format -->
+          <div class="calc-step-box reveal-up delay-2">
+            <div>
+              <span class="calc-step-badge"><i class="fa-solid fa-truck-ramp-box"></i> Step 3 of 3</span>
+              <label for="calc-service">Service Format</label>
+              
+              <div class="calc-input-wrap">
+                <select id="calc-service" onchange="calculateEstimate()" aria-label="Select Service Format">
+                  <option value="0" data-name="Delivery Only (Drop-Off)" selected>Delivery Only (Drop-Off) (+₹0)</option>
+                  <option value="50" data-name="Full Service Buffet">Full Service Buffet (+₹50 / plate)</option>
+                  <option value="80" data-name="Royal Banana Leaf Seated Service">Royal Banana Leaf Seated Service (+₹80 / plate)</option>
+                </select>
+              </div>
+            </div>
+
+            <small class="step-helper-text" id="service-detail-hint">
+              <i class="fa-solid fa-box" style="color:var(--gold-primary); margin-right:4px;"></i> Thermal containers keep food hot 3+ hours; eco plates & cutlery included.
+            </small>
+          </div>
+
+        </div>
+
+        <!-- Live Summary Banner (Dark Gradient Glass) -->
+        <div class="calc-summary-banner glass-dark reveal-up">
+          <div class="calc-stat-group">
+            <div class="calc-stat-item">
+              <span class="stat-label"><i class="fa-solid fa-tag"></i> Per Plate Rate</span>
+              <strong id="calc-per-plate" class="counter-value" data-target="225">₹225</strong>
+            </div>
+            <div class="calc-stat-item">
+              <span class="stat-label"><i class="fa-solid fa-users-viewfinder"></i> Total Guests</span>
+              <strong id="calc-total-guests">100 Pax</strong>
+            </div>
+            <div class="calc-stat-item">
+              <span class="stat-label"><i class="fa-solid fa-indian-rupee-sign"></i> Estimated Budget</span>
+              <strong id="calc-total-budget" class="highlight-green">₹22,500*</strong>
+            </div>
+          </div>
+
+          <div class="calc-cta-action">
+            <button onclick="bookWithEstimate()" class="btn-whatsapp-quote magnetic-btn" aria-label="Lock in quote on WhatsApp">
+              <i class="fa-brands fa-whatsapp" style="font-size:1.35rem;"></i> Lock In Quote on WhatsApp
+            </button>
+            <span class="calc-guarantee-note">
+              <i class="fa-solid fa-bolt" style="color:#ffd875;"></i> Instant response from our event manager
+            </span>
+          </div>
+        </div>
+
+        <!-- Transparent Cost Breakdown Strip -->
+        <div class="breakdown-deck reveal-up delay-1">
+          <div class="breakdown-item">
+            <i class="fa-solid fa-file-invoice-dollar breakdown-icon"></i>
+            <div class="breakdown-text">
+              <span>Selected Menu Base</span>
+              <strong id="breakdown-base-pkg">Veg Traditional (₹225/plate)</strong>
+            </div>
+          </div>
+          <div class="breakdown-item">
+            <i class="fa-solid fa-truck-fast breakdown-icon"></i>
+            <div class="breakdown-text">
+              <span>Service Add-On</span>
+              <strong id="breakdown-service-addon">Delivery Only (+₹0/plate)</strong>
+            </div>
+          </div>
+          <div class="breakdown-item">
+            <i class="fa-solid fa-shield-halved breakdown-icon"></i>
+            <div class="breakdown-text">
+              <span>Price Transparency</span>
+              <strong>Zero Hidden Fees • GST Included</strong>
+            </div>
+          </div>
+          <div class="breakdown-item">
+            <i class="fa-solid fa-phone breakdown-icon"></i>
+            <div class="breakdown-text">
+              <span>Direct Hotline</span>
+              <strong>+91 73860 46000</strong>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Trust Badges & Guarantee Grid -->
+      <div class="calc-benefits-grid stagger-reveal">
+        <div class="calc-benefit-card reveal-up">
+          <div class="benefit-icon-circle"><i class="fa-solid fa-hand-holding-dollar"></i></div>
+          <h4>Transparent Estimates</h4>
+          <p>What you see is what you pay. No hidden delivery surprise fees or surprise packaging surcharges.</p>
+        </div>
+
+        <div class="calc-benefit-card reveal-up delay-1">
+          <div class="benefit-icon-circle"><i class="fa-solid fa-utensils"></i></div>
+          <h4>100% Menu Flexibility</h4>
+          <p>Any dish inside a package can be customized or substituted with your family’s regional Telugu favorites.</p>
+        </div>
+
+        <div class="calc-benefit-card reveal-up delay-2">
+          <div class="benefit-icon-circle"><i class="fa-solid fa-certificate"></i></div>
+          <h4>FSSAI Certified Hygiene</h4>
+          <p>Separate Veg & Non-Veg kitchens with ISO 9001:2015 certified cooking and cold-storage protocols.</p>
+        </div>
+
+        <div class="calc-benefit-card reveal-up delay-3">
+          <div class="benefit-icon-circle"><i class="fa-solid fa-calendar-check"></i></div>
+          <h4>Instant Date Reservation</h4>
+          <p>Send your calculated quote straight to WhatsApp to check auspicious date availability in 5 minutes.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Floating Contact Tools -->
+  <div class="floating-tools">
+    <a href="tel:+917386046000" class="floating-btn floating-call" title="Call Us Direct" aria-label="Call Annapurna Caterers">
+      <i class="fa-solid fa-phone"></i>
+    </a>
+    <a href="https://wa.me/917386046000?text=Namaskaram%20Annapurna%20Caterers,%20I%20want%20to%20enquire%20about%20a%20catering%20quote" target="_blank" rel="noopener" class="floating-btn floating-wa" title="WhatsApp Enquiry" aria-label="WhatsApp Enquiry">
+      <i class="fa-brands fa-whatsapp"></i>
+    </a>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-columns">
+        <div class="footer-col">
+          <div class="brand-logo" style="margin-bottom:1rem;">
+            <div class="brand-emblem" style="width:40px; height:40px; font-size:1.1rem;">
+              <i class="fa-solid fa-fire-burner"></i>
+            </div>
+            <div class="brand-title">
+              <h1 style="color:#ffffff; font-size:1.3rem;">అన్నపూర్ణ</h1>
+              <span>Annapurna Caterers</span>
+            </div>
+          </div>
+          <p style="font-size:0.88rem; line-height:1.7;">
+            Authentic Andhra & Telugu catering excellence with completely separated kitchens for pure vegetarian feasts and non-vegetarian biryani banquets. Serving Pellillu, Gruhapravesam, Vratams, and corporate events across AP & Telangana.
+          </p>
+          <div class="social-row">
+            <a href="https://www.instagram.com/annapoorna_premiumcatering?psln=YnhjZG5iMGU1bGJt" target="_blank" rel="noopener" class="social-btn" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="https://wa.me/917386046000" target="_blank" rel="noopener" class="social-btn" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+            <a href="#" class="social-btn" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="#" class="social-btn" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h5>Quick Pages</h5>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="packages.html">Catering Packages</a></li>
+            <li><a href="services.html">Services & Formats</a></li>
+            <li><a href="calculator.html">Cost Calculator</a></li>
+            <li><a href="about.html">About & Hygiene</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h5>Catering Packages</h5>
+          <ul class="footer-links">
+            <li><a href="packages.html">Veg Traditional (₹225)</a></li>
+            <li><a href="packages.html">Veg Standard Arati Aaku (₹295)</a></li>
+            <li><a href="packages.html">Non-Veg Dum Biryani & Mutton (₹495)</a></li>
+            <li><a href="packages.html">Royal Seafood & Mutton Feast (₹595)</a></li>
+            <li><a href="packages.html#stations">Live Andhra Dosa & Coffee Counters</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h5>Contact & Kitchens</h5>
+          <p style="margin-bottom:0.7rem; font-size:0.88rem;">
+            <i class="fa-solid fa-phone" style="color:var(--gold-primary); margin-right:8px;"></i>
+            <a href="tel:+917386046000" style="color:#ded7ce;">+91 73860 46000</a>
+          </p>
+          <p style="margin-bottom:0.7rem; font-size:0.88rem;">
+            <i class="fa-brands fa-whatsapp" style="color:#25d366; margin-right:8px;"></i>
+            <a href="https://wa.me/917386046000" target="_blank" rel="noopener" style="color:#ded7ce;">+91 73860 46000 (WhatsApp)</a>
+          </p>
+          <p style="margin-bottom:0.7rem; font-size:0.88rem;">
+            <i class="fa-brands fa-instagram" style="color:var(--gold-primary); margin-right:8px;"></i>
+            <a href="https://www.instagram.com/annapoorna_premiumcatering?psln=YnhjZG5iMGU1bGJt" target="_blank" rel="noopener" style="color:#ded7ce;">@annapoorna_premiumcatering</a>
+          </p>
+          <p style="margin-bottom:0.7rem; font-size:0.88rem;">
+            <i class="fa-solid fa-envelope" style="color:var(--gold-primary); margin-right:8px;"></i>
+            <a href="mailto:Annapoornacatering8@gmail.com" style="color:#ded7ce;">Annapoornacatering8@gmail.com</a>
+          </p>
+          <p style="font-size:0.88rem; line-height:1.6; color:#ded7ce;">
+            <i class="fa-solid fa-location-dot" style="color:var(--gold-primary); margin-right:8px;"></i>
+            Serving Hyderabad, Vijayawada, Guntur, Vizag, Tirupati & Entire AP
+          </p>
+        </div>
+      </div>
+
+      <div class="footer-bottom-bar">
+        <p>&copy; 2026 Annapurna Caterers (అన్నపూర్ణ). All Rights Reserved.</p>
+        <p>FSSAI Lic. No: 13622036000123 • ISO 9001:2015 Quality Certified</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Script for Animations & Nav -->
+  <script src="animations.js" defer></script>
+
+  <!-- Calculator Script -->
+  <script>
+    let currentAnimatedPlate = 225;
+    let currentAnimatedBudget = 22500;
+    let plateAnimFrame = null;
+    let budgetAnimFrame = null;
+
+    function handleGuestInputChange() {
+      const input = document.getElementById('calc-guests');
+      let val = parseInt(input.value) || 25;
+      if (val < 25) val = 25;
+      const slider = document.getElementById('calc-guests-range');
+      if (slider) {
+        slider.value = Math.min(val, 1000);
+      }
+      updatePresetChips(val);
+      calculateEstimate();
+    }
+
+    function handleGuestSliderChange() {
+      const slider = document.getElementById('calc-guests-range');
+      const input = document.getElementById('calc-guests');
+      input.value = slider.value;
+      updatePresetChips(parseInt(slider.value));
+      calculateEstimate();
+    }
+
+    function adjustGuests(delta) {
+      const input = document.getElementById('calc-guests');
+      let currentVal = parseInt(input.value) || 25;
+      let newVal = Math.max(25, currentVal + delta);
+      input.value = newVal;
+      handleGuestInputChange();
+    }
+
+    function setPresetGuests(val) {
+      const input = document.getElementById('calc-guests');
+      input.value = val;
+      handleGuestInputChange();
+    }
+
+    function updatePresetChips(currentVal) {
+      document.querySelectorAll('.preset-chip').forEach(btn => {
+        const text = btn.innerText;
+        if (text.includes(currentVal.toString())) {
+          btn.classList.add('active');
+        } else {
+          btn.classList.remove('active');
+        }
+      });
+    }
+
+    function animateNumber(element, startVal, endVal, prefix = '', suffix = '', isCurrencyFormatted = false) {
+      const duration = 400; // fast responsive 400ms transition
+      const startTime = performance.now();
+
+      function step(now) {
+        const elapsed = now - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        const ease = 1 - Math.pow(1 - progress, 3); // cubic ease-out
+        const current = Math.round(startVal + (endVal - startVal) * ease);
+
+        if (isCurrencyFormatted) {
+          element.textContent = prefix + current.toLocaleString('en-IN') + suffix;
+        } else {
+          element.textContent = prefix + current + suffix;
+        }
+
+        if (progress < 1) {
+          requestAnimationFrame(step);
+        } else {
+          if (isCurrencyFormatted) {
+            element.textContent = prefix + endVal.toLocaleString('en-IN') + suffix;
+          } else {
+            element.textContent = prefix + endVal + suffix;
+          }
+        }
+      }
+
+      requestAnimationFrame(step);
+    }
+
+    function calculateEstimate() {
+      const guestInput = document.getElementById('calc-guests');
+      const guests = parseInt(guestInput.value) || 25;
+
+      const pkgSelect = document.getElementById('calc-package');
+      const basePrice = parseInt(pkgSelect.value) || 225;
+      const selectedOption = pkgSelect.options[pkgSelect.selectedIndex];
+      const pkgName = selectedOption.getAttribute('data-name') || selectedOption.text;
+      const isVeg = selectedOption.getAttribute('data-type') === 'veg';
+
+      const serviceSelect = document.getElementById('calc-service');
+      const serviceCharge = parseInt(serviceSelect.value) || 0;
+      const selectedServiceOption = serviceSelect.options[serviceSelect.selectedIndex];
+      const serviceName = selectedServiceOption.getAttribute('data-name') || selectedServiceOption.text;
+
+      const perPlateTotal = basePrice + serviceCharge;
+      const grandTotal = perPlateTotal * guests;
+
+      // Update Per Plate Counter smoothly
+      const perPlateEl = document.getElementById('calc-per-plate');
+      animateNumber(perPlateEl, currentAnimatedPlate, perPlateTotal, '₹', '', false);
+      currentAnimatedPlate = perPlateTotal;
+
+      // Update Total Guests
+      document.getElementById('calc-total-guests').textContent = guests.toLocaleString('en-IN') + ' Pax';
+
+      // Update Budget Counter smoothly
+      const budgetEl = document.getElementById('calc-total-budget');
+      animateNumber(budgetEl, currentAnimatedBudget, grandTotal, '₹', '*', true);
+      currentAnimatedBudget = grandTotal;
+
+      // Update breakdown notes
+      const breakdownBase = document.getElementById('breakdown-base-pkg');
+      if (breakdownBase) {
+        breakdownBase.textContent = `${pkgName} (₹${basePrice}/plate)`;
+      }
+
+      const breakdownService = document.getElementById('breakdown-service-addon');
+      if (breakdownService) {
+        breakdownService.textContent = `${serviceName} (+₹${serviceCharge}/plate)`;
+      }
+
+      // Contextual hints
+      const pkgHint = document.getElementById('package-detail-hint');
+      if (pkgHint) {
+        if (isVeg) {
+          pkgHint.innerHTML = '<i class="fa-solid fa-leaf" style="color:var(--green-veg); margin-right:4px;"></i> 100% Pure Vegetarian kitchen with pure cow ghee & traditional recipes.';
+        } else {
+          pkgHint.innerHTML = '<i class="fa-solid fa-drumstick-bite" style="color:var(--red-royal); margin-right:4px;"></i> Segregated Non-Veg kitchen: Authentic Hyderabadi & Andhra wood-fired dum style.';
+        }
+      }
+
+      const serviceHint = document.getElementById('service-detail-hint');
+      if (serviceHint) {
+        if (serviceCharge === 0) {
+          serviceHint.innerHTML = '<i class="fa-solid fa-box" style="color:var(--gold-primary); margin-right:4px;"></i> Drop-off thermal boxes keep food hot for 3+ hours; eco plates & cutlery included.';
+        } else if (serviceCharge === 50) {
+          serviceHint.innerHTML = '<i class="fa-solid fa-bell-concierge" style="color:var(--gold-primary); margin-right:4px;"></i> Complete chafing dish buffet setup, food risers, and uniformed serving crew.';
+        } else {
+          serviceHint.innerHTML = '<i class="fa-solid fa-crown" style="color:var(--gold-primary); margin-right:4px;"></i> Traditional seated banana leaf (Arati Aaku Saapadu) protocol with ceremonial hospitality.';
+        }
+      }
+    }
+
+    function bookWithEstimate() {
+      const guests = document.getElementById('calc-guests').value || '100';
+      const pkgSelect = document.getElementById('calc-package');
+      const selectedPkg = pkgSelect.options[pkgSelect.selectedIndex];
+      const pkgName = selectedPkg.getAttribute('data-name') || selectedPkg.text;
+      const baseRate = selectedPkg.value;
+
+      const serviceSelect = document.getElementById('calc-service');
+      const selectedService = serviceSelect.options[serviceSelect.selectedIndex];
+      const serviceName = selectedService.getAttribute('data-name') || selectedService.text;
+      const serviceAddon = selectedService.value;
+
+      const perPlateTotal = parseInt(baseRate) + parseInt(serviceAddon);
+      const grandTotal = (perPlateTotal * parseInt(guests)).toLocaleString('en-IN');
+
+      const businessPhone = "917386046000";
+      const message = 
+        `*Namaskaram Annapurna Caterers!* 🌿%0A%0A` +
+        `I configured an event estimate using your website cost calculator:%0A%0A` +
+        `👥 *Guest Count:* ${encodeURIComponent(guests)} Pax%0A` +
+        `🍲 *Selected Package:* ${encodeURIComponent(pkgName)} (₹${baseRate}/plate)%0A` +
+        `🛎️ *Service Format:* ${encodeURIComponent(serviceName)} (+₹${serviceAddon}/plate)%0A` +
+        `🏷️ *Per Plate Rate:* ₹${perPlateTotal}/plate%0A` +
+        `💰 *Estimated Budget:* ₹${encodeURIComponent(grandTotal)}*%0A%0A` +
+        `Please confirm date availability and share sample menu items for customization.`;
+
+      window.open(`https://wa.me/${businessPhone}?text=${message}`, '_blank');
+    }
+
+    // Initialize calculations on DOM Ready
+    document.addEventListener('DOMContentLoaded', () => {
+      calculateEstimate();
+    });
+  </script>
+</body>
+</html>

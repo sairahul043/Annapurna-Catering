@@ -1,0 +1,1065 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Us, Culinary Heritage & Food Safety | Annapurna Caterers</title>
+  <meta name="description" content="Discover Annapurna Caterers' 18+ years of authentic Telugu culinary heritage, strictly separate pure veg and non-veg kitchens, FSSAI & ISO 9001:2015 hygiene standards, and pure cow ghee philosophy." />
+
+  <!-- Google Fonts & Font Awesome CDN -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Noto+Serif+Telugu:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <!-- Global Styling & Animation Engine -->
+  <link rel="stylesheet" href="style.css" />
+  <script src="animations.js" defer></script>
+
+  <style>
+    /* ==========================================================================
+       ABOUT PAGE CUSTOM STYLING & MICRO-INTERACTIONS
+       ========================================================================== */
+    .about-story-section {
+      padding: 6.5rem 0 5rem;
+      background: var(--bg-body);
+      position: relative;
+    }
+
+    .story-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 4.5rem;
+      align-items: center;
+      margin-bottom: 6rem;
+    }
+
+    .story-text-content {
+      position: relative;
+    }
+
+    .story-heading {
+      font-size: 3rem;
+      line-height: 1.16;
+      margin-top: 0.6rem;
+      margin-bottom: 1.5rem;
+      color: var(--text-main);
+      letter-spacing: -0.015em;
+    }
+
+    .story-heading span {
+      color: var(--red-royal);
+      font-style: italic;
+    }
+
+    .story-paragraph {
+      color: var(--text-muted);
+      font-size: 1.05rem;
+      line-height: 1.75;
+      margin-bottom: 1.4rem;
+    }
+
+    /* Stats Counter Row */
+    .stats-showcase-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 2.5rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border-subtle);
+    }
+
+    .stat-card-mini {
+      background: #ffffff;
+      padding: 1.4rem 1.2rem;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-subtle);
+      box-shadow: var(--shadow-sm);
+      text-align: center;
+      transition: transform 0.35s var(--ease-spring), box-shadow 0.35s var(--ease-smooth), border-color 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .stat-card-mini:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--gold-primary);
+    }
+
+    .stat-card-mini::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--gold-primary), var(--red-royal));
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .stat-card-mini:hover::before {
+      opacity: 1;
+    }
+
+    .stat-num-wrap {
+      font-family: var(--font-heading);
+      font-size: 2.8rem;
+      font-weight: 700;
+      line-height: 1;
+      margin-bottom: 0.35rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 2px;
+    }
+
+    .stat-card-mini:nth-child(1) .stat-num-wrap {
+      color: var(--red-royal);
+    }
+
+    .stat-card-mini:nth-child(2) .stat-num-wrap {
+      color: var(--gold-hover);
+    }
+
+    .stat-card-mini:nth-child(3) .stat-num-wrap {
+      color: var(--green-veg);
+    }
+
+    .stat-label-text {
+      font-size: 0.82rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      color: var(--text-muted);
+    }
+
+    /* Right Column Image Composition */
+    .story-image-wrap {
+      position: relative;
+    }
+
+    .story-image-frame {
+      position: relative;
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      box-shadow: var(--shadow-xl);
+      border: 2px solid rgba(197, 155, 39, 0.3);
+      aspect-ratio: 4 / 4.6;
+    }
+
+    .story-main-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.8s var(--ease-smooth);
+      will-change: transform;
+    }
+
+    .story-image-frame:hover .story-main-img {
+      transform: scale(1.05);
+    }
+
+    /* Floating Badge on Image */
+    .story-floating-badge {
+      position: absolute;
+      bottom: -25px;
+      left: -25px;
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      padding: 1.25rem 1.6rem;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--gold-border);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+      display: flex;
+      align-items: center;
+      gap: 1.1rem;
+      max-width: 290px;
+      z-index: 2;
+    }
+
+    .badge-icon-circ {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--gold-primary), #dfb743);
+      color: #1a1403;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      flex-shrink: 0;
+      box-shadow: 0 4px 12px rgba(197, 155, 39, 0.35);
+    }
+
+    .badge-text-body strong {
+      display: block;
+      font-size: 0.98rem;
+      color: var(--text-main);
+      line-height: 1.25;
+      margin-bottom: 0.2rem;
+    }
+
+    .badge-text-body span {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      display: block;
+      letter-spacing: 0.3px;
+    }
+
+    /* Floating Stamp Top Right */
+    .story-stamp-badge {
+      position: absolute;
+      top: -20px;
+      right: -20px;
+      background: linear-gradient(135deg, var(--red-royal), #661619);
+      color: #ffffff;
+      padding: 0.85rem 1.4rem;
+      border-radius: var(--radius-full);
+      box-shadow: 0 8px 25px rgba(155, 34, 38, 0.35);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      z-index: 2;
+    }
+
+    /* ==========================================================================
+       QUALITY PILLARS SECTION
+       ========================================================================== */
+    .pillars-section {
+      padding: 6rem 0;
+      background: #ffffff;
+      position: relative;
+    }
+
+    .pillars-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2.2rem;
+    }
+
+    .pillar-card {
+      background: var(--bg-body);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 2.8rem 2.2rem;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      box-shadow: var(--shadow-sm);
+      transition: transform 0.4s var(--ease-spring),
+                  box-shadow 0.4s var(--ease-smooth),
+                  border-color 0.4s ease,
+                  background-color 0.4s ease;
+    }
+
+    .pillar-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 45px rgba(18, 16, 14, 0.1);
+      border-color: var(--gold-primary);
+      background: #ffffff;
+    }
+
+    .pillar-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(90deg, var(--red-royal), var(--gold-primary));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.45s var(--ease-smooth);
+    }
+
+    .pillar-card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .pillar-icon-box {
+      width: 72px;
+      height: 72px;
+      border-radius: var(--radius-md);
+      background: #ffffff;
+      border: 1px solid var(--border-subtle);
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      color: var(--gold-primary);
+      margin-bottom: 1.8rem;
+      transition: transform 0.35s var(--ease-spring), color 0.3s ease, background-color 0.3s ease;
+    }
+
+    .pillar-card:nth-child(1) .pillar-icon-box {
+      color: var(--red-royal);
+    }
+    .pillar-card:nth-child(2) .pillar-icon-box {
+      color: var(--green-veg);
+    }
+    .pillar-card:nth-child(3) .pillar-icon-box {
+      color: var(--gold-primary);
+    }
+
+    .pillar-card:hover .pillar-icon-box {
+      transform: scale(1.1) rotate(6deg);
+    }
+
+    .pillar-tag {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      color: var(--gold-hover);
+      margin-bottom: 0.6rem;
+      display: block;
+    }
+
+    .pillar-card h4 {
+      font-size: 1.55rem;
+      color: var(--text-main);
+      margin-bottom: 0.9rem;
+      line-height: 1.25;
+    }
+
+    .pillar-card p {
+      color: var(--text-muted);
+      font-size: 0.96rem;
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+      flex-grow: 1;
+    }
+
+    .pillar-features-list {
+      list-style: none;
+      border-top: 1px dashed var(--border-subtle);
+      padding-top: 1.2rem;
+      margin-top: auto;
+    }
+
+    .pillar-features-list li {
+      font-size: 0.86rem;
+      color: #4f4a43;
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.55rem;
+    }
+
+    .pillar-features-list li i {
+      color: var(--gold-primary);
+      font-size: 0.8rem;
+    }
+
+    /* ==========================================================================
+       TIMELINE & MILESTONES SECTION
+       ========================================================================== */
+    .timeline-section {
+      padding: 6.5rem 0;
+      background: var(--bg-body);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .timeline-container {
+      position: relative;
+      max-width: 1040px;
+      margin: 0 auto;
+      padding: 2rem 0;
+    }
+
+    /* Vertical Center Spine Line */
+    .timeline-container::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      width: 2px;
+      background: linear-gradient(180deg, transparent, var(--gold-primary) 15%, var(--red-royal) 85%, transparent);
+      transform: translateX(-50%);
+    }
+
+    .timeline-row {
+      display: flex;
+      align-items: center;
+      position: relative;
+      margin-bottom: 3.5rem;
+      width: 100%;
+    }
+
+    .timeline-row:last-child {
+      margin-bottom: 0;
+    }
+
+    .timeline-row.left {
+      flex-direction: row-reverse;
+    }
+
+    .timeline-content-block {
+      width: 45%;
+      background: #ffffff;
+      padding: 2rem 2.2rem;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-subtle);
+      box-shadow: var(--shadow-sm);
+      transition: transform 0.35s var(--ease-spring), box-shadow 0.35s var(--ease-smooth), border-color 0.3s ease;
+      position: relative;
+    }
+
+    .timeline-content-block:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--gold-primary);
+    }
+
+    /* Content Arrow Indicator */
+    .timeline-row.right .timeline-content-block::before {
+      content: '';
+      position: absolute;
+      top: 26px;
+      left: -10px;
+      width: 18px;
+      height: 18px;
+      background: #ffffff;
+      border-left: 1px solid var(--border-subtle);
+      border-bottom: 1px solid var(--border-subtle);
+      transform: rotate(45deg);
+    }
+
+    .timeline-row.left .timeline-content-block::before {
+      content: '';
+      position: absolute;
+      top: 26px;
+      right: -10px;
+      width: 18px;
+      height: 18px;
+      background: #ffffff;
+      border-right: 1px solid var(--border-subtle);
+      border-top: 1px solid var(--border-subtle);
+      transform: rotate(45deg);
+    }
+
+    /* Milestone Center Node Badge */
+    .timeline-node {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: #ffffff;
+      border: 3px solid var(--gold-primary);
+      box-shadow: 0 0 0 6px rgba(197, 155, 39, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--red-royal);
+      font-size: 1.15rem;
+      z-index: 3;
+      transition: transform 0.35s var(--ease-spring), background-color 0.3s ease, color 0.3s ease;
+    }
+
+    .timeline-row:hover .timeline-node {
+      transform: translateX(-50%) scale(1.15);
+      background: var(--red-royal);
+      color: #ffffff;
+      border-color: var(--gold-light);
+    }
+
+    .timeline-empty-spacer {
+      width: 45%;
+    }
+
+    .timeline-year-tag {
+      display: inline-block;
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--red-royal);
+      background: var(--red-soft);
+      padding: 0.25rem 0.85rem;
+      border-radius: 50px;
+      margin-bottom: 0.6rem;
+    }
+
+    .timeline-content-block h4 {
+      font-size: 1.45rem;
+      color: var(--text-main);
+      margin-bottom: 0.5rem;
+    }
+
+    .timeline-content-block p {
+      color: var(--text-muted);
+      font-size: 0.92rem;
+      line-height: 1.65;
+    }
+
+    /* ==========================================================================
+       CALL TO ACTION STRIP
+       ========================================================================== */
+    .about-cta-strip {
+      background: linear-gradient(135deg, #181512 0%, #2b1713 50%, #15120f 100%);
+      color: #ffffff;
+      padding: 5rem 0;
+      text-align: center;
+      position: relative;
+      border-top: 1px solid rgba(197, 155, 39, 0.3);
+      overflow: hidden;
+    }
+
+    .cta-inner-box {
+      max-width: 820px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 2;
+    }
+
+    .cta-inner-box h3 {
+      color: #ffffff;
+      font-size: 2.8rem;
+      margin-bottom: 1rem;
+    }
+
+    .cta-inner-box p {
+      color: #ded7ce;
+      font-size: 1.1rem;
+      margin-bottom: 2.2rem;
+      line-height: 1.65;
+    }
+
+    .cta-btn-group {
+      display: flex;
+      justify-content: center;
+      gap: 1.2rem;
+      flex-wrap: wrap;
+    }
+
+    /* Responsive Queries */
+    @media (max-width: 992px) {
+      .story-grid {
+        grid-template-columns: 1fr;
+        gap: 3.5rem;
+      }
+
+      .story-floating-badge {
+        left: 10px;
+        bottom: -20px;
+      }
+
+      .pillars-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .timeline-container::before {
+        left: 30px;
+      }
+
+      .timeline-row,
+      .timeline-row.left {
+        flex-direction: row;
+        margin-bottom: 2.5rem;
+      }
+
+      .timeline-node {
+        left: 30px;
+      }
+
+      .timeline-empty-spacer {
+        display: none;
+      }
+
+      .timeline-content-block {
+        width: calc(100% - 75px);
+        margin-left: 75px;
+      }
+
+      .timeline-row.left .timeline-content-block::before,
+      .timeline-row.right .timeline-content-block::before {
+        left: -10px;
+        right: auto;
+        border-right: none;
+        border-top: none;
+        border-left: 1px solid var(--border-subtle);
+        border-bottom: 1px solid var(--border-subtle);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .story-heading {
+        font-size: 2.2rem;
+      }
+
+      .stats-showcase-row {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+
+      .timeline-content-block {
+        padding: 1.5rem;
+      }
+
+      .timeline-content-block h4 {
+        font-size: 1.25rem;
+      }
+
+      .cta-inner-box h3 {
+        font-size: 2.1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Announcement Bar -->
+  <div class="top-announcement">
+    <div class="container top-announcement-inner">
+      <div class="top-badges">
+        <span class="top-badge-item"><i class="fa-solid fa-certificate"></i> FSSAI Certified Kitchen</span>
+        <span class="top-badge-item"><i class="fa-solid fa-award"></i> ISO 9001:2015 Standards</span>
+        <span class="top-badge-item"><i class="fa-solid fa-utensils"></i> 100% Separate Veg &amp; Non-Veg Units</span>
+      </div>
+      <div class="top-contacts">
+        <button type="button" class="audio-toggle-btn" aria-label="Sound Effects: Muted">
+          <span class="soundwave-bars"><span class="bar"></span><span class="bar"></span><span class="bar"></span></span>
+          <span class="audio-label">Audio OFF</span>
+        </button>
+        <span><i class="fa-solid fa-phone" style="color:var(--gold-primary);"></i> <a href="tel:+917386046000">+91 73860 46000</a></span>
+        <span><i class="fa-brands fa-whatsapp" style="color:#25d366; margin-left:12px;"></i> <a href="https://wa.me/917386046000" target="_blank" rel="noopener">Chat on WhatsApp</a></span>
+        <span><i class="fa-brands fa-instagram" style="color:#e1306c; margin-left:12px;"></i> <a href="https://www.instagram.com/annapoorna_premiumcatering?psln=YnhjZG5iMGU1bGJt" target="_blank" rel="noopener">@annapoorna_premiumcatering</a></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Header & Sticky Navbar -->
+  <header>
+    <div class="container navbar">
+      <a href="index.html" class="brand-logo" aria-label="Annapurna Caterers Home">
+        <div class="brand-emblem">
+          <i class="fa-solid fa-fire-burner"></i>
+        </div>
+        <div class="brand-title">
+          <h1>అన్నపూర్ణ</h1>
+          <span>Annapurna Caterers</span>
+        </div>
+      </a>
+
+      <nav aria-label="Primary Navigation">
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="packages.html">Packages &amp; Menus</a></li>
+          <li><a href="services.html">Services &amp; Formats</a></li>
+          <li><a href="calculator.html">Cost Calculator</a></li>
+          <li><a href="about.html" class="active-page" aria-current="page">About &amp; Hygiene</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="calculator.html" class="btn-calc magnetic-btn">
+          <i class="fa-solid fa-calculator"></i> Price Estimator
+        </a>
+        <a href="contact.html" class="btn-quote magnetic-btn">
+          <i class="fa-solid fa-calendar-check"></i> Book Event
+        </a>
+        <button class="mobile-nav-toggle" aria-label="Toggle Navigation Menu">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Page Hero Banner with Parallax Background -->
+  <section class="page-hero parallax-bg" data-parallax-speed="0.18">
+    <div class="container">
+      <div class="page-hero-tag shimmer">
+        <i class="fa-solid fa-shield-halved"></i> Our Tradition &amp; Hygiene
+      </div>
+      <h2>The Annapurna Story</h2>
+      <p>
+        Rooted in the eternal Telugu ethos of <strong class="telugu-font">అతిథి దేవో భవ (Atithi Devo Bhava)</strong> — honoring sacred culinary traditions with uncompromising food safety and master craftsmanship across Andhra Pradesh and Hyderabad.
+      </p>
+    </div>
+  </section>
+
+  <!-- Our Story Section (2-Column Grid) -->
+  <section class="about-story-section">
+    <div class="container">
+      <div class="story-grid">
+        
+        <!-- Left Column: Story & History -->
+        <div class="story-text-content reveal-left">
+          <span class="section-eyebrow">
+            <i class="fa-solid fa-crown" style="color:var(--gold-primary); margin-right:4px;"></i> Our Journey
+          </span>
+          <h3 class="story-heading">
+            Serving Authentic Andhra Flavors for Over <span>18 Years</span>
+          </h3>
+          
+          <p class="story-paragraph">
+            At <strong>అన్నపూర్ణ (Annapurna Caterers)</strong>, every feast is treated as a sacred ritual of hospitality. Born from an uncompromising passion for time-honored Telugu cooking, we bring together the regional culinary legacies of Andhra Pradesh and Telangana: the celebrated river-coastal curries of <strong>Godavari and Nellore</strong> (Chepala Pulusu, Royyala Vepudu), the royal slow-cooked dum recipes of <strong>Nizami Hyderabad</strong>, and the bold, rustic spices of <strong>Guntur and Rayalaseema</strong> (Gongura Mutton, Natu Kodi Pulusu, Ragi Sankati).
+          </p>
+          
+          <p class="story-paragraph">
+            Whether catering an intimate 50-person family Gruhapravesam or a grand 2,500-guest wedding reception with ceremonial Arati Aaku (banana leaf) seating, our master chefs preserve age-old recipes. We grind whole spices fresh for each event, avoid all artificial additives, and cook exclusively in churned pure cow ghee and cold-pressed oils.
+          </p>
+
+          <!-- 3 Animated Counters Row -->
+          <div class="stats-showcase-row">
+            <div class="stat-card-mini">
+              <div class="stat-num-wrap">
+                <span class="counter-value" data-target="18">0</span><span>+</span>
+              </div>
+              <span class="stat-label-text">Years Heritage</span>
+            </div>
+
+            <div class="stat-card-mini">
+              <div class="stat-num-wrap">
+                <span class="counter-value" data-target="1200">0</span><span>+</span>
+              </div>
+              <span class="stat-label-text">Events Catered</span>
+            </div>
+
+            <div class="stat-card-mini">
+              <div class="stat-num-wrap">
+                <span class="counter-value" data-target="100">0</span><span>%</span>
+              </div>
+              <span class="stat-label-text">Separate Kitchens</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Column: Image Composition with Floating Badges -->
+        <div class="story-image-wrap reveal-right">
+          <div class="story-stamp-badge pulse-glow">
+            <i class="fa-solid fa-award"></i> ISO 9001:2015
+          </div>
+          
+          <div class="story-image-frame">
+            <img 
+              src="https://images.unsplash.com/photo-1610057099431-d73a1c9d2f2f?auto=format&fit=crop&w=1000&q=80" 
+              alt="Authentic Andhra Wedding Vindu Feast by Annapurna Caterers" 
+              class="story-main-img" 
+              loading="lazy"
+            />
+          </div>
+
+          <div class="story-floating-badge float-animation">
+            <div class="badge-icon-circ">
+              <i class="fa-solid fa-leaf"></i>
+            </div>
+            <div class="badge-text-body">
+              <strong>100% Desi Cow Ghee</strong>
+              <span>Zero Artificial Colors or Synthetics</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Quality Pillars Section -->
+      <div class="section-header reveal-up">
+        <span class="section-eyebrow">The Quality Pledge</span>
+        <h3>Our Uncompromising Standards</h3>
+        <p>
+          Every banquet prepared by Annapurna Caterers is backed by rigorous dietary purity, culinary sanctity, and audited food safety protocols.
+        </p>
+      </div>
+
+      <div class="pillars-grid stagger-reveal">
+        
+        <!-- Pillar 1: Separate Kitchens -->
+        <article class="pillar-card reveal-scale delay-1">
+          <div class="pillar-icon-box">
+            <i class="fa-solid fa-kitchen-set"></i>
+          </div>
+          <span class="pillar-tag">Sanctity &amp; Tradition</span>
+          <h4>100% Strictly Separate Kitchens</h4>
+          <p>
+            Complete physical segregation for pure vegetarian and non-vegetarian menus. We maintain distinct cooking premises, separate vessels, dedicated chefs, and isolated transport containers so our vegetarian clients enjoy total peace of mind for sacred poojas and weddings.
+          </p>
+          <ul class="pillar-features-list">
+            <li><i class="fa-solid fa-check"></i> Distinct cookware and brass cauldrons</li>
+            <li><i class="fa-solid fa-check"></i> Separate cold storage &amp; prep stations</li>
+            <li><i class="fa-solid fa-check"></i> Dedicated Satvik teams for Vratams &amp; Poojas</li>
+          </ul>
+        </article>
+
+        <!-- Pillar 2: Pure Cow Ghee -->
+        <article class="pillar-card reveal-scale delay-2">
+          <div class="pillar-icon-box">
+            <i class="fa-solid fa-leaf"></i>
+          </div>
+          <span class="pillar-tag">Authentic Ingredients</span>
+          <h4>Pure Cow Ghee &amp; Cold-Pressed Oils</h4>
+          <p>
+            We strictly refuse shortcuts. All traditional sweets (Bobbatlu, Pootharekulu, Kakinada Kaja), flavored rices, and podis are prepared using genuine churned cow ghee. We use wood-pressed sesame and groundnut oils with absolutely zero synthetic food colorings, essence drops, or MSG.
+          </p>
+          <ul class="pillar-features-list">
+            <li><i class="fa-solid fa-check"></i> 100% pure churned desi cow ghee</li>
+            <li><i class="fa-solid fa-check"></i> Hand-ground Guntur chillies &amp; spices</li>
+            <li><i class="fa-solid fa-check"></i> Zero artificial food coloring or enhancers</li>
+          </ul>
+        </article>
+
+        <!-- Pillar 3: FSSAI Certified Hygiene -->
+        <article class="pillar-card reveal-scale delay-3">
+          <div class="pillar-icon-box">
+            <i class="fa-solid fa-certificate"></i>
+          </div>
+          <span class="pillar-tag">Audited Food Safety</span>
+          <h4>FSSAI Certified &amp; ISO 9001:2015</h4>
+          <p>
+            Operating under licensed central kitchen facilities (FSSAI Lic: 13622036000123). Every culinary staff member undergoes mandatory health screenings, hygiene certifications, and daily sanitization procedures following strict ISO food safety management systems.
+          </p>
+          <ul class="pillar-features-list">
+            <li><i class="fa-solid fa-check"></i> Commercial thermal-insulated food transport</li>
+            <li><i class="fa-solid fa-check"></i> Continuous hot-holding above 65°C</li>
+            <li><i class="fa-solid fa-check"></i> Periodic water and ingredient lab testing</li>
+          </ul>
+        </article>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Timeline / Milestones Section -->
+  <section class="timeline-section">
+    <div class="container">
+      <div class="section-header reveal-up">
+        <span class="section-eyebrow">Milestones of Excellence</span>
+        <h3>Our 18-Year Culinary Journey</h3>
+        <p>
+          From our founding as an authentic family kitchen to catering high-profile weddings across Andhra Pradesh and Hyderabad.
+        </p>
+      </div>
+
+      <div class="timeline-container">
+        
+        <!-- Milestone 1: Founded (2006) -->
+        <div class="timeline-row right reveal-up delay-1">
+          <div class="timeline-empty-spacer"></div>
+          <div class="timeline-node">
+            <i class="fa-solid fa-fire-burner"></i>
+          </div>
+          <div class="timeline-content-block">
+            <span class="timeline-year-tag">2006 — Foundation</span>
+            <h4>Humble Beginnings in Andhra</h4>
+            <p>
+              Founded with a small brigade of seasoned traditional Telugu cooks, specializing in traditional Arati Aaku (banana leaf) Vindu bhojanam and festival feasts.
+            </p>
+          </div>
+        </div>
+
+        <!-- Milestone 2: First 100 Events (2010) -->
+        <div class="timeline-row left reveal-up delay-2">
+          <div class="timeline-empty-spacer"></div>
+          <div class="timeline-node">
+            <i class="fa-solid fa-seedling"></i>
+          </div>
+          <div class="timeline-content-block">
+            <span class="timeline-year-tag">2010 — First 100 Events</span>
+            <h4>Building Trust in the Telugu Heartland</h4>
+            <p>
+              Crossed our milestone 100th auspicious celebration across Vijayawada and Guntur. Word-of-mouth praise established our signature Gongura Mutton and Pootharekulu recipes.
+            </p>
+          </div>
+        </div>
+
+        <!-- Milestone 3: Dual Kitchens & FSSAI (2014) -->
+        <div class="timeline-row right reveal-up delay-3">
+          <div class="timeline-empty-spacer"></div>
+          <div class="timeline-node">
+            <i class="fa-solid fa-shield-halved"></i>
+          </div>
+          <div class="timeline-content-block">
+            <span class="timeline-year-tag">2014 — Dual Kitchens &amp; FSSAI</span>
+            <h4>100% Segregated Infrastructure</h4>
+            <p>
+              Formally commissioned strictly independent vegetarian and non-vegetarian commercial production hubs, securing FSSAI certification and setting new regional hygiene benchmarks.
+            </p>
+          </div>
+        </div>
+
+        <!-- Milestone 4: 500+ Banquets (2018) -->
+        <div class="timeline-row left reveal-up delay-4">
+          <div class="timeline-empty-spacer"></div>
+          <div class="timeline-node">
+            <i class="fa-solid fa-champagne-glasses"></i>
+          </div>
+          <div class="timeline-content-block">
+            <span class="timeline-year-tag">2018 — 500+ Milestone</span>
+            <h4>Grand Weddings &amp; Live Counters</h4>
+            <p>
+              Expanded service capability to manage 2,000+ guest wedding banquets, introducing live counters for hot Pesarattu Upma, Jalebi, Mirchi Bajji, and Dum Biryani.
+            </p>
+          </div>
+        </div>
+
+        <!-- Milestone 5: Expansion to Multiple Cities (2022) -->
+        <div class="timeline-row right reveal-up delay-5">
+          <div class="timeline-empty-spacer"></div>
+          <div class="timeline-node">
+            <i class="fa-solid fa-truck-fast"></i>
+          </div>
+          <div class="timeline-content-block">
+            <span class="timeline-year-tag">2022 — Multi-City Expansion</span>
+            <h4>Serving Hyderabad &amp; AP Major Hubs</h4>
+            <p>
+              Expanded catering logistics with insulated fleet vans covering Hyderabad, Vijayawada, Vizag, Rajahmundry, Tirupati, and Guntur with seamless on-time service.
+            </p>
+          </div>
+        </div>
+
+        <!-- Milestone 6: 1200+ Celebrations (Present) -->
+        <div class="timeline-row left reveal-up delay-6">
+          <div class="timeline-empty-spacer"></div>
+          <div class="timeline-node">
+            <i class="fa-solid fa-crown"></i>
+          </div>
+          <div class="timeline-content-block">
+            <span class="timeline-year-tag">Present — 1,200+ Events</span>
+            <h4>The Gold Standard in Andhra Hospitality</h4>
+            <p>
+              Over 1,200 satisfied families, ISO 9001:2015 process compliance, and recognition as the first choice for authentic Telugu wedding feasts and corporate gatherings.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Call to Action Banner -->
+  <section class="about-cta-strip">
+    <div class="container">
+      <div class="cta-inner-box reveal-scale">
+        <span class="section-eyebrow" style="color:#f3db82;">Experience Royal Andhra Hospitality</span>
+        <h3>Plan Your Grand Feast With Us</h3>
+        <p>
+          Whether you prefer doorstep drop-off catering boxes or a full banana leaf Arati Aaku service with trained serving staff, we ensure perfection in every bite.
+        </p>
+        <div class="cta-btn-group">
+          <a href="contact.html" class="btn-primary-gold magnetic-btn">
+            <i class="fa-solid fa-calendar-check"></i> Book Your Event Date
+          </a>
+          <a href="calculator.html" class="btn-primary-red magnetic-btn">
+            <i class="fa-solid fa-calculator"></i> Calculate Per-Plate Cost
+          </a>
+          <a href="https://wa.me/917386046000?text=Namaskaram%20Annapurna%20Caterers,%20I%20would%20like%20to%20discuss%20a%20catering%20menu" target="_blank" rel="noopener" class="btn-primary-gold magnetic-btn" style="background:#25d366; color:#ffffff;">
+            <i class="fa-brands fa-whatsapp"></i> Chat on WhatsApp
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Floating Action Buttons -->
+  <div class="floating-tools">
+    <a href="tel:+917386046000" class="floating-btn floating-call magnetic-btn" title="Call Us Direct" aria-label="Call Annapurna Caterers">
+      <i class="fa-solid fa-phone"></i>
+    </a>
+    <a href="https://wa.me/917386046000?text=Namaskaram%20Annapurna%20Caterers,%20I%20want%20to%20enquire%20about%20catering%20services" target="_blank" rel="noopener" class="floating-btn floating-wa magnetic-btn" title="WhatsApp Enquiry" aria-label="Chat on WhatsApp">
+      <i class="fa-brands fa-whatsapp"></i>
+    </a>
+  </div>
+
+  <!-- Layered Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-columns">
+        
+        <!-- Col 1: Brand Info -->
+        <div class="footer-col">
+          <div class="brand-logo" style="margin-bottom:1.2rem;">
+            <div class="brand-emblem" style="width:42px; height:42px; font-size:1.15rem;">
+              <i class="fa-solid fa-fire-burner"></i>
+            </div>
+            <div class="brand-title">
+              <h1 style="color:#ffffff; font-size:1.35rem;">అన్నపూర్ణ</h1>
+              <span>Annapurna Caterers</span>
+            </div>
+          </div>
+          <p style="font-size:0.9rem; line-height:1.7; color:#b0a89d; margin-bottom:1.2rem;">
+            Authentic Andhra &amp; Telugu catering excellence with 100% separate kitchens for pure veg and non-veg delicacies. Serving Hyderabad and all Andhra Pradesh.
+          </p>
+          <div class="social-row">
+            <a href="https://www.instagram.com/annapoorna_premiumcatering?psln=YnhjZG5iMGU1bGJt" target="_blank" rel="noopener" class="social-btn magnetic-btn" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="https://wa.me/917386046000" target="_blank" rel="noopener" class="social-btn magnetic-btn" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+            <a href="tel:+917386046000" class="social-btn magnetic-btn" aria-label="Phone"><i class="fa-solid fa-phone"></i></a>
+          </div>
+        </div>
+
+        <!-- Col 2: Quick Links -->
+        <div class="footer-col">
+          <h5>Quick Pages</h5>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="packages.html">Catering Packages</a></li>
+            <li><a href="services.html">Delivery vs Serving</a></li>
+            <li><a href="calculator.html">Cost Estimator</a></li>
+            <li><a href="about.html">About &amp; Hygiene</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 3: Signature Menus -->
+        <div class="footer-col">
+          <h5>Signature Menus</h5>
+          <ul class="footer-links">
+            <li><a href="packages.html">Arati Aaku Veg Vindu (₹295)</a></li>
+            <li><a href="packages.html">Dum Biryani &amp; Mutton (₹495)</a></li>
+            <li><a href="packages.html">Natu Kodi &amp; Ragi Sankati</a></li>
+            <li><a href="packages.html">Live Pesarattu &amp; Bobbatlu</a></li>
+            <li><a href="contact.html">Satvik Vratam Poojas</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 4: Contacts & Credentials -->
+        <div class="footer-col">
+          <h5>Contact &amp; Hubs</h5>
+          <p style="margin-bottom:0.75rem; font-size:0.9rem;">
+            <i class="fa-solid fa-phone" style="color:var(--gold-primary); margin-right:8px;"></i> 
+            <a href="tel:+917386046000" style="color:#ded7ce;">+91 73860 46000</a>
+          </p>
+          <p style="margin-bottom:0.75rem; font-size:0.9rem;">
+            <i class="fa-brands fa-whatsapp" style="color:#25d366; margin-right:8px;"></i> 
+            <a href="https://wa.me/917386046000" target="_blank" rel="noopener" style="color:#ded7ce;">wa.me/917386046000</a>
+          </p>
+          <p style="margin-bottom:0.75rem; font-size:0.9rem;">
+            <i class="fa-solid fa-envelope" style="color:var(--gold-primary); margin-right:8px;"></i> 
+            <a href="mailto:Annapoornacatering8@gmail.com" style="color:#ded7ce;">Annapoornacatering8@gmail.com</a>
+          </p>
+          <p style="margin-bottom:0.75rem; font-size:0.9rem;">
+            <i class="fa-brands fa-instagram" style="color:#e1306c; margin-right:8px;"></i> 
+            <a href="https://www.instagram.com/annapoorna_premiumcatering?psln=YnhjZG5iMGU1bGJt" target="_blank" rel="noopener" style="color:#ded7ce;">@annapoorna_premiumcatering</a>
+          </p>
+          <p style="font-size:0.88rem; line-height:1.6; color:#a39b90; margin-top:0.4rem;">
+            <i class="fa-solid fa-location-dot" style="color:var(--gold-primary); margin-right:8px;"></i> 
+            Serving Hyderabad, Vijayawada, Guntur, Vizag, Tirupati &amp; AP
+          </p>
+        </div>
+
+      </div>
+
+      <div class="footer-bottom-bar">
+        <p>&copy; 2026 Annapurna Caterers. All Rights Reserved. Master of Authentic Telugu Celebrations.</p>
+        <p>FSSAI Lic. No: 13622036000123 &bull; ISO 9001:2015 Certified</p>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

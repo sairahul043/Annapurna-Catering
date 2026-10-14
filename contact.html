@@ -1,0 +1,970 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact Us &amp; Event Reservations | Annapurna Caterers</title>
+  <meta name="description" content="Book Annapurna Caterers for Andhra weddings, housewarmings, poojas, and corporate events. Direct WhatsApp booking: +91 73860 46000. Serving Hyderabad & AP." />
+
+  <!-- Google Fonts & Font Awesome CDN -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Noto+Serif+Telugu:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <!-- Global Styling & Animation Engine -->
+  <link rel="stylesheet" href="style.css" />
+  <script src="animations.js" defer></script>
+
+  <style>
+    /* ==========================================================================
+       CONTACT PAGE CUSTOM STYLING & ANIMATIONS
+       ========================================================================== */
+    .contact-section {
+      padding: 6rem 0;
+      background: var(--bg-body);
+      position: relative;
+    }
+
+    .contact-wrapper {
+      display: grid;
+      grid-template-columns: 1fr 1.35fr;
+      gap: 0;
+      background: #ffffff;
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      box-shadow: var(--shadow-xl);
+      margin-bottom: 4.5rem;
+      position: relative;
+    }
+
+    /* Left Sidebar: Crimson Gradient with Frosted Accents */
+    .contact-sidebar {
+      background: linear-gradient(145deg, #8a1f23 0%, #631417 55%, #420a0d 100%);
+      color: #ffffff;
+      padding: 4rem 3.2rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Decorative background glowing sphere */
+    .contact-sidebar::before {
+      content: '';
+      position: absolute;
+      top: -60px;
+      right: -60px;
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(197, 155, 39, 0.25), transparent 70%);
+      filter: blur(35px);
+      pointer-events: none;
+    }
+
+    .contact-sidebar::after {
+      content: '';
+      position: absolute;
+      bottom: -60px;
+      left: -60px;
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.12), transparent 70%);
+      filter: blur(30px);
+      pointer-events: none;
+    }
+
+    .sidebar-header {
+      position: relative;
+      z-index: 2;
+    }
+
+    .sidebar-eyebrow {
+      display: inline-block;
+      font-size: 0.78rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: #ffdc82;
+      background: rgba(197, 155, 39, 0.2);
+      border: 1px solid rgba(197, 155, 39, 0.35);
+      padding: 0.35rem 1rem;
+      border-radius: 50px;
+      margin-bottom: 1.2rem;
+    }
+
+    .contact-sidebar h3 {
+      font-size: 2.6rem;
+      line-height: 1.15;
+      margin-bottom: 0.8rem;
+      color: #ffffff;
+    }
+
+    .contact-sidebar p.sidebar-desc {
+      color: #f7dede;
+      font-size: 1rem;
+      line-height: 1.65;
+      margin-bottom: 2.8rem;
+      font-weight: 300;
+    }
+
+    /* Contact Entries */
+    .contact-entries-list {
+      position: relative;
+      z-index: 2;
+      margin-bottom: 2.5rem;
+    }
+
+    .contact-entry {
+      display: flex;
+      align-items: flex-start;
+      gap: 1.2rem;
+      margin-bottom: 1.8rem;
+      transition: transform 0.3s var(--ease-spring);
+    }
+
+    .contact-entry:hover {
+      transform: translateX(6px);
+    }
+
+    .contact-entry-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: var(--radius-md);
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+      color: #ffdc82;
+      flex-shrink: 0;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+      transition: all 0.3s var(--ease-spring);
+    }
+
+    .contact-entry:hover .contact-entry-icon {
+      background: var(--gold-primary);
+      color: #12100e;
+      border-color: #ffd875;
+      transform: scale(1.08) rotate(4deg);
+    }
+
+    .contact-entry-body small {
+      display: block;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      color: #f7cfbe;
+      margin-bottom: 0.2rem;
+      font-weight: 700;
+    }
+
+    .contact-entry-body strong,
+    .contact-entry-body a {
+      font-size: 1.05rem;
+      color: #ffffff;
+      font-weight: 600;
+      text-decoration: none;
+      transition: color 0.25s ease;
+      display: inline-block;
+    }
+
+    .contact-entry-body a:hover {
+      color: #ffdc82;
+      text-decoration: underline;
+    }
+
+    /* WhatsApp Direct Chat Button */
+    .whatsapp-direct-btn {
+      background: #25d366;
+      color: #ffffff;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      padding: 1.05rem 1.8rem;
+      border-radius: var(--radius-md);
+      font-size: 1rem;
+      font-weight: 700;
+      transition: all 0.3s var(--ease-spring);
+      box-shadow: 0 6px 20px rgba(37, 211, 102, 0.35);
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      position: relative;
+      overflow: hidden;
+      width: 100%;
+      text-align: center;
+      z-index: 2;
+    }
+
+    .whatsapp-direct-btn:hover {
+      background: #1eb855;
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba(37, 211, 102, 0.45);
+      color: #ffffff;
+    }
+
+    /* Sidebar Footer Trust Badges */
+    .sidebar-trust-strip {
+      margin-top: 2rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.15);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.76rem;
+      color: #ebdcd5;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* Right Form Wrapper */
+    .form-wrap {
+      padding: 4rem 3.5rem;
+      background: #ffffff;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+    }
+
+    .form-header-box {
+      margin-bottom: 2.2rem;
+    }
+
+    .form-header-box h4 {
+      font-size: 2.2rem;
+      color: var(--text-main);
+      margin-bottom: 0.45rem;
+      line-height: 1.2;
+    }
+
+    .form-header-box p {
+      color: var(--text-muted);
+      font-size: 0.98rem;
+      line-height: 1.6;
+    }
+
+    .form-grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.4rem;
+    }
+
+    .field-group {
+      margin-bottom: 1.35rem;
+      position: relative;
+    }
+
+    .field-group label {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 700;
+      margin-bottom: 0.45rem;
+      color: #3b3732;
+      transition: color 0.25s ease;
+    }
+
+    .field-group:focus-within label {
+      color: var(--red-royal);
+    }
+
+    /* Input with Center-Out Glow Effect */
+    .input-glow-container {
+      position: relative;
+      border-radius: var(--radius-sm);
+    }
+
+    .form-input {
+      width: 100%;
+      padding: 0.88rem 1.05rem;
+      border-radius: var(--radius-sm);
+      border: 1.5px solid #ded6ca;
+      font-family: inherit;
+      font-size: 0.95rem;
+      background: #fdfcfb;
+      color: var(--text-main);
+      transition: all 0.3s var(--ease-smooth);
+      position: relative;
+      appearance: none;
+      -webkit-appearance: none;
+    }
+
+    select.form-input {
+      background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%239b2226' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+      background-repeat: no-repeat;
+      background-position: right 1rem center;
+      background-size: 1.1em;
+      padding-right: 2.5rem;
+      cursor: pointer;
+    }
+
+    .form-input:hover {
+      border-color: #baa894;
+    }
+
+    /* Animated Focus State */
+    .form-input:focus {
+      outline: none;
+      border-color: var(--red-royal);
+      background: #ffffff;
+      box-shadow: 0 0 0 4px rgba(155, 34, 38, 0.12), 0 4px 16px rgba(197, 155, 39, 0.12);
+      transform: translateY(-1px);
+    }
+
+    textarea.form-input {
+      resize: vertical;
+      min-height: 105px;
+      line-height: 1.6;
+    }
+
+    /* Submit Button */
+    .btn-submit-quote {
+      width: 100%;
+      padding: 1.1rem 2rem;
+      background: linear-gradient(135deg, var(--red-royal), #78171a);
+      color: #ffffff;
+      border-radius: var(--radius-md);
+      font-size: 1.05rem;
+      font-weight: 700;
+      cursor: pointer;
+      border: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      box-shadow: 0 6px 20px rgba(155, 34, 38, 0.32);
+      transition: transform 0.28s var(--ease-spring),
+                  box-shadow 0.28s var(--ease-smooth),
+                  background 0.28s ease;
+      position: relative;
+      overflow: hidden;
+      margin-top: 0.8rem;
+    }
+
+    .btn-submit-quote:hover {
+      background: linear-gradient(135deg, #b0262b, var(--red-royal));
+      transform: translateY(-3px);
+      box-shadow: 0 10px 28px rgba(155, 34, 38, 0.45);
+    }
+
+    .btn-submit-quote:active {
+      transform: translateY(-1px);
+    }
+
+    .form-privacy-note {
+      text-align: center;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-top: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.45rem;
+    }
+
+    /* Reassurance Value Proposition Cards */
+    .assurance-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.8rem;
+    }
+
+    .assurance-box {
+      background: #ffffff;
+      padding: 1.8rem 1.5rem;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-subtle);
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      transition: transform 0.3s var(--ease-smooth), box-shadow 0.3s ease;
+    }
+
+    .assurance-box:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--gold-primary);
+    }
+
+    .assurance-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--gold-soft);
+      color: var(--gold-primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      flex-shrink: 0;
+    }
+
+    .assurance-text h5 {
+      font-size: 1.05rem;
+      margin-bottom: 0.25rem;
+      color: var(--text-main);
+    }
+
+    .assurance-text p {
+      font-size: 0.86rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    /* Responsive Adjustments */
+    @media (max-width: 992px) {
+      .contact-wrapper {
+        grid-template-columns: 1fr;
+      }
+
+      .contact-sidebar {
+        padding: 3rem 2.2rem;
+      }
+
+      .form-wrap {
+        padding: 3rem 2.2rem;
+      }
+
+      .form-grid-2 {
+        grid-template-columns: 1fr;
+        gap: 0;
+      }
+
+      .assurance-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 580px) {
+      .contact-sidebar h3 {
+        font-size: 2.1rem;
+      }
+
+      .form-header-box h4 {
+        font-size: 1.8rem;
+      }
+
+      .contact-sidebar {
+        padding: 2.5rem 1.5rem;
+      }
+
+      .form-wrap {
+        padding: 2.5rem 1.5rem;
+      }
+
+      .sidebar-trust-strip {
+        flex-direction: column;
+        gap: 0.5rem;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Announcement Bar -->
+  <div class="top-announcement">
+    <div class="container top-announcement-inner">
+      <div class="top-badges">
+        <span class="top-badge-item"><i class="fa-solid fa-clock"></i> Quick Response Within 2 Hours</span>
+        <span class="top-badge-item"><i class="fa-solid fa-shield-halved"></i> FSSAI Certified Kitchens</span>
+        <span class="top-badge-item"><i class="fa-solid fa-utensils"></i> 100% Separate Veg &amp; Non-Veg Facilities</span>
+      </div>
+      <div class="top-contacts">
+        <button type="button" class="audio-toggle-btn" aria-label="Sound Effects: Muted">
+          <span class="soundwave-bars"><span class="bar"></span><span class="bar"></span><span class="bar"></span></span>
+          <span class="audio-label">Audio OFF</span>
+        </button>
+        <span><i class="fa-solid fa-phone" style="color:var(--gold-primary);"></i> <a href="tel:+917386046000">+91 73860 46000</a></span>
+        <span><i class="fa-brands fa-whatsapp" style="color:#25d366; margin-left:12px;"></i> <a href="https://wa.me/917386046000" target="_blank" rel="noopener">Chat on WhatsApp</a></span>
+        <span><i class="fa-brands fa-instagram" style="color:#e1306c; margin-left:12px;"></i> <a href="https://www.instagram.com/annapoorna_premiumcatering?psln=YnhjZG5iMGU1bGJt" target="_blank" rel="noopener">@annapoorna_premiumcatering</a></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Header & Sticky Navbar -->
+  <header>
+    <div class="container navbar">
+      <a href="index.html" class="brand-logo" aria-label="Annapurna Caterers Home">
+        <div class="brand-emblem">
+          <i class="fa-solid fa-fire-burner"></i>
+        </div>
+        <div class="brand-title">
+          <h1>అన్నపూర్ణ</h1>
+          <span>Annapurna Caterers</span>
+        </div>
+      </a>
+
+      <nav aria-label="Primary Navigation">
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="packages.html">Packages &amp; Menus</a></li>
+          <li><a href="services.html">Services &amp; Formats</a></li>
+          <li><a href="calculator.html">Cost Calculator</a></li>
+          <li><a href="about.html">About &amp; Hygiene</a></li>
+          <li><a href="contact.html" class="active-page" aria-current="page">Contact Us</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="calculator.html" class="btn-calc magnetic-btn">
+          <i class="fa-solid fa-calculator"></i> Price Estimator
+        </a>
+        <a href="contact.html" class="btn-quote magnetic-btn">
+          <i class="fa-solid fa-calendar-check"></i> Book Event
+        </a>
+        <button class="mobile-nav-toggle" aria-label="Toggle Navigation Menu">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Page Hero Banner with Parallax Background -->
+  <section class="page-hero parallax-bg" data-parallax-speed="0.18">
+    <div class="container">
+      <div class="page-hero-tag shimmer">
+        <i class="fa-solid fa-calendar-check"></i> Event Reservations
+      </div>
+      <h2>Get In Touch &amp; Book Your Date</h2>
+      <p>
+        Submit your event details below for custom Andhra menu planning and instant quotations, or chat directly with our banquet experts on WhatsApp.
+      </p>
+    </div>
+  </section>
+
+  <!-- Contact Form & Sidebar Section -->
+  <section class="contact-section">
+    <div class="container">
+      
+      <!-- Contact 2-Column Card with Reveal Up -->
+      <div class="contact-wrapper reveal-up">
+        
+        <!-- Left Sidebar (Crimson Gradient) with Reveal Left -->
+        <div class="contact-sidebar">
+          <div class="sidebar-header reveal-left">
+            <span class="sidebar-eyebrow">
+              <i class="fa-solid fa-bolt" style="margin-right:4px;"></i> Instant Booking Support
+            </span>
+            <h3>Plan Your Feast</h3>
+            <p class="sidebar-desc">
+              Speak directly with our senior event coordinators to craft custom menus, schedule food tastings, and secure your auspicious event date.
+            </p>
+
+            <div class="contact-entries-list">
+              
+              <!-- Entry 1: Phone / WhatsApp -->
+              <div class="contact-entry">
+                <div class="contact-entry-icon">
+                  <i class="fa-solid fa-phone"></i>
+                </div>
+                <div class="contact-entry-body">
+                  <small>Phone &amp; WhatsApp</small>
+                  <a href="tel:+917386046000">+91 73860 46000</a>
+                </div>
+              </div>
+
+              <!-- Entry 2: Official Instagram -->
+              <div class="contact-entry">
+                <div class="contact-entry-icon">
+                  <i class="fa-brands fa-instagram"></i>
+                </div>
+                <div class="contact-entry-body">
+                  <small>Official Instagram</small>
+                  <a href="https://www.instagram.com/annapoorna_premiumcatering?psln=YnhjZG5iMGU1bGJt" target="_blank" rel="noopener">
+                    @annapoorna_premiumcatering
+                  </a>
+                </div>
+              </div>
+
+              <!-- Entry 3: Direct Email -->
+              <div class="contact-entry">
+                <div class="contact-entry-icon">
+                  <i class="fa-solid fa-envelope"></i>
+                </div>
+                <div class="contact-entry-body">
+                  <small>Direct Email</small>
+                  <a href="mailto:Annapoornacatering8@gmail.com">
+                    Annapoornacatering8@gmail.com
+                  </a>
+                </div>
+              </div>
+
+              <!-- Entry 4: Locations Covered -->
+              <div class="contact-entry">
+                <div class="contact-entry-icon">
+                  <i class="fa-solid fa-location-dot"></i>
+                </div>
+                <div class="contact-entry-body">
+                  <small>Catering Locations</small>
+                  <strong>Serving Andhra Pradesh &amp; Hyderabad</strong>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Bottom Action in Sidebar -->
+          <div>
+            <a 
+              href="https://wa.me/917386046000?text=Namaskaram%20Annapurna%20Caterers,%20I%20would%20like%20to%20enquire%20about%20event%20catering%20services" 
+              target="_blank" 
+              rel="noopener" 
+              class="whatsapp-direct-btn magnetic-btn"
+            >
+              <i class="fa-brands fa-whatsapp" style="font-size:1.35rem;"></i> WhatsApp Direct Chat
+            </a>
+
+            <div class="sidebar-trust-strip">
+              <span><i class="fa-solid fa-shield-check"></i> FSSAI: 13622036000123</span>
+              <span><i class="fa-solid fa-utensils"></i> 100% Separate Kitchens</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Form with Reveal Right -->
+        <div class="form-wrap reveal-right">
+          <div class="form-header-box">
+            <h4>Request a Custom Quote</h4>
+            <p>
+              Fill in your celebration requirements below. We will immediately formulate a tailored per-plate proposal and connect with you on WhatsApp.
+            </p>
+          </div>
+
+          <form id="cateringForm" onsubmit="handleCateringSubmit(event)">
+            
+            <!-- Row 1: Name & Phone -->
+            <div class="form-grid-2">
+              <div class="field-group">
+                <label for="f-name">Full Name *</label>
+                <div class="input-glow-container">
+                  <input 
+                    type="text" 
+                    id="f-name" 
+                    class="form-input" 
+                    placeholder="e.g. Ramesh Varma" 
+                    required 
+                    autocomplete="name"
+                  />
+                </div>
+              </div>
+
+              <div class="field-group">
+                <label for="f-phone">Mobile / WhatsApp Number *</label>
+                <div class="input-glow-container">
+                  <input 
+                    type="tel" 
+                    id="f-phone" 
+                    class="form-input" 
+                    placeholder="e.g. +91 73860 46000" 
+                    required 
+                    autocomplete="tel"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <!-- Row 2: Date & Guests -->
+            <div class="form-grid-2">
+              <div class="field-group">
+                <label for="f-date">Event Date *</label>
+                <div class="input-glow-container">
+                  <input 
+                    type="date" 
+                    id="f-date" 
+                    class="form-input" 
+                    required 
+                  />
+                </div>
+              </div>
+
+              <div class="field-group">
+                <label for="f-guests">Estimated Guests * (Min 25)</label>
+                <div class="input-glow-container">
+                  <input 
+                    type="number" 
+                    id="f-guests" 
+                    class="form-input" 
+                    min="25" 
+                    placeholder="e.g. 150" 
+                    required 
+                  />
+                </div>
+              </div>
+            </div>
+
+            <!-- Row 3: Service Format & Selected Package -->
+            <div class="form-grid-2">
+              <div class="field-group">
+                <label for="f-service">Service Format *</label>
+                <div class="input-glow-container">
+                  <select id="f-service" class="form-input" required>
+                    <option value="Serving &amp; Delivery (Full Vindu Service)" selected>Serving &amp; Delivery (Full Vindu Service)</option>
+                    <option value="Delivery Only (Drop-off)">Delivery Only (Doorstep Drop-off)</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="field-group">
+                <label for="f-package">Selected Package</label>
+                <div class="input-glow-container">
+                  <select id="f-package" class="form-input">
+                    <option value="Veg Traditional - ₹225/plate">Veg Traditional - ₹225/plate</option>
+                    <option value="Veg Standard - ₹295/plate">Veg Standard (Arati Aaku) - ₹295/plate</option>
+                    <option value="Non-Veg Basic - ₹395/plate">Non-Veg Basic - ₹395/plate</option>
+                    <option value="Non-Veg Standard - ₹495/plate" selected>Non-Veg Standard Biryani - ₹495/plate</option>
+                    <option value="Custom Menu">Custom Menu (Specify Dishes Below)</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <!-- Row 4: Occasion -->
+            <div class="field-group">
+              <label for="f-occasion">Occasion / Event Type</label>
+              <div class="input-glow-container">
+                <select id="f-occasion" class="form-input">
+                  <option value="Pelli / Reception (Wedding)" selected>Pelli / Reception (Wedding)</option>
+                  <option value="Gruhapravesam (Housewarming)">Gruhapravesam (Housewarming)</option>
+                  <option value="Satyanarayana Swamy Vratam (Pooja)">Satyanarayana Swamy Vratam (Pooja)</option>
+                  <option value="Half Saree / Dhoti Ceremony">Half Saree / Dhoti Ceremony</option>
+                  <option value="Birthday / Sreemantham (Baby Shower)">Birthday / Sreemantham (Baby Shower)</option>
+                  <option value="Corporate Event / Banquet">Corporate Event / Banquet</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Row 5: Special Requests -->
+            <div class="field-group">
+              <label for="f-notes">Special Requests / Preferred Dishes</label>
+              <div class="input-glow-container">
+                <textarea 
+                  id="f-notes" 
+                  class="form-input" 
+                  placeholder="e.g. Include Live Pesarattu counter, Gongura Mutton, Natu Kodi Pulusu, Atreyapuram Pootharekulu, Banana Leaf seating, delivery city/location..."
+                ></textarea>
+              </div>
+            </div>
+
+            <!-- Submit Button with Paper Plane Icon & Magnetic Class -->
+            <button type="submit" class="btn-submit-quote magnetic-btn">
+              <i class="fa-solid fa-paper-plane"></i> Send Enquiry via WhatsApp
+            </button>
+
+            <p class="form-privacy-note">
+              <i class="fa-solid fa-lock" style="color:var(--gold-primary);"></i> 
+              Your information is secure. You will receive an instant customized menu breakdown on WhatsApp.
+            </p>
+
+          </form>
+        </div>
+
+      </div>
+
+      <!-- Trust & Assurance Row -->
+      <div class="assurance-grid stagger-reveal">
+        <div class="assurance-box reveal-up delay-1">
+          <div class="assurance-icon">
+            <i class="fa-solid fa-stopwatch"></i>
+          </div>
+          <div class="assurance-text">
+            <h5>Rapid 2-Hour Response</h5>
+            <p>Our dedicated banquet manager reviews your requirements and sends a tailored menu proposal within 2 hours.</p>
+          </div>
+        </div>
+
+        <div class="assurance-box reveal-up delay-2">
+          <div class="assurance-icon">
+            <i class="fa-solid fa-utensils"></i>
+          </div>
+          <div class="assurance-text">
+            <h5>Complimentary Tasting</h5>
+            <p>For wedding and major banquets exceeding 300 guests, pre-event menu tasting sessions are available upon request.</p>
+          </div>
+        </div>
+
+        <div class="assurance-box reveal-up delay-3">
+          <div class="assurance-icon">
+            <i class="fa-solid fa-receipt"></i>
+          </div>
+          <div class="assurance-text">
+            <h5>100% Transparent Billing</h5>
+            <p>Clear per-plate pricing with no hidden equipment or transport surcharges for confirmed service zones.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Floating Action Buttons -->
+  <div class="floating-tools">
+    <a href="tel:+917386046000" class="floating-btn floating-call magnetic-btn" title="Call Us Direct" aria-label="Call Annapurna Caterers">
+      <i class="fa-solid fa-phone"></i>
+    </a>
+    <a href="https://wa.me/917386046000?text=Namaskaram%20Annapurna%20Caterers,%20I%20want%20to%20enquire%20about%20catering%20services" target="_blank" rel="noopener" class="floating-btn floating-wa magnetic-btn" title="WhatsApp Enquiry" aria-label="Chat on WhatsApp">
+      <i class="fa-brands fa-whatsapp"></i>
+    </a>
+  </div>
+
+  <!-- Layered Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-columns">
+        
+        <!-- Col 1: Brand Info -->
+        <div class="footer-col">
+          <div class="brand-logo" style="margin-bottom:1.2rem;">
+            <div class="brand-emblem" style="width:42px; height:42px; font-size:1.15rem;">
+              <i class="fa-solid fa-fire-burner"></i>
+            </div>
+            <div class="brand-title">
+              <h1 style="color:#ffffff; font-size:1.35rem;">అన్నపూర్ణ</h1>
+              <span>Annapurna Caterers</span>
+            </div>
+          </div>
+          <p style="font-size:0.9rem; line-height:1.7; color:#b0a89d; margin-bottom:1.2rem;">
+            Authentic Andhra &amp; Telugu catering excellence with 100% separate kitchens for pure veg and non-veg delicacies. Serving Hyderabad and all Andhra Pradesh.
+          </p>
+          <div class="social-row">
+            <a href="https://www.instagram.com/annapoorna_premiumcatering?psln=YnhjZG5iMGU1bGJt" target="_blank" rel="noopener" class="social-btn magnetic-btn" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="https://wa.me/917386046000" target="_blank" rel="noopener" class="social-btn magnetic-btn" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+            <a href="tel:+917386046000" class="social-btn magnetic-btn" aria-label="Phone"><i class="fa-solid fa-phone"></i></a>
+          </div>
+        </div>
+
+        <!-- Col 2: Quick Links -->
+        <div class="footer-col">
+          <h5>Quick Pages</h5>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="packages.html">Catering Packages</a></li>
+            <li><a href="services.html">Delivery vs Serving</a></li>
+            <li><a href="calculator.html">Cost Estimator</a></li>
+            <li><a href="about.html">About &amp; Hygiene</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 3: Signature Menus -->
+        <div class="footer-col">
+          <h5>Signature Menus</h5>
+          <ul class="footer-links">
+            <li><a href="packages.html">Arati Aaku Veg Vindu (₹295)</a></li>
+            <li><a href="packages.html">Dum Biryani &amp; Mutton (₹495)</a></li>
+            <li><a href="packages.html">Natu Kodi &amp; Ragi Sankati</a></li>
+            <li><a href="packages.html">Live Pesarattu &amp; Bobbatlu</a></li>
+            <li><a href="contact.html">Satvik Vratam Poojas</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 4: Contacts & Credentials -->
+        <div class="footer-col">
+          <h5>Contact &amp; Hubs</h5>
+          <p style="margin-bottom:0.75rem; font-size:0.9rem;">
+            <i class="fa-solid fa-phone" style="color:var(--gold-primary); margin-right:8px;"></i> 
+            <a href="tel:+917386046000" style="color:#ded7ce;">+91 73860 46000</a>
+          </p>
+          <p style="margin-bottom:0.75rem; font-size:0.9rem;">
+            <i class="fa-brands fa-whatsapp" style="color:#25d366; margin-right:8px;"></i> 
+            <a href="https://wa.me/917386046000" target="_blank" rel="noopener" style="color:#ded7ce;">wa.me/917386046000</a>
+          </p>
+          <p style="margin-bottom:0.75rem; font-size:0.9rem;">
+            <i class="fa-solid fa-envelope" style="color:var(--gold-primary); margin-right:8px;"></i> 
+            <a href="mailto:Annapoornacatering8@gmail.com" style="color:#ded7ce;">Annapoornacatering8@gmail.com</a>
+          </p>
+          <p style="margin-bottom:0.75rem; font-size:0.9rem;">
+            <i class="fa-brands fa-instagram" style="color:#e1306c; margin-right:8px;"></i> 
+            <a href="https://www.instagram.com/annapoorna_premiumcatering?psln=YnhjZG5iMGU1bGJt" target="_blank" rel="noopener" style="color:#ded7ce;">@annapoorna_premiumcatering</a>
+          </p>
+          <p style="font-size:0.88rem; line-height:1.6; color:#a39b90; margin-top:0.4rem;">
+            <i class="fa-solid fa-location-dot" style="color:var(--gold-primary); margin-right:8px;"></i> 
+            Serving Hyderabad, Vijayawada, Guntur, Vizag, Tirupati &amp; AP
+          </p>
+        </div>
+
+      </div>
+
+      <div class="footer-bottom-bar">
+        <p>&copy; 2026 Annapurna Caterers. All Rights Reserved. Master of Authentic Telugu Celebrations.</p>
+        <p>FSSAI Lic. No: 13622036000123 &bull; ISO 9001:2015 Certified</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Page-Specific JavaScript: Pre-Selection & WhatsApp Submission -->
+  <script>
+    // Deep-linking URL Query Parameter Pre-selection
+    window.addEventListener('DOMContentLoaded', () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const pkgParam = urlParams.get('pkg');
+      const serviceParam = urlParams.get('service');
+
+      if (pkgParam) {
+        const pkgSelect = document.getElementById('f-package');
+        if (pkgSelect) {
+          const cleanParam = pkgParam.toLowerCase().replace(/[^a-z0-9]/g, '');
+          for (let i = 0; i < pkgSelect.options.length; i++) {
+            const optVal = pkgSelect.options[i].value.toLowerCase().replace(/[^a-z0-9]/g, '');
+            if (optVal.includes(cleanParam) || cleanParam.includes(optVal.slice(0, 8))) {
+              pkgSelect.selectedIndex = i;
+              break;
+            }
+          }
+        }
+      }
+
+      if (serviceParam) {
+        const serviceSelect = document.getElementById('f-service');
+        if (serviceSelect) {
+          const cleanService = serviceParam.toLowerCase();
+          if (cleanService.includes('serving') || cleanService.includes('vindu')) {
+            serviceSelect.value = 'Serving & Delivery (Full Vindu Service)';
+          } else if (cleanService.includes('delivery') || cleanService.includes('drop')) {
+            serviceSelect.value = 'Delivery Only (Drop-off)';
+          }
+        }
+      }
+    });
+
+    // Formatting & Opening Direct WhatsApp Enquiry
+    function handleCateringSubmit(e) {
+      e.preventDefault();
+
+      const name = document.getElementById('f-name').value.trim();
+      const phone = document.getElementById('f-phone').value.trim();
+      const date = document.getElementById('f-date').value;
+      const guests = document.getElementById('f-guests').value;
+      const service = document.getElementById('f-service').value;
+      const packageSelected = document.getElementById('f-package').value;
+      const occasion = document.getElementById('f-occasion').value;
+      const notes = document.getElementById('f-notes').value.trim();
+
+      const businessPhone = "917386046000";
+
+      const message = 
+        `*Namaskaram! New Event Enquiry - Annapurna Caterers*%0A%0A` +
+        `*Customer Name:* ${encodeURIComponent(name)}%0A` +
+        `*Mobile / WhatsApp:* ${encodeURIComponent(phone)}%0A` +
+        `*Event Date:* ${encodeURIComponent(date)}%0A` +
+        `*Estimated Guests:* ${encodeURIComponent(guests)} pax%0A` +
+        `*Occasion:* ${encodeURIComponent(occasion)}%0A` +
+        `*Service Format:* ${encodeURIComponent(service)}%0A` +
+        `*Selected Package:* ${encodeURIComponent(packageSelected)}%0A` +
+        `*Special Requests / Dishes:* ${encodeURIComponent(notes || 'Standard package items requested')}%0A%0A` +
+        `_Sent via Annapurna Caterers Reservation Portal_`;
+
+      window.open(`https://wa.me/${businessPhone}?text=${message}`, '_blank');
+    }
+  </script>
+
+</body>
+</html>
